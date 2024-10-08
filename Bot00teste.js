@@ -8,7 +8,15 @@ javascript:(function() {
     document.head.appendChild(link);
 
     document.body.appendChild(menu);
-    document.addEventListener('dblclick', (e) => showMenu(menu, e.clientY, e.clientX));
+
+    // Para garantir compatibilidade com celular, vamos usar um clique simples em vez de duplo clique
+    document.addEventListener('click', (e) => {
+        if (menu.style.display === 'none' || !menu.style.display) {
+            showMenu(menu, e.clientY, e.clientX);
+        } else {
+            closeMenu();
+        }
+    });
 
     setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
 
@@ -26,17 +34,18 @@ javascript:(function() {
             <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
             <div id='accuracyText' style='text-align:center;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
             <div style='text-align:center;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
+        
         return m;
     }
 
     function showMenu(menu, y, x) {
         menu.style.top = `${y}px`; 
         menu.style.left = `${x}px`; 
-        menu.style.display = 'block';
+        menu.style.display = 'block';  // Garantindo que o menu apareça
     }
 
     function closeMenu() {
-        menu.style.display = 'none';
+        menu.style.display = 'none';  // Fechar o menu
     }
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
@@ -51,7 +60,17 @@ javascript:(function() {
         const freq = { vermelho: 0, preto: 0, branco: 0 };
         results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
         
-        const predColor = freq.vermelho > freq.preto ? '🔴' : freq.preto > freq.vermelho ? '⚫' : '⚪';
+        let predColor;
+        if (Math.abs(freq.vermelho - freq.preto) <= 5) {
+            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
+        } else {
+            predColor = freq.vermelho > freq.preto ? '🔴' : '⚫';
+        }
+
+        if (freq.branco > Math.max(freq.vermelho, freq.preto)) {
+            predColor = '⚪';
+        }
+
         const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
 
         total++; correct += correctPrediction ? 1 : 0;
