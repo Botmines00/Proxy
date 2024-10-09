@@ -9,10 +9,22 @@ javascript:(function() {
 
     document.body.appendChild(menu);
 
+    // Array com mensagens de "hacking"
+    const hackingMessages = [
+        "Identificando cor...",
+        "Extraindo informações...",
+        "Acessando banco de dados...",
+        "Injetando código malicioso...",
+        "Desativando firewall...",
+        "Acessando arquivos...",
+        "Enviando informações..."
+    ];
+
     // Para garantir compatibilidade com celular, vamos usar um clique simples em vez de duplo clique
     document.addEventListener('click', (e) => {
         if (menu.style.display === 'none' || !menu.style.display) {
             showMenu(menu, e.clientY, e.clientX);
+            rotateMessages();
         } else {
             closeMenu();
         }
@@ -31,11 +43,21 @@ javascript:(function() {
             <img src="https://i.ibb.co/TwMJKVF/IMG-20240926-WA0099.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid red;">
             <h3 style='text-align:center;'>System Hacker <i class="fas fa-check-circle" style="color: red;"></i></h3>
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <div id='hackingMessages' style='text-align:center; margin-top:10px;'>Iniciando hack...</div> <!-- Aqui as mensagens de "hacking" aparecerão -->
             <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
             <div id='accuracyText' style='text-align:center;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
             <div style='text-align:center;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
         
         return m;
+    }
+
+    function rotateMessages() {
+        let messageIndex = 0;
+        const messageContainer = document.getElementById('hackingMessages');
+        setInterval(() => {
+            messageContainer.innerText = hackingMessages[messageIndex];
+            messageIndex = (messageIndex + 1) % hackingMessages.length; // Cicla pelas mensagens
+        }, 2000); // Alterna a cada 2 segundos
     }
 
     function showMenu(menu, y, x) {
