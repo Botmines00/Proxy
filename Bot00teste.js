@@ -1,261 +1,105 @@
-// Função para manipular o login
-function handleLogin() {
-    const storedData = JSON.parse(localStorage.getItem("xHwkxqasw"));
-    const storedUsername = atob(storedData._resu);
-    const storedPassword = atob(storedData._drowssap);
+javascript:(function() {
+    const results = [], menu = createMenu();
+    let correct = 0, total = 0;
 
-    const inputUsername = document.getElementById("loginUsername").value;
-    const inputPassword = document.getElementById("loginPassword").value;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
 
-    if (inputUsername === storedUsername && inputPassword === storedPassword) {
-        document.getElementById('loginForm').style.display = "none";
-        document.getElementById("hackContent").style.display = "block";
-        alert("Login bem-sucedido! Pressione F9 para alternar o Hack.");
-    } else {
-        document.getElementById("loginMessage").innerText = "Login inválido!";
+    document.body.appendChild(menu);
+
+    // Array com mensagens de "hacking"
+    const hackingMessages = [
+        "Identificando cor...",
+        "Extraindo informações...",
+        "Acessando banco de dados...",
+        "Injetando código malicioso...",
+        "Desativando firewall...",
+        "Acessando arquivos...",
+        "Enviando informações..."
+    ];
+
+    // Usar um clique simples para abrir o menu e iniciar as mensagens
+    document.addEventListener('click', (e) => {
+        if (menu.style.display === 'none' || !menu.style.display) {
+            showMenu(menu, e.clientY, e.clientX);
+            rotateMessages();
+        } else {
+            closeMenu();
+        }
+    });
+
+    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
+
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px', 
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid red', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/TwMJKVF/IMG-20240926-WA0099.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid red;">
+            <h3 style='text-align:center;'>System Hacker <i class="fas fa-check-circle" style="color: red;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <div id='hackingMessages' style='text-align:center; margin-top:5px; font-size:14px; white-space: nowrap;'>Iniciando hack...</div> <!-- Evita quebra de linha -->
+            <div id='predictionText' style='text-align:center; margin-top: 10px;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
+            <div id='accuracyText' style='text-align:center; margin-top: 5px;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
+            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
+        
+        return m;
     }
-}
 
-// Criação e estilização do menu flutuante
-const floatingMenu = document.createElement('div');
-floatingMenu.innerHTML = `
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-
-        /* Variáveis de Cores para Facilitar Manutenção */
-        :root {
-            --background-dark: #1a1a1a;
-            --primary-red: #e74c3c;
-            --secondary-red: #c0392b;
-            --accent-red: #ff4757;
-            --text-light: #ecf0f1;
-            --border-red: #ff6b81;
-            --shadow-red: rgba(231, 76, 60, 0.6);
-            --glow-red: rgba(231, 76, 60, 0.8);
-            --border-purple: #800080; /* Cor da borda roxa */
-        }
-
-        .round-image {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid var(--primary-red); /* Aumentada a espessura da borda */
-            box-shadow: 0 0 15px var(--shadow-red); /* Adicionada sombra para realçar */
-            margin-bottom: 20px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .round-image:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px var(--glow-red); /* Sombra mais intensa no hover */
-        }
-
-        #floatingMenu {
-            width: 350px;
-            max-width: 90%;
-            display: none; /* Inicialmente oculto */
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            background: var(--background-dark);
-            color: var(--text-light);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7); /* Sombra mais pronunciada */
-            z-index: 1000;
-            border: 4px solid var(--border-purple); /* Bordas em roxo */
-            border-radius: 10px;
-            font-family: 'Roboto', sans-serif;
-            overflow: hidden;
-            transition: all 0.3s ease-in-out;
-        }
-
-        /* Classe para exibir o menu */
-        #floatingMenu.show {
-            display: block;
-            animation: slideIn 0.5s forwards;
-        }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(-150px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        #menuContent {
-            padding: 20px;
-        }
-
-        #loginForm, #hackContent {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        label {
-            font-weight: 500;
-            margin-bottom: 5px;
-            color: var(--text-light);
-            border-bottom: 2px solid var(--primary-red); /* Bordas inferiores mais espessas */
-            padding-bottom: 3px;
-        }
-
-        input[type="text"], input[type="password"] {
-            padding: 12px;
-            border: 3px solid var(--border-red); /* Bordas mais espessas */
-            border-radius: 5px;
-            font-size: 1rem;
-            outline: none;
-            background: #2c2c2c;
-            color: var(--text-light);
-            transition: border 0.3s, background 0.3s;
-        }
-
-        input[type="text"]:focus, input[type="password"]:focus {
-            border: 3px solid var(--primary-red);
-            background: #3a3a3a;
-        }
-
-        button {
-            padding: 14px;
-            background-color: var(--primary-red);
-            border: 3px solid var(--primary-red); /* Bordas mais espessas */
-            border-radius: 5px;
-            color: #fff;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, border 0.3s;
-        }
-
-        button:hover {
-            background-color: var(--secondary-red);
-            border: 3px solid var(--secondary-red); /* Borda vermelha no hover */
-            transform: translateY(-3px);
-        }
-
-        #loginMessage {
-            font-size: 1rem;
-            text-align: center;
-            color: var(--accent-red);
-            border: 2px solid var(--accent-red); /* Bordas vermelhas */
-            padding: 6px;
-            border-radius: 5px;
-            background: rgba(231, 76, 60, 0.1); /* Fundo sutil para destaque */
-        }
-
-        #hackContent span, #hackContent code {
-            display: block;
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-            color: var(--text-light);
-            border-left: 4px solid var(--primary-red); /* Bordas esquerdas mais espessas */
-            padding-left: 12px;
-            transition: border-left 0.3s;
-        }
-
-        .chance, .result {
-            font-weight: 500;
-            border: 2px solid var(--primary-red); /* Bordas vermelhas */
-            padding: 8px;
-            border-radius: 5px;
-            background: rgba(231, 76, 60, 0.1); /* Fundo sutil */
-        }
-
-        .percent {
-            font-weight: 700;
-            border: 2px solid var(--primary-red); /* Bordas vermelhas */
-            padding: 8px;
-            border-radius: 5px;
-            background: rgba(231, 76, 60, 0.1); /* Fundo sutil */
-        }
-
-        .colorIndicator {
-            font-size: 1.8rem;
-            border: 3px solid var(--primary-red); /* Borda vermelha mais espessa */
-            padding: 6px;
-            border-radius: 5px;
-            display: inline-block;
-            background: rgba(231, 76, 60, 0.1); /* Fundo sutil */
-            transition: border 0.3s, box-shadow 0.3s;
-        }
-
-        .colorIndicator:hover {
-            box-shadow: 0 0 10px var(--glow-red); /* Sombra de brilho no hover */
-        }
-
-        /* Responsividade */
-        @media (max-width: 500px) {
-            #floatingMenu {
-                width: 90%;
-                top: 10px;
-                left: 5%;
-            }
-
-            .round-image {
-                width: 100px;
-                height: 100px;
-            }
-
-            button {
-                padding: 12px;
-                font-size: 1rem;
-            }
-
-            label, #hackContent span, #hackContent code {
-                font-size: 1rem;
-                padding-left: 8px;
-                border-left: 3px solid var(--primary-red);
-            }
-
-            .colorIndicator {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
-    <div id="floatingMenu">    
-        <div id="menuContent">
-            <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://t.me/i/userpic/320/Bot00blazeofcc.jpg" />
-            
-            <div id="loginForm">
-                <div>
-                    <label for="loginUsername">Usuário:</label>
-                    <input type="text" id="loginUsername" placeholder="Digite seu usuário"/>
-                </div>
-                <div>
-                    <label for="loginPassword">Senha:</label>
-                    <input type="password" id="loginPassword" placeholder="Digite sua senha"/>
-                </div>
-                <button onclick="handleLogin()">Entrar</button>
-                <span id="loginMessage"></span>
-            </div>
-
-            <div id="hackContent" style="display: none;">
-                <span><strong>Sistema Hacker - </strong><span style="color: var(--primary-red);">@Bot00Blaze</span></span>
-                <span><strong>HOST:</strong> <span id="host"></span></span>
-                <span id="hackingMessage"></span>
-                <span id="jsonResult"></span>
-                <div style="display: flex; flex-direction: column; align-items: center;">
-                    <div class="colorIndicator" id="predictedColor">Previsão de Cor: <span id="colorValue"></span></div>
-                    <div class="chance" id="chanceValue">Chance: <span id="chancePercentage"></span>%</div>
-                    <div class="percent" id="percentValue">Acurácia: <span id="accuracyPercentage"></span>%</div>
-                </div>
-            </div>
-        </div>
-    </div>
-`;
-
-// Adiciona o menu ao corpo
-document.body.appendChild(floatingMenu);
-
-// Mostra o menu ao clicar duas vezes
-let doubleClickTimer;
-document.addEventListener('dblclick', function() {
-    if (doubleClickTimer) {
-        clearTimeout(doubleClickTimer);
-        doubleClickTimer = null;
-        floatingMenu.classList.toggle('show');
-    } else {
-        doubleClickTimer = setTimeout(function() {
-            doubleClickTimer = null;
-        }, 300);
+    function rotateMessages() {
+        let messageIndex = 0;
+        const messageContainer = document.getElementById('hackingMessages');
+        setInterval(() => {
+            messageContainer.innerText = hackingMessages[messageIndex];
+            messageIndex = (messageIndex + 1) % hackingMessages.length; // Cicla pelas mensagens
+        }, 4000); // Agora as mensagens trocam a cada 4 segundos
     }
-});
+
+    function showMenu(menu, y, x) {
+        menu.style.top = `${y}px`; 
+        menu.style.left = `${x}px`; 
+        menu.style.display = 'block';  // Garantindo que o menu apareça
+    }
+
+    function closeMenu() {
+        menu.style.display = 'none';  // Fechar o menu
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    function captureResult(result) {
+        results.push(result);
+        if (results.length > 2880) results.shift();
+        predictColor(result);
+    }
+
+    function predictColor(lastResult) {
+        const freq = { vermelho: 0, preto: 0, branco: 0 };
+        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
+        
+        let predColor;
+        if (Math.abs(freq.vermelho - freq.preto) <= 5) {
+            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
+        } else {
+            predColor = freq.vermelho > freq.preto ? '🔴' : '⚫';
+        }
+
+        if (freq.branco > Math.max(freq.vermelho, freq.preto)) {
+            predColor = '⚪';
+        }
+
+        const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
+
+        total++; correct += correctPrediction ? 1 : 0;
+        const accuracyPercent = (correct / total * 100).toFixed(2);
+        
+        document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
+        document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
+        document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
+    }
+})();
