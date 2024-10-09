@@ -46,8 +46,7 @@ javascript:(function() {
             <div id='hackingMessages' style='text-align:center; margin-top:5px; font-size:14px; white-space: nowrap;'>Iniciando hack...</div>
             <div id='predictionText' style='text-align:center; margin-top: 10px;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
             <div id='accuracyText' style='text-align:center; margin-top: 5px;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
-            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>
-            <button id="applyBugProxy" style="margin-top: 10px; padding: 10px; background-color: purple; color: white; border: none; border-radius: 5px; cursor: pointer;">Aplicar Bug Proxy</button>`;
+            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
         
         return m;
     }
