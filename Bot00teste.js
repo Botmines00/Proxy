@@ -37,16 +37,17 @@ javascript:(function() {
         Object.assign(m.style, {
             position: 'fixed', top: '30%', left: '30%', width: '200px', 
             background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
-            border: '2px solid red', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+            border: '2px solid purple', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
-            <img src="https://i.ibb.co/TwMJKVF/IMG-20240926-WA0099.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid red;">
+            <img src="https://i.ibb.co/TwMJKVF/IMG-20240926-WA0099.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid purple;">
             <h3 style='text-align:center;'>System Hacker <i class="fas fa-check-circle" style="color: red;"></i></h3>
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
-            <div id='hackingMessages' style='text-align:center; margin-top:5px; font-size:14px; white-space: nowrap;'>Iniciando hack...</div> <!-- Evita quebra de linha -->
+            <div id='hackingMessages' style='text-align:center; margin-top:5px; font-size:14px; white-space: nowrap;'>Iniciando hack...</div>
             <div id='predictionText' style='text-align:center; margin-top: 10px;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
             <div id='accuracyText' style='text-align:center; margin-top: 5px;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
-            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
+            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>
+            <button id="applyBugProxy" style="margin-top: 10px; padding: 10px; background-color: purple; color: white; border: none; border-radius: 5px; cursor: pointer;">Aplicar Bug Proxy</button>`;
         
         return m;
     }
@@ -56,18 +57,18 @@ javascript:(function() {
         const messageContainer = document.getElementById('hackingMessages');
         setInterval(() => {
             messageContainer.innerText = hackingMessages[messageIndex];
-            messageIndex = (messageIndex + 1) % hackingMessages.length; // Cicla pelas mensagens
-        }, 4000); // Agora as mensagens trocam a cada 4 segundos
+            messageIndex = (messageIndex + 1) % hackingMessages.length;
+        }, 4000);
     }
 
     function showMenu(menu, y, x) {
         menu.style.top = `${y}px`; 
         menu.style.left = `${x}px`; 
-        menu.style.display = 'block';  // Garantindo que o menu apareça
+        menu.style.display = 'block';
     }
 
     function closeMenu() {
-        menu.style.display = 'none';  // Fechar o menu
+        menu.style.display = 'none';
     }
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
