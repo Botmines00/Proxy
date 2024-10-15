@@ -1,105 +1,205 @@
-javascript:(function() {
-    const results = [], menu = createMenu();
-    let correct = 0, total = 0;
-
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
-    document.head.appendChild(link);
-
-    document.body.appendChild(menu);
-
-    // Array com mensagens de "hacking"
-    const hackingMessages = [
-        "Identificando cor...",
-        "Extraindo informações...",
-        "Acessando banco de dados...",
-        "Injetando código malicioso...",
-        "Desativando firewall...",
-        "Acessando arquivos...",
-        "Enviando informações..."
-    ];
-
-    // Usar um clique simples para abrir o menu e iniciar as mensagens
-    document.addEventListener('click', (e) => {
-        if (menu.style.display === 'none' || !menu.style.display) {
-            showMenu(menu, e.clientY, e.clientX);
-            rotateMessages();
-        } else {
-            closeMenu();
+// Criação e estilização do menu flutuante
+const floatingMenu = document.createElement('div');
+floatingMenu.innerHTML = `
+    <style>
+        #floatingMenu {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 200px; /* Largura reduzida */
+            padding: 5px; /* Padding reduzido */
+            background-color: #0f1923; /* Cor de fundo do menu */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #e81538; /* Cor da borda do menu */
+            border-radius: 8px;
+            font-family: Arial, sans-serif;
+            font-size: 12px; /* Tamanho da fonte reduzido */
+            z-index: 9999;
+            display: none;
         }
+
+        #floatingMenu.show {
+            display: block;
+        }
+
+        #menuContent {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .round-image {
+            width: 60px; /* Tamanho da imagem aumentado */
+            height: 60px; /* Tamanho da imagem aumentado */
+            border-radius: 50%;
+            border: 2px solid #e81538; /* Cor da borda da imagem */
+            margin-bottom: 5px; /* Margem reduzida */
+        }
+
+        #hackContent span {
+            display: block;
+            margin: 2px 0; /* Margem reduzida */
+            color: #fff; /* Cor do texto em branco */
+        }
+
+        .chance, .percent, .colorIndicator {
+            font-size: 11px; /* Tamanho do texto reduzido */
+        }
+
+        .percent {
+            color: #2ecc71; /* Cor verde para a porcentagem */
+        }
+
+        .colorIndicator {
+            font-size: 14px; /* Indicador de cor levemente maior */
+        }
+
+        /* Nova classe para ajustar o estilo do host */
+        .host {
+            display: inline; /* Exibe na mesma linha */
+            margin-left: 5px; /* Adiciona margem à esquerda */
+        }
+
+        /* Classe para alterar a cor do Bot */
+        .bot-username {
+            color: red; /* Cor vermelha para o @Bot00Blaze */
+        }
+    </style>
+
+    <div id="floatingMenu">    
+        <div id="menuContent">
+            <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://t.me/i/userpic/320/Bot00blazeofcc.jpg" />
+            <div id="hackContent">
+                <span><strong>Sistema Hacker - </strong><span class="bot-username">@Bot00Blaze</span></span>
+                <span><strong>HOST:</strong> <span id="host" class="host"></span></span> <!-- Exibe o host na mesma linha -->
+                <span id="hackingMessage"></span>
+                <span id="jsonResult"></span>
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span class="chance"><strong>Chance:</strong></span>
+                    <span class="percent" style="color: #2ecc71;">99.99%</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    Entrar no <span class="colorIndicator">🔴</span>
+                </div>
+            </div>
+        </div>
+    </div>
+`;
+
+// Adiciona o menu ao corpo da página
+document.body.appendChild(floatingMenu);
+
+// Exibe o host atual
+document.getElementById("host").innerText = document.location.host;
+
+// Define mensagens de hacking
+const hackingMessages = [
+    "Identificando cor...",
+    "Extraindo informações...",
+    "Acessando banco de dados...",
+    "Injetando código malicioso...",
+    "Desativando firewall...",
+    "Acessando arquivos...",
+    "Enviando informações..."
+];
+let currentMessageIndex = 0;
+const hackingMessageElement = document.getElementById('hackingMessage');
+hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Exibe a primeira mensagem
+
+// Função para alterar as mensagens de hacking
+function changeHackingMessage() {
+    currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length; // Atualiza o índice da mensagem
+    hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Altera a mensagem
+}
+
+setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
+
+let lastColor;
+
+// Função para processar o resultado da API
+function processResult(apiResult) {
+    if (apiResult.status === "rolling") {
+        const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
+        document.getElementById('hackingMessage').style.display = "block";
+        document.getElementById("jsonResult").style.display = "block";
+
+        // Mantém a chance visível
+        document.querySelector(".chance").style.display = "flex";
+        document.querySelector(".percent").style.display = "flex";
+        document.querySelector(".colorIndicator").style.display = 'none';
+    } else if (apiResult.status === "complete") {
+        document.getElementById("jsonResult").style.display = "none";
+        document.getElementById("hackingMessage").style.display = 'block'; // Mantém a mensagem de hacking visível
+
+        // Buscar histórico de análises
+        fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Verifique a resposta da API
+                const matchingPercent = data.rolls_info
+                    .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
+                    .filter(percent => percent !== null)[0];
+
+                // Verifique o valor de matchingPercent
+                console.log(`Matching Percent: ${matchingPercent}`);
+
+                // Adicione um valor padrão se matchingPercent for undefined
+                const newPercent = matchingPercent !== undefined ? 90 + parseFloat(matchingPercent) : 90;
+                document.querySelector('.percent').innerText = `${newPercent}%`;
+            });
+
+        const colorOptions = ['⚫', '🔴', '⚪️'];
+        let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+
+        // Evita selecionar '⚪️' duas vezes seguidas
+        if (selectedColor === '⚪️') {
+            selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+            selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+        }
+
+        lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
+        document.querySelector(".colorIndicator").innerText = selectedColor;
+        document.querySelector('.chance').style.display = "flex";
+        document.querySelector(".percent").style.display = "flex";
+        document.querySelector(".colorIndicator").style.display = 'flex';
+    }
+}
+
+let status = "rolling";
+async function play() {
+    const data = {
+        "status": status === "rolling" ? "complete" : "rolling",
+        "color": Math.floor(Math.random() * 3),
+        "roll": 0
+    };
+    status = data.status;
+    processResult(data);
+}
+
+function init() {
+    setInterval(play, 1000 * 13);
+}
+
+init();
+
+// Ajusta o tamanho da imagem para telas menores
+if (window.innerWidth < 768) { // 0x300 em hexadecimal é 768 em decimal
+    document.querySelectorAll("#botImage").forEach(function (img) {
+        img.width = 250; // 0xfa em hexadecimal é 250
+        img.height = 200; // 0xc8 em hexadecimal é 200
     });
+}
 
-    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
-
-    function createMenu() {
-        const m = document.createElement('div');
-        Object.assign(m.style, {
-            position: 'fixed', top: '30%', left: '30%', width: '200px', 
-            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
-            border: '2px solid purple', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
-        });
-        m.innerHTML = `
-            <img src="https://i.ibb.co/TwMJKVF/IMG-20240926-WA0099.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid purple;">
-            <h3 style='text-align:center;'>System Hacker <i class="fas fa-check-circle" style="color: red;"></i></h3>
-            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
-            <div id='hackingMessages' style='text-align:center; margin-top:5px; font-size:14px; white-space: nowrap;'>Iniciando hack...</div>
-            <div id='predictionText' style='text-align:center; margin-top: 10px;'><i class="fas fa-circle"></i> Entrar na Cor: ⚪</div>
-            <div id='accuracyText' style='text-align:center; margin-top: 5px;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
-            <div style='text-align:center; margin-top: 5px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>`;
-        
-        return m;
+// Alterna o menu flutuante com a tecla F9
+document.addEventListener('keyup', function (event) {
+    if (event.key === 'F9') {
+        const floatingMenuElement = document.getElementById("floatingMenu");
+        floatingMenuElement.classList.toggle("show");
     }
+});
 
-    function rotateMessages() {
-        let messageIndex = 0;
-        const messageContainer = document.getElementById('hackingMessages');
-        setInterval(() => {
-            messageContainer.innerText = hackingMessages[messageIndex];
-            messageIndex = (messageIndex + 1) % hackingMessages.length;
-        }, 4000);
-    }
-
-    function showMenu(menu, y, x) {
-        menu.style.top = `${y}px`; 
-        menu.style.left = `${x}px`; 
-        menu.style.display = 'block';
-    }
-
-    function closeMenu() {
-        menu.style.display = 'none';
-    }
-
-    document.getElementById('closeMenu').addEventListener('click', closeMenu);
-
-    function captureResult(result) {
-        results.push(result);
-        if (results.length > 2880) results.shift();
-        predictColor(result);
-    }
-
-    function predictColor(lastResult) {
-        const freq = { vermelho: 0, preto: 0, branco: 0 };
-        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
-        
-        let predColor;
-        if (Math.abs(freq.vermelho - freq.preto) <= 5) {
-            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
-        } else {
-            predColor = freq.vermelho > freq.preto ? '🔴' : '⚫';
-        }
-
-        if (freq.branco > Math.max(freq.vermelho, freq.preto)) {
-            predColor = '⚪';
-        }
-
-        const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
-
-        total++; correct += correctPrediction ? 1 : 0;
-        const accuracyPercent = (correct / total * 100).toFixed(2);
-        
-        document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
-        document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
-        document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
-    }
-})();
+// Alterna o menu flutuante com clique duplo
+document.addEventListener('dblclick', function () {
+    const floatingMenuElement = document.getElementById("floatingMenu");
+    floatingMenuElement.classList.toggle("show");
+});
