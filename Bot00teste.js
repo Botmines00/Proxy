@@ -135,17 +135,10 @@ function processResult(apiResult) {
         fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
             .then(response => response.json())
             .then(data => {
-                console.log(data); // Verifique a resposta da API
                 const matchingPercent = data.rolls_info
                     .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
                     .filter(percent => percent !== null)[0];
-
-                // Verifique o valor de matchingPercent
-                console.log(`Matching Percent: ${matchingPercent}`);
-
-                // Adicione um valor padrão se matchingPercent for undefined
-                const newPercent = matchingPercent !== undefined ? 90 + parseFloat(matchingPercent) : 90;
-                document.querySelector('.percent').innerText = `${newPercent}%`;
+                document.querySelector('.percent').innerText = `${90 + parseFloat(matchingPercent)}%`;
             });
 
         const colorOptions = ['⚫', '🔴', '⚪️'];
