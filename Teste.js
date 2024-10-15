@@ -32,11 +32,14 @@ javascript:(function() {
     });
 
     function fetchResults() {
-        fetch('https://blaze1.space/api/roulette_games/history_analytics?n=3000')
+        fetch('https://blaze1.space/pt/games/double?modal=double_history-v2_index&roomId=1')
             .then(response => response.json())
             .then(data => {
-                data.forEach(result => {
-                    captureResult(result.result); // Supondo que a API retorna um objeto com a propriedade 'result'
+                // Assumindo que 'data.results' contém os resultados em um array
+                // Modifique o caminho de acordo com a estrutura real da resposta
+                const resultsArray = data.results || []; // Ajuste conforme necessário
+                resultsArray.forEach(result => {
+                    captureResult(result.result); // Ajuste se necessário
                 });
             })
             .catch(err => console.error('Erro ao buscar resultados:', err));
