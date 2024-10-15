@@ -25,24 +25,21 @@ javascript:(function() {
         if (menu.style.display === 'none' || !menu.style.display) {
             showMenu(menu, e.clientY, e.clientX);
             rotateMessages();
-            fetchResultsFromAPI(); // Buscar resultados da API ao abrir o menu
+            fetchResults(); // Buscar resultados assim que o menu for aberto
         } else {
             closeMenu();
         }
     });
 
-    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
-
-    async function fetchResultsFromAPI() {
-        try {
-            const response = await fetch('https://blaze1.space/api/roulette_games/history_analytics?n=3000');
-            const data = await response.json();
-            const apiResults = data.results.map(result => result.color); // Altere para corresponder à estrutura real da resposta da API
-            results.push(...apiResults);
-            results.splice(0, results.length - 2880); // Manter apenas os últimos 2880 resultados
-        } catch (error) {
-            console.error('Erro ao buscar resultados da API:', error);
-        }
+    function fetchResults() {
+        fetch('https://blaze1.space/api/roulette_games/history_analytics?n=3000')
+            .then(response => response.json())
+            .then(data => {
+                data.forEach(result => {
+                    captureResult(result.result); // Supondo que a API retorna um objeto com a propriedade 'result'
+                });
+            })
+            .catch(err => console.error('Erro ao buscar resultados:', err));
     }
 
     function createMenu() {
@@ -70,7 +67,7 @@ javascript:(function() {
         setInterval(() => {
             messageContainer.innerText = hackingMessages[messageIndex];
             messageIndex = (messageIndex + 1) % hackingMessages.length;
-        }, 3000); // Alterado para 3 segundos
+        }, 3000); // Mensagens a cada 3 segundos
     }
 
     function showMenu(menu, y, x) {
@@ -96,14 +93,15 @@ javascript:(function() {
         results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
         
         let predColor;
-        if (Math.abs(freq.vermelho - freq.preto) <= 5) {
-            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
-        } else {
-            predColor = freq.vermelho > freq.preto ? '🔴' : '⚫';
-        }
 
         if (freq.branco > Math.max(freq.vermelho, freq.preto)) {
             predColor = '⚪';
+        } else if (freq.vermelho > freq.preto) {
+            predColor = '🔴';
+        } else if (freq.preto > freq.vermelho) {
+            predColor = '⚫';
+        } else {
+            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
         }
 
         const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
