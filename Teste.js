@@ -84,29 +84,39 @@ javascript:(function() {
 
     function captureResult(result) {
         results.push(result);
-        if (results.length > 2880) results.shift();
+        if (results.length > 2880) results.shift(); // Limitar o tamanho do array
         predictColor(result);
     }
 
     function predictColor(lastResult) {
         const freq = { vermelho: 0, preto: 0, branco: 0 };
-        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
-        
-        let predColor;
 
-        if (freq.branco > Math.max(freq.vermelho, freq.preto)) {
-            predColor = '⚪';
-        } else if (freq.vermelho > freq.preto) {
-            predColor = '🔴';
-        } else if (freq.preto > freq.vermelho) {
-            predColor = '⚫';
+        // Contar as cores dos resultados
+        results.forEach(r => {
+            if (r === 0) {
+                freq.branco++;
+            } else if (r <= 7) {
+                freq.vermelho++;
+            } else {
+                freq.preto++;
+            }
+        });
+
+        // Lógica de previsão baseada na frequência
+        let predColor;
+        if (freq.vermelho > freq.preto && freq.vermelho > freq.branco) {
+            predColor = '🔴'; // Prever vermelho
+        } else if (freq.preto > freq.vermelho && freq.preto > freq.branco) {
+            predColor = '⚫'; // Prever preto
         } else {
-            predColor = ['🔴', '⚫'][Math.floor(Math.random() * 2)];
+            predColor = '⚪'; // Se não, prever branco
         }
 
+        // Verificar se a previsão está correta
         const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
-
-        total++; correct += correctPrediction ? 1 : 0;
+        
+        total++; 
+        correct += correctPrediction ? 1 : 0;
         const accuracyPercent = (correct / total * 100).toFixed(2);
         
         document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
