@@ -106,7 +106,7 @@ floatingMenu.innerHTML = `
                     Entrar no:<span class="colorIndicator">🔴</span>
                 </div>
                 <div class="hackingMessageContainer">
-                    <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entra no:" -->
+                    <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entrar no:" -->
                 </div>
             </div>
         </div>
@@ -216,5 +216,5 @@ let isMenuVisible = true; // O menu começa visível
 // Alterna a visibilidade do menu com dois cliques
 document.addEventListener('dblclick', function () {
     isMenuVisible = !isMenuVisible; // Alterna a visibilidade
-    floatingMenu.style.display = isMenuVisible ? 'block' : 'none'; // Mostra ou oculta o menu
+    document.getElementById('floatingMenu').style.display = isMenuVisible ? 'block' : 'none'; // Altera o estilo
 });
