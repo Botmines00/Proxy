@@ -4,6 +4,8 @@ floatingMenu.innerHTML = `
     <style>
         #floatingMenu {
             position: absolute; /* Mantém a posição absoluta para se mover com cliques */
+            top: 20px; /* Posição inicial do menu no canto superior direito */
+            right: 20px; /* Posição inicial do menu no canto direito */
             width: 240px; /* Largura reduzida para 240px */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
@@ -13,7 +15,7 @@ floatingMenu.innerHTML = `
             font-family: Arial, sans-serif;
             font-size: 12px; /* Tamanho da fonte */
             z-index: 9999;
-            display: none; /* Oculta o menu por padrão */
+            display: block; /* Mostra o menu por padrão */
         }
 
         #menuContent {
@@ -208,22 +210,11 @@ if (window.innerWidth < 768) {
     });
 }
 
-// Função para definir a posição do menu na tela
-function positionMenu(x, y) {
-    floatingMenu.style.left = x + 'px'; // Define a posição horizontal
-    floatingMenu.style.top = y + 'px'; // Define a posição vertical
-}
+// Variável para controlar se o menu está visível
+let isMenuVisible = true; // O menu começa visível
 
-// Variável para controle da visibilidade do menu
-let isMenuVisible = false;
-
-// Adiciona o evento de clique duplo à janela para abrir o menu na posição do clique
-document.addEventListener('dblclick', function (event) {
+// Alterna a visibilidade do menu com dois cliques
+document.addEventListener('dblclick', function () {
     isMenuVisible = !isMenuVisible; // Alterna a visibilidade
-    if (isMenuVisible) {
-        positionMenu(event.clientX, event.clientY); // Muda a posição do menu para a posição do clique
-        floatingMenu.style.display = 'block'; // Mostra o menu
-    } else {
-        floatingMenu.style.display = 'none'; // Oculta o menu
-    }
+    floatingMenu.style.display = isMenuVisible ? 'block' : 'none'; // Mostra ou oculta o menu
 });
