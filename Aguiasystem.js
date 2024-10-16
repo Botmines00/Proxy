@@ -6,14 +6,14 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 300px; /* Aumentar a largura para acomodar layout horizontal */
-            padding: 5px; 
-            background-color: #0f1923;
+            width: 180px; /* Largura reduzida */
+            padding: 5px; /* Padding reduzido */
+            background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #00FFFF;
+            border: 2px solid #00FFFF; /* Cor da borda do menu */
             border-radius: 8px;
             font-family: Arial, sans-serif;
-            font-size: 12px;
+            font-size: 12px; /* Tamanho da fonte reduzido */
             z-index: 9999;
             display: none;
         }
@@ -24,59 +24,70 @@ floatingMenu.innerHTML = `
 
         #menuContent {
             display: flex;
-            flex-direction: row; /* Muda de coluna para linha */
+            flex-direction: row; /* Mudança para horizontal */
             align-items: center;
-            justify-content: space-between; /* Espaçamento entre a imagem e o conteúdo */
+            justify-content: space-between; /* Distribui os elementos horizontalmente */
         }
 
         .round-image {
-            width: 60px;
+            width: 60px; /* Tamanho da imagem */
             height: 60px;
             border-radius: 50%;
-            border: 2px solid #00FFFF;
-            margin-right: 10px; /* Margem à direita para afastar a imagem do conteúdo */
+            border: 2px solid #00FFFF; /* Cor da borda da imagem */
+            margin-right: 10px; /* Espaço entre a imagem e o conteúdo */
+        }
+
+        /* Nova classe para a borda vertical */
+        .vertical-border {
+            border-left: 2px solid #00FFFF;
+            height: 100%; /* Alinha a borda com a altura do conteúdo */
+            margin-right: 10px; /* Espaço entre a borda e o conteúdo */
         }
 
         #hackContent {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            align-items: flex-start; /* Alinhamento à esquerda */
         }
 
         #hackContent span {
-            margin: 2px 0;
-            color: #fff;
+            display: block;
+            margin: 2px 0; /* Margem reduzida */
+            color: #fff; /* Cor do texto em branco */
         }
 
         .chance, .percent, .colorIndicator {
-            font-size: 11px;
+            font-size: 11px; /* Tamanho do texto reduzido */
         }
 
         .percent {
-            color: #2ecc71;
+            color: #2ecc71; /* Cor verde para a porcentagem */
         }
 
         .colorIndicator {
-            font-size: 14px;
+            font-size: 14px; /* Indicador de cor levemente maior */
         }
 
-        .host {
-            display: inline;
-            margin-left: 5px;
+        /* Nova classe para ajustar o estilo do host e das mensagens */
+        .host, .hackingMessage {
+            display: block;
+            color: #fff; /* Cor do texto branco */
         }
 
+        /* Classe para alterar a cor do Bot */
         .bot-username {
-            color: #00FFFF !important;
+            color: #00FFFF !important; /* Cor ciano para o @Bot00Blaze */
         }
     </style>
 
     <div id="floatingMenu">    
         <div id="menuContent">
             <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://i.ibb.co/YTZt4pq/IMG-20240801-WA0174.jpg" />
+            <div class="vertical-border"></div> <!-- Adiciona a borda vertical -->
             <div id="hackContent">
                 <span><strong>ÁGUIA SYSTEM - </strong><span class="bot-username">@Aguia_blaze</span></span>
                 <span><strong>HOST:</strong> <span id="host" class="host"></span></span>
-                <span id="hackingMessage"></span>
+                <span id="hackingMessage" class="hackingMessage"></span>
                 <span id="jsonResult"></span>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     <span class="chance"><strong>Chance:</strong></span>
@@ -108,15 +119,15 @@ const hackingMessages = [
 ];
 let currentMessageIndex = 0;
 const hackingMessageElement = document.getElementById('hackingMessage');
-hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
+hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Exibe a primeira mensagem
 
 // Função para alterar as mensagens de hacking
 function changeHackingMessage() {
-    currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length;
-    hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
+    currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length; // Atualiza o índice da mensagem
+    hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Altera a mensagem
 }
 
-setInterval(changeHackingMessage, 3000);
+setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
 
 let lastColor;
 
@@ -127,13 +138,15 @@ function processResult(apiResult) {
         document.getElementById('hackingMessage').style.display = "block";
         document.getElementById("jsonResult").style.display = "block";
 
+        // Mantém a chance visível
         document.querySelector(".chance").style.display = "flex";
         document.querySelector(".percent").style.display = "flex";
         document.querySelector(".colorIndicator").style.display = 'none';
     } else if (apiResult.status === "complete") {
         document.getElementById("jsonResult").style.display = "none";
-        document.getElementById("hackingMessage").style.display = 'block';
+        document.getElementById("hackingMessage").style.display = 'block'; // Mantém a mensagem de hacking visível
 
+        // Buscar histórico de análises
         fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
             .then(response => response.json())
             .then(data => {
@@ -146,6 +159,7 @@ function processResult(apiResult) {
         const colorOptions = ['⚫', '🔴', '⚪️'];
         let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
+        // Evita selecionar '⚪️' duas vezes seguidas
         if (selectedColor === '⚪️') {
             selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
             selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
@@ -177,7 +191,7 @@ function init() {
 init();
 
 // Ajusta o tamanho da imagem para telas menores
-if (window.innerWidth < 768) {
+if (window.innerWidth < 768) { 
     document.querySelectorAll("#botImage").forEach(function (img) {
         img.width = 250;
         img.height = 200;
