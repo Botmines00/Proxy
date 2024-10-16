@@ -6,7 +6,7 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 230px; /* Largura ajustada */
+            width: 240px; /* Largura reduzida para 240px */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -227,3 +227,4 @@ document.addEventListener('dblclick', function () {
     const floatingMenuElement = document.getElementById("floatingMenu");
     floatingMenuElement.classList.toggle("show");
 });
+``
