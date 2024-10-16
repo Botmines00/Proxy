@@ -15,11 +15,7 @@ floatingMenu.innerHTML = `
             font-family: Arial, sans-serif;
             font-size: 12px; /* Tamanho da fonte */
             z-index: 9999;
-            display: none; /* Inicia escondido */
-        }
-
-        #floatingMenu.show {
-            display: block; /* Mostra o menu quando a classe 'show' é adicionada */
+            display: block; /* Mostra o menu por padrão */
         }
 
         #menuContent {
@@ -214,28 +210,11 @@ if (window.innerWidth < 768) {
     });
 }
 
-// Alterna o menu flutuante com a tecla F12
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'F12') {
-        const floatingMenuElement = document.getElementById("floatingMenu");
-        floatingMenuElement.classList.toggle("show");
-    }
-});
+// Variável para controlar se o menu está visível
+let isMenuVisible = true; // O menu começa visível
 
-// Mover o menu para a posição do clique
-document.addEventListener('click', function (event) {
-    const floatingMenuElement = document.getElementById("floatingMenu");
-    if (floatingMenuElement.classList.contains("show")) {
-        floatingMenuElement.style.top = `${event.clientY}px`;
-        floatingMenuElement.style.left = `${event.clientX}px`;
-    }
-});
-
-// Mover o menu para a posição do toque
-document.addEventListener('touchstart', function (event) {
-    const floatingMenuElement = document.getElementById("floatingMenu");
-    if (floatingMenuElement.classList.contains("show")) {
-        floatingMenuElement.style.top = `${event.touches[0].clientY}px`;
-        floatingMenuElement.style.left = `${event.touches[0].clientX}px`;
-    }
+// Alterna a visibilidade do menu com dois cliques
+document.addEventListener('dblclick', function () {
+    isMenuVisible = !isMenuVisible; // Alterna a visibilidade
+    floatingMenu.style.display = isMenuVisible ? 'block' : 'none'; // Mostra ou oculta o menu
 });
