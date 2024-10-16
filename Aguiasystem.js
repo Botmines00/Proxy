@@ -3,9 +3,9 @@ const floatingMenu = document.createElement('div');
 floatingMenu.innerHTML = `
     <style>
         #floatingMenu {
-            position: absolute; /* Alterado para absolute para acompanhar o clique */
-            top: 0;
-            left: 0;
+            position: absolute; /* Mantém a posição absoluta para se mover com cliques */
+            top: 20px; /* Posição inicial do menu no canto superior direito */
+            right: 20px; /* Posição inicial do menu no canto direito */
             width: 240px; /* Largura reduzida para 240px */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
@@ -214,9 +214,9 @@ if (window.innerWidth < 768) {
     });
 }
 
-// Alterna o menu flutuante com a tecla F9
-document.addEventListener('keyup', function (event) {
-    if (event.key === 'F9') {
+// Alterna o menu flutuante com a tecla F12
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'F12') {
         const floatingMenuElement = document.getElementById("floatingMenu");
         floatingMenuElement.classList.toggle("show");
     }
