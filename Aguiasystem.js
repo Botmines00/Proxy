@@ -106,7 +106,7 @@ floatingMenu.innerHTML = `
                     Entrar no:<span class="colorIndicator">🔴</span>
                 </div>
                 <div class="hackingMessageContainer">
-                    <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entrar no:" -->
+                    <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entra no:" -->
                 </div>
             </div>
         </div>
@@ -121,13 +121,13 @@ document.getElementById("host").innerText = document.location.host;
 
 // Define mensagens de hacking
 const hackingMessages = [
-    "Identificando cor...",
-    "Extraindo informações...",
-    "Acessando banco de dados...",
-    "Injetando código malicioso...",
-    "Desativando firewall...",
-    "Acessando arquivos...",
-    "Enviando informações..."
+    "Buscando cor...",
+    "Obtendo dados...",
+    "Acessando DB...",
+    "Injetando código...",
+    "Desligando firewall...",
+    "Carregando arquivos...",
+    "Transmitindo dados..."
 ];
 let currentMessageIndex = 0;
 const hackingMessageElement = document.getElementById('hackingMessage');
