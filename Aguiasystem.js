@@ -83,6 +83,12 @@ floatingMenu.innerHTML = `
         /* Alinhamento à esquerda da mensagem de hacking */
         .hackingMessage {
             text-align: left;
+            margin-left: 0px; /* Ajustado para mais à esquerda */
+        }
+
+        .hackingMessageContainer {
+            display: flex;
+            justify-content: flex-start; /* Alinhamento ao canto esquerdo */
             margin-left: 5px; /* Um leve deslocamento à esquerda */
         }
     </style>
@@ -102,7 +108,9 @@ floatingMenu.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no:<span class="colorIndicator">🔴</span>
                 </div>
-                <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entra no:" -->
+                <div class="hackingMessageContainer">
+                    <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entra no:" -->
+                </div>
             </div>
         </div>
     </div>
