@@ -76,7 +76,7 @@ floatingMenu.innerHTML = `
         }
 
         .bot-username {
-            color: #00FFFF !important; /* Cor ciano para o @Bot00Blaze */
+            color: #00FFFF !important; /* Cor ciano para o @Aguia_blaze */
             white-space: nowrap; /* Evita quebra de linha */
         }
 
@@ -92,7 +92,7 @@ floatingMenu.innerHTML = `
             <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://i.ibb.co/YTZt4pq/IMG-20240801-WA0174.jpg" />
             <div class="vertical-border"></div> <!-- Borda vertical -->
             <div id="hackContent">
-                <span><strong>@Aguia_blaze - AGUIA SYSTEM</strong></span> <!-- Colocando o @Aguia_blaze na frente -->
+                <span><strong>ÁGUIA SYSTEM - <span style="color: #00FFFF;">@Aguia_blaze</span></strong></span> <!-- Texto ajustado -->
                 <span><strong>HOST:</strong> <span id="host" class="host"></span></span>
                 <span id="jsonResult"></span>
                 <div style="display: flex; align-items: center; gap: 5px;">
