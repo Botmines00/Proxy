@@ -210,13 +210,12 @@ if (window.innerWidth < 768) {
 
 // Função para definir a posição do menu na tela
 function positionMenu(x, y) {
-    // Limita a posição x para o lado direito da tela
-    floatingMenu.style.left = `${window.innerWidth - 250}px`; // Mantém 250px do lado direito
-    floatingMenu.style.top = `${y}px`; // A posição y continua com o clique
+    floatingMenu.style.left = x + 'px'; // Define a posição horizontal
+    floatingMenu.style.top = y + 'px'; // Define a posição vertical
 }
 
 // Variável para controle da visibilidade do menu
-let isMenuVisible = true; // O menu já inicia como visível
+let isMenuVisible = false;
 
 // Adiciona o evento de clique duplo à janela para abrir o menu na posição do clique
 document.addEventListener('dblclick', function (event) {
@@ -228,9 +227,3 @@ document.addEventListener('dblclick', function (event) {
         floatingMenu.style.display = 'none'; // Oculta o menu
     }
 });
-
-// Exibe o menu quando a página é carregada
-window.onload = function () {
-    floatingMenu.style.display = 'block'; // Exibe o menu ao carregar a página
-    positionMenu(window.innerWidth - 250, 100); // Inicializa a posição do menu
-};
