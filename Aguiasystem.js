@@ -6,7 +6,7 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 220px; /* Ajuste na largura para evitar quebra de linha */
+            width: 260px; /* Largura aumentada */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -39,7 +39,7 @@ floatingMenu.innerHTML = `
         .vertical-border {
             width: 2px;
             background-color: #00FFFF;
-            height: 100%; /* Para cobrir a altura total */
+            height: 60px; /* Ajuste da altura para combinar com a imagem */
             margin: 0 10px; /* Espaço entre a imagem e o conteúdo */
         }
 
