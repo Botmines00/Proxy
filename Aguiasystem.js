@@ -6,7 +6,7 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 260px; /* Largura aumentada */
+            width: 260px; /* Largura ajustada */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -79,6 +79,12 @@ floatingMenu.innerHTML = `
             color: #00FFFF !important; /* Cor ciano para o @Bot00Blaze */
             white-space: nowrap; /* Evita quebra de linha */
         }
+
+        /* Alinhamento à esquerda da mensagem de hacking */
+        .hackingMessage {
+            text-align: left;
+            margin-left: 5px; /* Um leve deslocamento à esquerda */
+        }
     </style>
 
     <div id="floatingMenu">    
@@ -86,9 +92,8 @@ floatingMenu.innerHTML = `
             <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://i.ibb.co/YTZt4pq/IMG-20240801-WA0174.jpg" />
             <div class="vertical-border"></div> <!-- Borda vertical -->
             <div id="hackContent">
-                <span><strong>ÁGUIA SYSTEM - </strong><span class="bot-username">@Aguia_blaze</span></span>
+                <span><strong>@Aguia_blaze - AGUIA SYSTEM</strong></span> <!-- Colocando o @Aguia_blaze na frente -->
                 <span><strong>HOST:</strong> <span id="host" class="host"></span></span>
-                <span id="hackingMessage" class="hackingMessage"></span>
                 <span id="jsonResult"></span>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     <span class="chance"><strong>Chance:</strong></span>
@@ -97,6 +102,7 @@ floatingMenu.innerHTML = `
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no:<span class="colorIndicator">🔴</span>
                 </div>
+                <span id="hackingMessage" class="hackingMessage"></span> <!-- Movendo a mensagem de hacking para baixo de "Entra no:" -->
             </div>
         </div>
     </div>
