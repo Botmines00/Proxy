@@ -6,14 +6,14 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 180px; /* Largura reduzida */
-            padding: 5px; /* Padding reduzido */
+            width: 220px; /* Ajuste na largura para evitar quebra de linha */
+            padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border: 2px solid #00FFFF; /* Cor da borda do menu */
             border-radius: 8px;
             font-family: Arial, sans-serif;
-            font-size: 12px; /* Tamanho da fonte reduzido */
+            font-size: 12px; /* Tamanho da fonte */
             z-index: 9999;
             display: none;
         }
@@ -24,9 +24,8 @@ floatingMenu.innerHTML = `
 
         #menuContent {
             display: flex;
-            flex-direction: row; /* Mudança para horizontal */
+            flex-direction: row; /* Mantém layout horizontal */
             align-items: center;
-            justify-content: space-between; /* Distribui os elementos horizontalmente */
         }
 
         .round-image {
@@ -34,30 +33,32 @@ floatingMenu.innerHTML = `
             height: 60px;
             border-radius: 50%;
             border: 2px solid #00FFFF; /* Cor da borda da imagem */
-            margin-right: 10px; /* Espaço entre a imagem e o conteúdo */
         }
 
-        /* Nova classe para a borda vertical */
+        /* Borda vertical separando a imagem do conteúdo */
         .vertical-border {
-            border-left: 2px solid #00FFFF;
-            height: 100%; /* Alinha a borda com a altura do conteúdo */
-            margin-right: 10px; /* Espaço entre a borda e o conteúdo */
+            width: 2px;
+            background-color: #00FFFF;
+            height: 100%; /* Para cobrir a altura total */
+            margin: 0 10px; /* Espaço entre a imagem e o conteúdo */
         }
 
         #hackContent {
             display: flex;
             flex-direction: column;
             align-items: flex-start; /* Alinhamento à esquerda */
+            width: 100%; /* Para ocupar o restante do espaço */
         }
 
         #hackContent span {
             display: block;
             margin: 2px 0; /* Margem reduzida */
             color: #fff; /* Cor do texto em branco */
+            white-space: nowrap; /* Evita quebra de linha */
         }
 
         .chance, .percent, .colorIndicator {
-            font-size: 11px; /* Tamanho do texto reduzido */
+            font-size: 11px; /* Tamanho do texto */
         }
 
         .percent {
@@ -65,25 +66,25 @@ floatingMenu.innerHTML = `
         }
 
         .colorIndicator {
-            font-size: 14px; /* Indicador de cor levemente maior */
+            font-size: 14px; /* Indicador de cor maior */
         }
 
-        /* Nova classe para ajustar o estilo do host e das mensagens */
         .host, .hackingMessage {
             display: block;
-            color: #fff; /* Cor do texto branco */
+            color: #fff; /* Cor do texto */
+            white-space: nowrap; /* Evita quebra de linha para o host e a mensagem */
         }
 
-        /* Classe para alterar a cor do Bot */
         .bot-username {
             color: #00FFFF !important; /* Cor ciano para o @Bot00Blaze */
+            white-space: nowrap; /* Evita quebra de linha */
         }
     </style>
 
     <div id="floatingMenu">    
         <div id="menuContent">
             <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://i.ibb.co/YTZt4pq/IMG-20240801-WA0174.jpg" />
-            <div class="vertical-border"></div> <!-- Adiciona a borda vertical -->
+            <div class="vertical-border"></div> <!-- Borda vertical -->
             <div id="hackContent">
                 <span><strong>ÁGUIA SYSTEM - </strong><span class="bot-username">@Aguia_blaze</span></span>
                 <span><strong>HOST:</strong> <span id="host" class="host"></span></span>
