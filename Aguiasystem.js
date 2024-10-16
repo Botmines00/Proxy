@@ -10,7 +10,7 @@ floatingMenu.innerHTML = `
             padding: 5px; /* Padding reduzido */
             background-color: #0f1923; /* Cor de fundo do menu */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #e81538; /* Cor da borda do menu */
+            border: 2px solid #00FFFF; /* Cor da borda do menu */
             border-radius: 8px;
             font-family: Arial, sans-serif;
             font-size: 12px; /* Tamanho da fonte reduzido */
@@ -32,7 +32,7 @@ floatingMenu.innerHTML = `
             width: 60px; /* Tamanho da imagem aumentado */
             height: 60px; /* Tamanho da imagem aumentado */
             border-radius: 50%;
-            border: 2px solid #e81538; /* Cor da borda da imagem */
+            border: 2px solid #00FFFF; /* Cor da borda da imagem */
             margin-bottom: 5px; /* Margem reduzida */
         }
 
@@ -62,7 +62,7 @@ floatingMenu.innerHTML = `
 
         /* Classe para alterar a cor do Bot */
         .bot-username {
-            color: red; /* Cor vermelha para o @Bot00Blaze */
+            color: #00FFFF; /* Cor vermelha para o @Bot00Blaze */
         }
     </style>
 
