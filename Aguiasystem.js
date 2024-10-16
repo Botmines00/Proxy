@@ -84,6 +84,7 @@ floatingMenu.innerHTML = `
         .hackingMessage {
             text-align: left;
             margin-left: 0px; /* Ajustado para mais à esquerda */
+            margin-top: 5px; /* Espaçamento entre as mensagens */
         }
 
         .hackingMessageContainer {
