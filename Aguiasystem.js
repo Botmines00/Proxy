@@ -62,7 +62,7 @@ floatingMenu.innerHTML = `
 
         /* Classe para alterar a cor do Bot */
         .bot-username {
-            color: #00FFFF; /* Cor vermelha para o @Bot00Blaze */
+            color: #00FFFF !important; /* Cor vermelha para o @Bot00Blaze */
         }
     </style>
 
