@@ -6,14 +6,14 @@ floatingMenu.innerHTML = `
             position: fixed;
             top: 20px;
             right: 20px;
-            width: 200px; /* Largura reduzida */
-            padding: 5px; /* Padding reduzido */
-            background-color: #0f1923; /* Cor de fundo do menu */
+            width: 300px; /* Aumentar a largura para acomodar layout horizontal */
+            padding: 5px; 
+            background-color: #0f1923;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border: 2px solid #00FFFF; /* Cor da borda do menu */
+            border: 2px solid #00FFFF;
             border-radius: 8px;
             font-family: Arial, sans-serif;
-            font-size: 12px; /* Tamanho da fonte reduzido */
+            font-size: 12px;
             z-index: 9999;
             display: none;
         }
@@ -24,45 +24,49 @@ floatingMenu.innerHTML = `
 
         #menuContent {
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Muda de coluna para linha */
             align-items: center;
+            justify-content: space-between; /* Espaçamento entre a imagem e o conteúdo */
         }
 
         .round-image {
-            width: 60px; /* Tamanho da imagem aumentado */
-            height: 60px; /* Tamanho da imagem aumentado */
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
-            border: 2px solid #00FFFF; /* Cor da borda da imagem */
-            margin-bottom: 5px; /* Margem reduzida */
+            border: 2px solid #00FFFF;
+            margin-right: 10px; /* Margem à direita para afastar a imagem do conteúdo */
+        }
+
+        #hackContent {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         #hackContent span {
-            display: block;
-            margin: 2px 0; /* Margem reduzida */
-            color: #fff; /* Cor do texto em branco */
+            margin: 2px 0;
+            color: #fff;
         }
 
         .chance, .percent, .colorIndicator {
-            font-size: 11px; /* Tamanho do texto reduzido */
+            font-size: 11px;
         }
 
         .percent {
-            color: #2ecc71; /* Cor verde para a porcentagem */
+            color: #2ecc71;
         }
 
         .colorIndicator {
-            font-size: 14px; /* Indicador de cor levemente maior */
+            font-size: 14px;
         }
 
-        /* Nova classe para ajustar o estilo do host */
         .host {
-            display: inline; /* Exibe na mesma linha */
-            margin-left: 5px; /* Adiciona margem à esquerda */
+            display: inline;
+            margin-left: 5px;
         }
 
-        /* Classe para alterar a cor do Bot */
         .bot-username {
-            color: #00FFFF !important; /* Cor vermelha para o @Bot00Blaze */
+            color: #00FFFF !important;
         }
     </style>
 
@@ -71,7 +75,7 @@ floatingMenu.innerHTML = `
             <img class="round-image" id="botImage" alt="Imagem do Bot" src="https://i.ibb.co/YTZt4pq/IMG-20240801-WA0174.jpg" />
             <div id="hackContent">
                 <span><strong>ÁGUIA SYSTEM - </strong><span class="bot-username">@Aguia_blaze</span></span>
-                <span><strong>HOST:</strong> <span id="host" class="host"></span></span> <!-- Exibe o host na mesma linha -->
+                <span><strong>HOST:</strong> <span id="host" class="host"></span></span>
                 <span id="hackingMessage"></span>
                 <span id="jsonResult"></span>
                 <div style="display: flex; align-items: center; gap: 5px;">
@@ -104,15 +108,15 @@ const hackingMessages = [
 ];
 let currentMessageIndex = 0;
 const hackingMessageElement = document.getElementById('hackingMessage');
-hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Exibe a primeira mensagem
+hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
 
 // Função para alterar as mensagens de hacking
 function changeHackingMessage() {
-    currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length; // Atualiza o índice da mensagem
-    hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Altera a mensagem
+    currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length;
+    hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
 }
 
-setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
+setInterval(changeHackingMessage, 3000);
 
 let lastColor;
 
@@ -123,15 +127,13 @@ function processResult(apiResult) {
         document.getElementById('hackingMessage').style.display = "block";
         document.getElementById("jsonResult").style.display = "block";
 
-        // Mantém a chance visível
         document.querySelector(".chance").style.display = "flex";
         document.querySelector(".percent").style.display = "flex";
         document.querySelector(".colorIndicator").style.display = 'none';
     } else if (apiResult.status === "complete") {
         document.getElementById("jsonResult").style.display = "none";
-        document.getElementById("hackingMessage").style.display = 'block'; // Mantém a mensagem de hacking visível
+        document.getElementById("hackingMessage").style.display = 'block';
 
-        // Buscar histórico de análises
         fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
             .then(response => response.json())
             .then(data => {
@@ -144,7 +146,6 @@ function processResult(apiResult) {
         const colorOptions = ['⚫', '🔴', '⚪️'];
         let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
 
-        // Evita selecionar '⚪️' duas vezes seguidas
         if (selectedColor === '⚪️') {
             selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
             selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
@@ -176,10 +177,10 @@ function init() {
 init();
 
 // Ajusta o tamanho da imagem para telas menores
-if (window.innerWidth < 768) { // 0x300 em hexadecimal é 768 em decimal
+if (window.innerWidth < 768) {
     document.querySelectorAll("#botImage").forEach(function (img) {
-        img.width = 250; // 0xfa em hexadecimal é 250
-        img.height = 200; // 0xc8 em hexadecimal é 200
+        img.width = 250;
+        img.height = 200;
     });
 }
 
