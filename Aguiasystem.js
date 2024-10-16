@@ -121,13 +121,13 @@ document.getElementById("host").innerText = document.location.host;
 
 // Define mensagens de hacking
 const hackingMessages = [
-"Buscando cor..."
-"Obtendo dados..."
-"Acessando DB..."
-"Injetando código..."
-"Desligando firewall..."
-"Carregando arquivos..."
-"Transmitindo dados..."
+    "Identificando cor...",
+    "Extraindo informações...",
+    "Acessando banco de dados...",
+    "Injetando código malicioso...",
+    "Desativando firewall...",
+    "Acessando arquivos...",
+    "Enviando informações..."
 ];
 let currentMessageIndex = 0;
 const hackingMessageElement = document.getElementById('hackingMessage');
