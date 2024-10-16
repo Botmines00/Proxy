@@ -3,9 +3,9 @@ const floatingMenu = document.createElement('div');
 floatingMenu.innerHTML = `
     <style>
         #floatingMenu {
-            position: fixed;
-            top: 20px;
-            right: 20px;
+            position: absolute; /* Alterado para absolute para acompanhar o clique */
+            top: 0;
+            left: 0;
             width: 240px; /* Largura reduzida para 240px */
             padding: 5px; /* Padding ajustado */
             background-color: #0f1923; /* Cor de fundo do menu */
@@ -15,11 +15,11 @@ floatingMenu.innerHTML = `
             font-family: Arial, sans-serif;
             font-size: 12px; /* Tamanho da fonte */
             z-index: 9999;
-            display: none;
+            display: none; /* Inicia escondido */
         }
 
         #floatingMenu.show {
-            display: block;
+            display: block; /* Mostra o menu quando a classe 'show' é adicionada */
         }
 
         #menuContent {
@@ -222,9 +222,20 @@ document.addEventListener('keyup', function (event) {
     }
 });
 
-// Alterna o menu flutuante com clique duplo
-document.addEventListener('dblclick', function () {
+// Mover o menu para a posição do clique
+document.addEventListener('click', function (event) {
     const floatingMenuElement = document.getElementById("floatingMenu");
-    floatingMenuElement.classList.toggle("show");
+    if (floatingMenuElement.classList.contains("show")) {
+        floatingMenuElement.style.top = `${event.clientY}px`;
+        floatingMenuElement.style.left = `${event.clientX}px`;
+    }
 });
-``
+
+// Mover o menu para a posição do toque
+document.addEventListener('touchstart', function (event) {
+    const floatingMenuElement = document.getElementById("floatingMenu");
+    if (floatingMenuElement.classList.contains("show")) {
+        floatingMenuElement.style.top = `${event.touches[0].clientY}px`;
+        floatingMenuElement.style.left = `${event.touches[0].clientX}px`;
+    }
+});
