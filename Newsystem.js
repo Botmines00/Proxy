@@ -1,3 +1,4 @@
+
 javascript:(function() {
     const menu = createMenu();
 
