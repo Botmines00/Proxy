@@ -34,10 +34,10 @@ javascript:(function() {
                 <div style="flex-grow: 1;">
                     <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
                     <div style='font-size: 14px; margin-top: 5px;'>
-                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Buscando cor...</div> <!-- Área de mensagem de hacking -->
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
-                    <div>
+                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Buscando cor...</div> <!-- Área de mensagem de hacking -->
+                </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
             </div>
             <div id="messageArea" style="margin-top: 10px; padding: 5px; background-color: #333; border-radius: 5px;">
