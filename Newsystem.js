@@ -15,7 +15,7 @@ javascript:(function() {
         const m = document.createElement('div');
         Object.assign(m.style, {
             position: 'fixed',
-            width: '280px', // Largura ajustada para 320px
+            width: '220px', // Largura ajustada para 320px
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
