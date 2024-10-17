@@ -46,11 +46,10 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="display: none;"><strong>Chance:</strong></span>
-                    <span class="percent" style="color: #2ecc71; display: none;">99.99%</span>
+                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 100%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span class="colorIndicator" style="display: none;">🔴</span>
+                    Entrar no: <span class="colorIndicator">🔴</span>
                 </div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
@@ -108,9 +107,7 @@ javascript:(function() {
             const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
             document.getElementById('hackingMessage').style.display = "block";
             document.getElementById("messageArea").style.display = "block";
-            document.querySelector(".chance").style.display = "none"; // Oculta chance
-            document.querySelector(".percent").style.display = "none"; // Oculta percentual
-            document.querySelector(".colorIndicator").style.display = 'none'; // Oculta cor
+            document.querySelector(".colorIndicator").innerText = colorSymbol;
         } else if (apiResult.status === "complete") {
             document.getElementById("messageArea").style.display = "block";
             document.getElementById('hackingMessage').style.display = 'block';
@@ -122,7 +119,8 @@ javascript:(function() {
                     const matchingPercent = data.rolls_info
                         .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
                         .filter(percent => percent !== null)[0];
-                    document.querySelector('.percent').innerText = `${90 + parseFloat(matchingPercent)}%`;
+                    // A chance foi fixada em 100%
+                    document.querySelector('.chance').innerText = `Chance: 100%`;
                 });
 
             const colorOptions = ['⚫', '🔴', '⚪️'];
@@ -134,9 +132,6 @@ javascript:(function() {
 
             lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
             document.querySelector(".colorIndicator").innerText = selectedColor;
-            document.querySelector(".chance").style.display = "flex"; // Exibe chance
-            document.querySelector(".percent").style.display = "flex"; // Exibe percentual
-            document.querySelector(".colorIndicator").style.display = 'flex'; // Exibe cor
         }
     }
 
