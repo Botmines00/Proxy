@@ -108,9 +108,9 @@ javascript:(function() {
             const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
             document.getElementById('hackingMessage').style.display = "block";
             document.getElementById("jsonResult").style.display = "block";
-            document.querySelector(".chance").style.display = "flex";
-            document.querySelector(".percent").style.display = "flex";
-            document.querySelector(".colorIndicator").style.display = 'none';
+            document.querySelector(".chance").style.display = "none"; // Oculta chance
+            document.querySelector(".percent").style.display = "none"; // Oculta percentual
+            document.querySelector(".colorIndicator").style.display = 'none'; // Oculta cor
         } else if (apiResult.status === "complete") {
             document.getElementById("jsonResult").style.display = "none";
             document.getElementById("hackingMessage").style.display = 'block';
@@ -134,9 +134,9 @@ javascript:(function() {
 
             lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
             document.querySelector(".colorIndicator").innerText = selectedColor;
-            document.querySelector('.chance').style.display = "flex";
-            document.querySelector(".percent").style.display = "flex";
-            document.querySelector(".colorIndicator").style.display = 'flex';
+            document.querySelector(".chance").style.display = "flex"; // Exibe chance
+            document.querySelector(".percent").style.display = "flex"; // Exibe percentual
+            document.querySelector(".colorIndicator").style.display = 'flex'; // Exibe cor
         }
     }
 
