@@ -32,13 +32,16 @@ javascript:(function() {
             <div style="display: flex; align-items: center;">
                 <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00FF00; margin-right: 10px;"> <!-- Borda da imagem em verde -->
                 <div style="flex-grow: 1;">
-                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-bottom: 10px;">Buscando cor...</div> <!-- Área de mensagem de hacking -->
                     <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
                     <div style='font-size: 14px; margin-top: 5px;'>
+                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Buscando cor...</div> <!-- Área de mensagem de hacking -->
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
-                </div>
+                    <div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
+            </div>
+            <div id="messageArea" style="margin-top: 10px; padding: 5px; background-color: #333; border-radius: 5px;">
+                <p id="messageText" style="margin: 0; font-size: 14px;">Nenhuma mensagem no momento</p>
             </div>
         `;
         return m;
@@ -49,6 +52,12 @@ javascript:(function() {
         menu.style.top = `${y}px`;
         menu.style.left = `${x}px`;
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    // Função para exibir mensagens no menu
+    function showMessage(message) {
+        const messageText = document.getElementById('messageText');
+        messageText.textContent = message;
     }
 
     // Define mensagens de hacking
@@ -79,4 +88,7 @@ javascript:(function() {
     }
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    // Exemplo de como exibir uma mensagem ao abrir o menu
+    showMessage('Bem-vindo ao New System 00!');
 })();
