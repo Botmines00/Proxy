@@ -38,14 +38,8 @@ javascript:(function() {
                         bot00blaze
                     </div> <!-- Texto abaixo do título em verde, centralizado e menor -->
                     <div style='font-size: 14px; margin-top: 5px;'>
-                        <span style="display: inline-flex; align-items: center;">
-                            <i class="fas fa-cogs" style="margin-right: 5px;"></i>SHA256
-                        </span>
-                        |
-                        <span style="display: inline-flex; align-items: center;">
-                            <i class="fas fa-info-circle" style="margin-right: 5px;"></i>Versão: 4.0
-                        </span>
-                        <i class="fas fa-check" style="color: #00FF00; margin-left: 5px;"></i> <!-- Ícone de verificado em verde -->
+                        <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div> <!-- Mensagem de boas-vindas em verde -->
+                        <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 14px; color: white;">❌</span>
