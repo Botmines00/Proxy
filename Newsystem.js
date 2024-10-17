@@ -15,7 +15,7 @@ javascript:(function() {
         const m = document.createElement('div');
         Object.assign(m.style, {
             position: 'fixed',
-            width: '290px', // Largura ajustada para 270px
+            width: '290px', // Largura ajustada para 290px
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
@@ -24,7 +24,8 @@ javascript:(function() {
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
             zIndex: '9999',
-            maxWidth: '100%' // Garantir que o menu se ajuste à tela
+            maxWidth: '100%', // Garante que o menu não exceda a tela
+            boxSizing: 'border-box', // Garante que o padding e a borda não alterem a largura total
         });
 
         m.innerHTML = `
@@ -42,9 +43,8 @@ javascript:(function() {
         return m;
     }
 
-    // Função para garantir que o menu sempre abre corretamente
+    // Função para garantir que o menu sempre abra corretamente
     function toggleMenu(menu, y, x) {
-        // Mantém a posição sem alterar o layout interno
         menu.style.top = `${y}px`;
         menu.style.left = `${x}px`;
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
