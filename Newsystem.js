@@ -20,7 +20,7 @@ javascript:(function() {
             color: '#fff',
             padding: '10px',
             borderRadius: '8px',
-            border: '2px solid #00FF00', // Borda do menu em verde
+            border: '2px solid #fe5f2f',
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
             zIndex: '9999',
@@ -30,11 +30,11 @@ javascript:(function() {
 
         m.innerHTML = `
             <div style="display: flex; align-items: center;">
-                <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00FF00; margin-right: 10px;"> <!-- Borda da imagem em verde -->
+                <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 10px;">
                 <div style="flex-grow: 1;">
                     <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
                     <div style='font-size: 14px; margin-top: 5px;'>
-                        <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
+                        <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0
                     </div>
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
