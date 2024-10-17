@@ -22,9 +22,9 @@ javascript:(function() {
 
         m.innerHTML = `
             <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 15px;">
-            <div style="flex: 1;">
+            <div style="flex: 1; display: flex; flex-direction: column;">
                 <h3 style='margin: 0; padding: 0; font-size: 18px;'>New System 00 <i class="fas fa-check-circle" style="color: #fe5f2f;"></i></h3>
-                <span id='closeMenu' style="position: absolute; top: 10px; right: 15px; cursor: pointer; font-size: 24px; color: white;">X</span>
+                <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white; align-self: flex-end;">X</span>
             </div>
             <div style='margin-left: 10px; font-size: 14px;'>
                 <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0
