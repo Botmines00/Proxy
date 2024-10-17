@@ -15,9 +15,7 @@ javascript:(function() {
         const m = document.createElement('div');
         Object.assign(m.style, {
             position: 'fixed',
-            top: '30%',
-            left: '30%',
-            width: '320px',  // Ajuste de largura
+            width: '350px', // Definindo uma largura fixa
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
@@ -25,7 +23,7 @@ javascript:(function() {
             border: '2px solid #fe5f2f',
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
-            zIndex: '9999',
+            zIndex: '9999'
         });
 
         m.innerHTML = `
@@ -43,16 +41,12 @@ javascript:(function() {
         return m;
     }
 
-    // Função para garantir que o menu sempre abre na mesma forma
+    // Função para garantir que o menu sempre abre corretamente
     function toggleMenu(menu, y, x) {
-        if (menu.style.display === 'block') {
-            menu.style.display = 'none';
-        } else {
-            // Define a posição sem afetar a estrutura interna
-            menu.style.top = `${y}px`;
-            menu.style.left = `${x}px`;
-            menu.style.display = 'block';
-        }
+        // Mantém a posição sem alterar o layout interno
+        menu.style.top = `${y}px`;
+        menu.style.left = `${x}px`;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
     // Fecha o menu quando o botão "X" for clicado
