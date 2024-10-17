@@ -14,15 +14,19 @@ javascript:(function() {
     function createMenu() {
         const m = document.createElement('div');
         Object.assign(m.style, {
-            position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
+            position: 'fixed', top: '30%', left: '30%', width: '400px',  // Largura maior para acomodar o layout horizontal
             background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
-            border: '2px solid #fe5f2f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+            border: '2px solid #fe5f2f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999',
+            display: 'flex', alignItems: 'center'  // Layout horizontal com flexbox
         });
+
         m.innerHTML = `
-            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #fe5f2f;"> <!-- Tamanho da imagem aumentado -->
-            <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #fe5f2f;"></i></h3>
-            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
-            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0</div> <!-- Colocado embaixo do botão -->
+            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 10px;"> <!-- Imagem alinhada à esquerda -->
+            <div>
+                <h3 style='margin: 0; padding: 0;'>New System 00 <i class="fas fa-check-circle" style="color: #fe5f2f;"></i></h3>
+                <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+                <div style='margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0</div> <!-- Colocado ao lado da imagem -->
+            </div>
         `;
         return m;
     }
