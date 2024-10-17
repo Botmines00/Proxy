@@ -34,7 +34,7 @@ javascript:(function() {
                 <div style="flex-grow: 1;">
                     <h3 style='margin: 0; font-size: 18px; color: white;'>NEW SYSTEM 00</h3> <!-- Título em branco -->
                     <div style='font-size: 14px; margin-top: 5px;'>
-                        <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00!</div> <!-- Mensagem de boas-vindas em verde -->
+                        <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div> <!-- Mensagem de boas-vindas em verde -->
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
                 </div>
@@ -89,6 +89,6 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    // Exibe a mensagem de boas-vindas
+    // Exemplo de como exibir uma mensagem ao abrir o menu
     showMessage('Bem-vindo ao New System 00!');
 })();
