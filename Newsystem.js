@@ -10,9 +10,6 @@ javascript:(function() {
     document.body.appendChild(menu);
     document.addEventListener('dblclick', (e) => toggleMenu(menu, e.clientY, e.clientX));
 
-    // Obtém a URL do site onde o script está sendo executado
-    const siteURL = window.location.hostname;
-
     // Cria o menu
     function createMenu() {
         const m = document.createElement('div');
@@ -26,7 +23,9 @@ javascript:(function() {
             border: '2px solid #00FF00', // Borda do menu em verde
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
-            zIndex: '9999'
+            zIndex: '9999',
+            maxWidth: '100%', // Garante que o menu não exceda a tela
+            boxSizing: 'border-box', // Garante que o padding e a borda não alterem a largura total
         });
 
         m.innerHTML = `
@@ -37,9 +36,6 @@ javascript:(function() {
                     <div style='font-size: 14px; margin-top: 5px;'>
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
-                    <div style='font-size: 14px; margin-top: 5px;'>
-                        HOST: <span id="hostURL">${siteURL}</span> <!-- Mostra dinamicamente o hostname -->
-                    </div>
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
             </div>
@@ -47,15 +43,11 @@ javascript:(function() {
         return m;
     }
 
-    // Função para abrir/fechar o menu na posição clicada
+    // Função para garantir que o menu sempre abra corretamente
     function toggleMenu(menu, y, x) {
-        if (menu.style.display === 'block') {
-            menu.style.display = 'none';
-        } else {
-            menu.style.top = `${y}px`;
-            menu.style.left = `${x}px`;
-            menu.style.display = 'block';
-        }
+        menu.style.top = `${y}px`;
+        menu.style.left = `${x}px`;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
     // Fecha o menu quando o botão "X" for clicado
