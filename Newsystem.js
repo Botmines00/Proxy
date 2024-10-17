@@ -17,7 +17,7 @@ javascript:(function() {
             position: 'fixed',
             top: '30%',
             left: '30%',
-            width: '300px',
+            width: '320px',  // Ajuste de largura
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
@@ -26,31 +26,31 @@ javascript:(function() {
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
             zIndex: '9999',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between'
         });
 
         m.innerHTML = `
-            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 10px;">
-            <div style="flex-grow: 1; display: flex; justify-content: space-between; align-items: center;">
-                <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
+            <div style="display: flex; align-items: center;">
+                <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 10px;">
+                <div style="flex-grow: 1;">
+                    <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
+                    <div style='font-size: 14px; margin-top: 5px;'>
+                        <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0
+                    </div>
+                </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
-            </div>
-            <div style='font-size: 14px;'>
-                <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0
             </div>
         `;
         return m;
     }
 
-    // Mostra ou oculta o menu com dois cliques
+    // Função para garantir que o menu sempre abre na mesma forma
     function toggleMenu(menu, y, x) {
         if (menu.style.display === 'block') {
             menu.style.display = 'none';
         } else {
-            menu.style.top = `${y}px`; 
-            menu.style.left = `${x}px`; 
+            // Define a posição sem afetar a estrutura interna
+            menu.style.top = `${y}px`;
+            menu.style.left = `${x}px`;
             menu.style.display = 'block';
         }
     }
