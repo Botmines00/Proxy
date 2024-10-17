@@ -46,7 +46,7 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 100%</span>
+                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
@@ -119,8 +119,7 @@ javascript:(function() {
                     const matchingPercent = data.rolls_info
                         .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
                         .filter(percent => percent !== null)[0];
-                    // A chance foi fixada em 100%
-                    document.querySelector('.chance').innerText = `Chance: 100%`;
+                    document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
                 });
 
             const colorOptions = ['⚫', '🔴', '⚪️'];
