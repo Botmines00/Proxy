@@ -36,8 +36,12 @@ javascript:(function() {
                     <div style='font-size: 14px; margin-top: 5px;'>
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
                     </div>
+                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Buscando cor...</div> <!-- Área de mensagem de hacking -->
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
+            </div>
+            <div id="messageArea" style="margin-top: 10px; padding: 5px; background-color: #333; border-radius: 5px;">
+                <p id="messageText" style="margin: 0; font-size: 14px;">Nenhuma mensagem no momento</p>
             </div>
         `;
         return m;
@@ -50,10 +54,41 @@ javascript:(function() {
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
+    // Função para exibir mensagens no menu
+    function showMessage(message) {
+        const messageText = document.getElementById('messageText');
+        messageText.textContent = message;
+    }
+
+    // Define mensagens de hacking
+    const hackingMessages = [
+        "Buscando cor...",
+        "Obtendo dados...",
+        "Acessando DB...",
+        "Injetando código...",
+        "Desligando firewall...",
+        "Carregando arquivos...",
+        "Transmitindo dados..."
+    ];
+    let currentMessageIndex = 0;
+    const hackingMessageElement = document.getElementById('hackingMessage');
+    hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Exibe a primeira mensagem
+
+    // Função para alterar as mensagens de hacking
+    function changeHackingMessage() {
+        currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length; // Atualiza o índice da mensagem
+        hackingMessageElement.innerText = hackingMessages[currentMessageIndex]; // Altera a mensagem
+    }
+
+    setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
+
     // Fecha o menu quando o botão "X" for clicado
     function closeMenu() {
         menu.style.display = 'none';
     }
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    // Exemplo de como exibir uma mensagem ao abrir o menu
+    showMessage('Bem-vindo ao New System 00!');
 })();
