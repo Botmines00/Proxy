@@ -17,7 +17,7 @@ javascript:(function() {
             position: 'fixed',
             top: '30%',
             left: '30%',
-            width: '350px',
+            width: '300px',
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
@@ -28,17 +28,16 @@ javascript:(function() {
             zIndex: '9999',
             display: 'flex',
             alignItems: 'center',
-            minHeight: '100px',
-            overflow: 'hidden'
+            justifyContent: 'space-between'
         });
 
         m.innerHTML = `
-            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 15px;">
-            <div style="flex: 1; display: flex; justify-content: space-between; align-items: center;">
-                <h3 style='margin: 0; padding: 0; font-size: 18px;'>New System 00 <i class="fas fa-check-circle" style="color: #fe5f2f;"></i></h3>
+            <img src="https://i.ibb.co/6r4yRDT/Proxy-sha-256-20241010-125036-0000.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #fe5f2f; margin-right: 10px;">
+            <div style="flex-grow: 1; display: flex; justify-content: space-between; align-items: center;">
+                <h3 style='margin: 0; font-size: 18px;'>New System 00</h3>
                 <span id='closeMenu' style="cursor: pointer; font-size: 24px; color: white;">X</span>
             </div>
-            <div style='margin-left: 10px; font-size: 14px; display: flex; align-items: center;'>
+            <div style='font-size: 14px;'>
                 <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0
             </div>
         `;
