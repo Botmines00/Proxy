@@ -15,7 +15,7 @@ javascript:(function() {
         const m = document.createElement('div');
         Object.assign(m.style, {
             position: 'fixed',
-            width: '220px', // Largura ajustada para 320px
+            width: '220px', // Largura ajustada
             background: '#1e1e1e',
             color: '#fff',
             padding: '10px',
@@ -23,7 +23,8 @@ javascript:(function() {
             border: '2px solid #fe5f2f',
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
-            zIndex: '9999'
+            zIndex: '9999',
+            maxWidth: '100%' // Para garantir que a largura seja aplicada corretamente
         });
 
         m.innerHTML = `
