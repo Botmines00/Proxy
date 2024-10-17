@@ -26,9 +26,7 @@ javascript:(function() {
             border: '2px solid #00FF00', // Borda do menu em verde
             boxShadow: '0 0 10px rgba(0,0,0,0.5)',
             display: 'none',
-            zIndex: '9999',
-            maxWidth: '100%', // Garante que o menu não exceda a tela
-            boxSizing: 'border-box', // Garante que o padding e a borda não alterem a largura total
+            zIndex: '9999'
         });
 
         m.innerHTML = `
@@ -49,11 +47,15 @@ javascript:(function() {
         return m;
     }
 
-    // Função para garantir que o menu sempre abre corretamente
+    // Função para abrir/fechar o menu na posição clicada
     function toggleMenu(menu, y, x) {
-        menu.style.top = `${y}px`;
-        menu.style.left = `${x}px`;
-        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.top = `${y}px`;
+            menu.style.left = `${x}px`;
+            menu.style.display = 'block';
+        }
     }
 
     // Fecha o menu quando o botão "X" for clicado
