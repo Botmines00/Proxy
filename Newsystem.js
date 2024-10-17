@@ -33,6 +33,7 @@ javascript:(function() {
                 <img src="https://i.ibb.co/y0LXzcQ/IMG-20241017-WA0216.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00FF00; margin-right: 10px;"> <!-- Nova imagem com borda em verde -->
                 <div style="flex-grow: 1;">
                     <h3 style='margin: 0; font-size: 18px; color: white;'>NEW SYSTEM 00</h3> <!-- Título em branco -->
+                    <div style='font-size: 12px; color: #00FF00; margin-top: 3px;'>@bot00blaze</div> <!-- Texto abaixo do título em verde e menor -->
                     <div style='font-size: 14px; margin-top: 5px;'>
                         <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div> <!-- Mensagem de boas-vindas em verde -->
                         <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i> <!-- Ícone de verificado em verde -->
