@@ -107,13 +107,13 @@ javascript:(function() {
         if (apiResult.status === "rolling") {
             const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
             document.getElementById('hackingMessage').style.display = "block";
-            document.getElementById("jsonResult").style.display = "block";
+            document.getElementById("messageArea").style.display = "block";
             document.querySelector(".chance").style.display = "none"; // Oculta chance
             document.querySelector(".percent").style.display = "none"; // Oculta percentual
             document.querySelector(".colorIndicator").style.display = 'none'; // Oculta cor
         } else if (apiResult.status === "complete") {
-            document.getElementById("jsonResult").style.display = "none";
-            document.getElementById("hackingMessage").style.display = 'block';
+            document.getElementById("messageArea").style.display = "block";
+            document.getElementById('hackingMessage').style.display = 'block';
 
             // Buscar histórico de análises (simulado)
             fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
@@ -146,7 +146,7 @@ javascript:(function() {
         const data = {
             "status": status === "rolling" ? "complete" : "rolling",
             "color": Math.floor(Math.random() * 3),
-            "roll": 0
+            "roll": Math.floor(Math.random() * 100) // Simulando um valor de rolagem
         };
         status = data.status;
         processResult(data);
@@ -154,7 +154,7 @@ javascript:(function() {
 
     // Inicializa o loop de previsão
     function init() {
-        setInterval(play, 1000 * 13);
+        setInterval(play, 1000 * 13); // Muda o status a cada 13 segundos
     }
 
     // Inicia o ciclo de previsões
