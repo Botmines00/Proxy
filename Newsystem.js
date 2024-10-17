@@ -37,24 +37,23 @@ javascript:(function() {
                         <i class="fab fa-instagram" style="margin-right: 5px; color: #00FF00;"></i>
                         bot00blaze
                     </div>
-                    <div style='font-size: 14px; margin-top: 5px;'>
-                        <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div>
-                        <i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 4.0 <i class="fas fa-check" style="color: #00FF00;"></i>
-                    </div>
+                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div>
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 14px; color: white;">❌</span>
             </div>
             <div id="messageArea" style="margin-top: 10px; padding: 5px; background-color: #333; border-radius: 5px;">
                 <p id="messageText" style="margin: 0; font-size: 14px;">Nenhuma mensagem no momento</p>
             </div>
-            <div>
-                <div id="jsonResult"></div>
+            <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
                     <span class="chance" style="display: none;"><strong>Chance:</strong></span>
                     <span class="percent" style="color: #2ecc71; display: none;">99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator" style="display: none;">🔴</span>
+                </div>
+                <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
+                    SHA256 | Versão: 4.0
                 </div>
             </div>
         `;
