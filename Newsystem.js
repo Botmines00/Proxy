@@ -118,7 +118,7 @@ javascript:(function() {
         // Verifica se o status da API é "complete"
         if (apiResult.status === "complete") {
             // Verifica se a previsão corresponde ao resultado da API
-            if (currentPrediction === colorSymbol && !winDisplayed) {
+            if (currentPrediction === colorSymbol) {
                 const winMessageElement = document.getElementById('winMessage');
                 winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
                 winMessageElement.style.display = "block"; // Mostra a mensagem "Win!"
@@ -130,8 +130,10 @@ javascript:(function() {
                 }, 3000);
             } else {
                 // Se a previsão não corresponder ao resultado, reseta winDisplayed
-                winDisplayed = false;
-                document.getElementById('winMessage').style.display = "none";
+                if (winDisplayed) {
+                    document.getElementById('winMessage').style.display = "none";
+                }
+                winDisplayed = false; // Reseta o estado de exibição da mensagem
             }
         }
     }
