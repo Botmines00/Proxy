@@ -101,36 +101,29 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
+    // Variável para controlar a previsão atual
+    let currentPrediction = null;
+
     // Função para processar o resultado da API
     function processResult(apiResult) {
-        if (apiResult.status === "rolling") {
-            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
+        if (currentPrediction === null) {
+            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
+            currentPrediction = colorSymbol; // Armazena a previsão
             document.getElementById('hackingMessage').style.display = "block";
             document.getElementById("messageArea").style.display = "block";
             document.querySelector(".colorIndicator").innerText = colorSymbol;
-        } else if (apiResult.status === "complete") {
-            document.getElementById("messageArea").style.display = "block";
-            document.getElementById('hackingMessage').style.display = 'block';
+            document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
 
-            // Buscar histórico de análises (simulado)
-            fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
-                .then(response => response.json())
-                .then(data => {
-                    const matchingPercent = data.rolls_info
-                        .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
-                        .filter(percent => percent !== null)[0];
-                    document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
-                });
-
-            const colorOptions = ['⚫', '🔴', '⚪️'];
-            let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-
-            if (selectedColor === '⚪️') {
-                selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+            if (apiResult.status === "complete") {
+                fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+                    .then(response => response.json())
+                    .then(data => {
+                        const matchingPercent = data.rolls_info
+                            .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
+                            .filter(percent => percent !== null)[0];
+                        document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
+                    });
             }
-
-            lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
-            document.querySelector(".colorIndicator").innerText = selectedColor;
         }
     }
 
@@ -148,7 +141,10 @@ javascript:(function() {
 
     // Inicializa o loop de previsão
     function init() {
-        setInterval(play, 1000 * 13); // Muda o status a cada 13 segundos
+        setInterval(() => {
+            currentPrediction = null; // Reseta a previsão para permitir nova previsão
+            play();
+        }, 1000 * 13); // Muda o status e faz uma nova previsão a cada 13 segundos
     }
 
     // Inicia o ciclo de previsões
