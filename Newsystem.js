@@ -51,6 +51,7 @@ javascript:(function() {
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
                 </div>
+                <div id="winMessage" style="margin-top: 10px; font-size: 14px; color: #00FF00;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
                 </div>
@@ -106,23 +107,16 @@ javascript:(function() {
 
     // Função para processar o resultado da API
     function processResult(apiResult) {
-        if (currentPrediction === null) {
-            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
-            currentPrediction = colorSymbol; // Armazena a previsão
-            document.getElementById('hackingMessage').style.display = "block";
-            document.getElementById("messageArea").style.display = "block";
-            document.querySelector(".colorIndicator").innerText = colorSymbol;
-            document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
+        const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
+        currentPrediction = colorSymbol; // Armazena a previsão
+        document.getElementById('hackingMessage').style.display = "block";
+        document.getElementById("messageArea").style.display = "block";
+        document.querySelector(".colorIndicator").innerText = colorSymbol;
+        document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
 
-            if (apiResult.status === "complete") {
-                fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
-                    .then(response => response.json())
-                    .then(data => {
-                        const matchingPercent = data.rolls_info
-                            .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
-                            .filter(percent => percent !== null)[0];
-                        document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
-                    });
+        if (apiResult.status === "complete") {
+            if (currentPrediction === colorSymbol) {
+                document.getElementById('winMessage').innerHTML = `<span style="color: green; font-weight: bold;">Win!</span>`;
             }
         }
     }
