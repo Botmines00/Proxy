@@ -115,8 +115,9 @@ javascript:(function() {
         let chance = Math.min(90 + Math.random() * 10, 100).toFixed(2);
         document.querySelector('.chance').innerText = `Chance: ${chance}%`;
 
-        // Verifica se a previsão corresponde ao resultado da API
+        // Verifica se o status da API é "complete"
         if (apiResult.status === "complete") {
+            // Verifica se a previsão corresponde ao resultado da API
             if (currentPrediction === colorSymbol && !winDisplayed) {
                 const winMessageElement = document.getElementById('winMessage');
                 winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
@@ -127,7 +128,7 @@ javascript:(function() {
                 setTimeout(() => {
                     winMessageElement.style.display = "none"; 
                 }, 3000);
-            } else if (currentPrediction !== colorSymbol) {
+            } else {
                 // Se a previsão não corresponder ao resultado, reseta winDisplayed
                 winDisplayed = false;
                 document.getElementById('winMessage').style.display = "none";
@@ -138,16 +139,16 @@ javascript:(function() {
     // Simulação de API
     let status = "rolling";
     async function play() {
-        // Apenas faz uma previsão por giro
         if (status === "rolling") {
+            // Gera uma previsão antes de completar o giro
+            currentPrediction = Math.floor(Math.random() * 3); // Previsão aleatória: 0, 1 ou 2
             const data = {
-                "status": "complete",
+                "status": "complete", // Simulando que o giro foi completo
                 "color": Math.floor(Math.random() * 3),
                 "roll": Math.floor(Math.random() * 100) // Simulando um valor de rolagem
             };
-            currentPrediction = data.color === 0 ? '⚪️' : data.color === 1 ? '🔴' : '⚫️'; // Armazena a previsão
-            processResult(data);
-            status = "complete"; // Muda o status para evitar múltiplas previsões
+            processResult(data); // Processa o resultado após o giro
+            status = "complete"; // Altera o status para evitar previsões múltiplas
         }
     }
 
