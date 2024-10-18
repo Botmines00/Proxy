@@ -46,12 +46,12 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
+                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
                 </div>
-                <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
+                <div id="winMessage" style="color: green; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
                 </div>
@@ -127,6 +127,9 @@ javascript:(function() {
                 setTimeout(() => {
                     winMessageElement.style.display = "none"; 
                 }, 3000);
+            } else {
+                // Se não houver vitória, certifique-se de esconder a mensagem
+                document.getElementById('winMessage').style.display = "none";
             }
         }
     }
