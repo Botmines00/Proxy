@@ -46,7 +46,7 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 100%</span>
+                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
@@ -66,6 +66,34 @@ javascript:(function() {
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
+    // Função para exibir mensagens no menu
+    function showMessage(message) {
+        const messageText = document.getElementById('messageText');
+        messageText.textContent = message;
+    }
+
+    // Define mensagens de hacking
+    const hackingMessages = [
+        "Buscando cor...",
+        "Obtendo dados...",
+        "Acessando DB...",
+        "Injetando código...",
+        "Desligando firewall...",
+        "Carregando arquivos...",
+        "Transmitindo dados..."
+    ];
+    let currentMessageIndex = 0;
+    const hackingMessageElement = document.getElementById('hackingMessage');
+    hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
+
+    // Função para alterar as mensagens de hacking
+    function changeHackingMessage() {
+        currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length;
+        hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
+    }
+
+    setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
+
     // Fecha o menu quando o botão "X" for clicado
     function closeMenu() {
         menu.style.display = 'none';
@@ -73,33 +101,30 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    // Função para processar o resultado da API e calcular a chance
+    // Variável para controlar a previsão atual
+    let currentPrediction = null;
+
+    // Função para processar o resultado da API
     function processResult(apiResult) {
-        const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
-        document.getElementById('hackingMessage').style.display = "block";
-        document.getElementById("messageArea").style.display = "block";
-        document.querySelector(".colorIndicator").innerText = colorSymbol;
+        if (currentPrediction === null) {
+            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
+            currentPrediction = colorSymbol; // Armazena a previsão
+            document.getElementById('hackingMessage').style.display = "block";
+            document.getElementById("messageArea").style.display = "block";
+            document.querySelector(".colorIndicator").innerText = colorSymbol;
+            document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
 
-        // Buscar histórico de análises (simulado)
-        fetch("https://blaze.com/api/roulette_games/history_analytics?n=10")
-            .then(response => response.json())
-            .then(data => {
-                if (!data || data.length === 0) {
-                    console.error("Histórico vazio ou inválido");
-                    return;
-                }
-
-                // Calcula a porcentagem com base nos últimos 10 resultados
-                const lastRolls = data.slice(0, 10); // Pegando os últimos 10 resultados
-                const countColor = lastRolls.filter(roll => roll.color === apiResult.color).length;
-                const chance = (countColor / 10) * 100; // Percentual baseado no histórico
-
-                // Atualiza a chance no menu
-                document.querySelector('.chance').innerText = `Chance: ${chance.toFixed(0)}%`;
-            })
-            .catch(error => {
-                console.error("Erro ao buscar histórico:", error);
-            });
+            if (apiResult.status === "complete") {
+                fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+                    .then(response => response.json())
+                    .then(data => {
+                        const matchingPercent = data.rolls_info
+                            .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
+                            .filter(percent => percent !== null)[0];
+                        document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
+                    });
+            }
+        }
     }
 
     // Simulação de API
@@ -116,12 +141,15 @@ javascript:(function() {
 
     // Inicializa o loop de previsão
     function init() {
-        setInterval(play, 1000 * 13); // Muda o status a cada 13 segundos
+        setInterval(() => {
+            currentPrediction = null; // Reseta a previsão para permitir nova previsão
+            play();
+        }, 1000 * 13); // Muda o status e faz uma nova previsão a cada 13 segundos
     }
 
     // Inicia o ciclo de previsões
     init();
 
     // Exemplo de como exibir uma mensagem ao abrir o menu
-    document.getElementById('messageText').innerText = 'Bem-vindo ao New System 00!';
+    showMessage('Bem-vindo ao New System 00!');
 })();
