@@ -116,10 +116,11 @@ javascript:(function() {
             fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
                 .then(response => response.json())
                 .then(data => {
-                    const matchingPercent = data.rolls_info
-                        .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
-                        .filter(percent => percent !== null)[0];
-                    document.querySelector('.chance').innerText = `Chance: ${(Math.random() * 100).toFixed(2)}%`;
+                    // Calcula a porcentagem com base no histórico
+                    const lastRolls = data.slice(0, 10); // Pegando os últimos 10 resultados
+                    const countColor = lastRolls.filter(roll => roll.color === apiResult.color).length;
+                    const chance = (countColor / 10) * 100; // Percentual baseado no histórico
+                    document.querySelector('.chance').innerText = `Chance: ${chance.toFixed(2)}%`;
                 });
 
             const colorOptions = ['⚫', '🔴', '⚪️'];
