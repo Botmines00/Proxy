@@ -104,6 +104,7 @@ javascript:(function() {
 
     // Variável para controlar a previsão atual
     let currentPrediction = null;
+    let winDisplayed = false; // Controla se a mensagem de vitória foi exibida
 
     // Função para processar o resultado da API
     function processResult(apiResult) {
@@ -118,17 +119,20 @@ javascript:(function() {
         document.querySelector('.chance').innerText = `Chance: ${chance}%`;
 
         if (apiResult.status === "complete") {
-            if (currentPrediction === colorSymbol) {
+            // Verifica se a previsão corresponde ao resultado da API
+            if (currentPrediction === colorSymbol && !winDisplayed) {
                 const winMessageElement = document.getElementById('winMessage');
                 winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
                 winMessageElement.style.display = "block"; // Mostra a mensagem "Win!"
+                winDisplayed = true; // Define que a mensagem de vitória foi exibida
 
                 // Oculta a mensagem após 3 segundos
                 setTimeout(() => {
                     winMessageElement.style.display = "none"; 
                 }, 3000);
-            } else {
-                // Se não houver vitória, certifique-se de esconder a mensagem
+            } else if (currentPrediction !== colorSymbol) {
+                // Se a previsão não corresponder ao resultado, reseta winDisplayed
+                winDisplayed = false;
                 document.getElementById('winMessage').style.display = "none";
             }
         }
