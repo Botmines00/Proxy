@@ -53,7 +53,7 @@ javascript:(function() {
                 </div>
                 <div id="winMessage" style="color: green; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
-                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 5px 10px; border-radius: 5px; display: inline-block;">
+                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 3px 5px; border-radius: 5px; display: inline-block;">
                         SHA256 | Versão: 4.0
                     </div>
                 </div>
