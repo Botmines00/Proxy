@@ -46,12 +46,12 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
+                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
                 </div>
-                <div id="winMessage" style="color: green; font-weight: bold; display: none;"></div>
+                <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
                 </div>
@@ -108,8 +108,9 @@ javascript:(function() {
 
     // Função para processar o resultado da API
     function processResult(apiResult) {
-        const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
-        document.querySelector(".colorIndicator").innerText = colorSymbol;
+        const colorSymbol = apiResult.color; // Mantemos o valor numérico diretamente
+        const displayColorSymbol = colorSymbol === 0 ? '⚪️' : colorSymbol === 1 ? '🔴' : '⚫️';
+        document.querySelector(".colorIndicator").innerText = displayColorSymbol;
 
         // Definindo a chance, limitando a 100%
         let chance = Math.min(90 + Math.random() * 10, 100).toFixed(2);
@@ -120,13 +121,14 @@ javascript:(function() {
             // Verifica se a previsão corresponde ao resultado da API
             if (currentPrediction === colorSymbol) {
                 const winMessageElement = document.getElementById('winMessage');
-                winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
+                winMessageElement.innerText = `Win no: ${displayColorSymbol}`; // Exibe a mensagem "Win!"
                 winMessageElement.style.display = "block"; // Mostra a mensagem "Win!"
                 winDisplayed = true; // Define que a mensagem de vitória foi exibida
 
                 // Oculta a mensagem após 3 segundos
                 setTimeout(() => {
                     winMessageElement.style.display = "none"; 
+                    winDisplayed = false; // Reseta o estado de exibição da mensagem
                 }, 3000);
             } else {
                 // Se a previsão não corresponder ao resultado, reseta winDisplayed
