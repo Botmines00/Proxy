@@ -46,7 +46,7 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 0%</span>
+                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 100%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
