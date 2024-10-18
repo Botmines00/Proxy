@@ -109,17 +109,14 @@ javascript:(function() {
     // Função para processar o resultado da API
     function processResult(apiResult) {
         const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
-        currentPrediction = colorSymbol; // Armazena a previsão
-        document.getElementById('hackingMessage').style.display = "block";
-        document.getElementById("messageArea").style.display = "block";
         document.querySelector(".colorIndicator").innerText = colorSymbol;
 
         // Definindo a chance, limitando a 100%
         let chance = Math.min(90 + Math.random() * 10, 100).toFixed(2);
         document.querySelector('.chance').innerText = `Chance: ${chance}%`;
 
+        // Verifica se a previsão corresponde ao resultado da API
         if (apiResult.status === "complete") {
-            // Verifica se a previsão corresponde ao resultado da API
             if (currentPrediction === colorSymbol && !winDisplayed) {
                 const winMessageElement = document.getElementById('winMessage');
                 winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
@@ -141,20 +138,24 @@ javascript:(function() {
     // Simulação de API
     let status = "rolling";
     async function play() {
-        const data = {
-            "status": status === "rolling" ? "complete" : "rolling",
-            "color": Math.floor(Math.random() * 3),
-            "roll": Math.floor(Math.random() * 100) // Simulando um valor de rolagem
-        };
-        status = data.status;
-        processResult(data);
+        // Apenas faz uma previsão por giro
+        if (status === "rolling") {
+            const data = {
+                "status": "complete",
+                "color": Math.floor(Math.random() * 3),
+                "roll": Math.floor(Math.random() * 100) // Simulando um valor de rolagem
+            };
+            currentPrediction = data.color === 0 ? '⚪️' : data.color === 1 ? '🔴' : '⚫️'; // Armazena a previsão
+            processResult(data);
+            status = "complete"; // Muda o status para evitar múltiplas previsões
+        }
     }
 
     // Inicializa o loop de previsão
     function init() {
         setInterval(() => {
-            currentPrediction = null; // Reseta a previsão para permitir nova previsão
             play();
+            status = "rolling"; // Pronto para o próximo giro
         }, 1000 * 13); // Muda o status e faz uma nova previsão a cada 13 segundos
     }
 
@@ -163,4 +164,5 @@ javascript:(function() {
 
     // Exemplo de como exibir uma mensagem ao abrir o menu
     showMessage('Bem-vindo ao New System 00!');
+
 })();
