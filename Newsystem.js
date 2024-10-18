@@ -73,7 +73,7 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    // Função para processar o resultado da API
+    // Função para processar o resultado da API e calcular a chance
     function processResult(apiResult) {
         const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
         document.getElementById('hackingMessage').style.display = "block";
@@ -81,13 +81,20 @@ javascript:(function() {
         document.querySelector(".colorIndicator").innerText = colorSymbol;
 
         // Buscar histórico de análises (simulado)
-        fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+        fetch("https://blaze.com/api/roulette_games/history_analytics?n=10")
             .then(response => response.json())
             .then(data => {
-                // Calcula a porcentagem com base no histórico
+                if (!data || data.length === 0) {
+                    console.error("Histórico vazio ou inválido");
+                    return;
+                }
+
+                // Calcula a porcentagem com base nos últimos 10 resultados
                 const lastRolls = data.slice(0, 10); // Pegando os últimos 10 resultados
                 const countColor = lastRolls.filter(roll => roll.color === apiResult.color).length;
                 const chance = (countColor / 10) * 100; // Percentual baseado no histórico
+
+                // Atualiza a chance no menu
                 document.querySelector('.chance').innerText = `Chance: ${chance.toFixed(0)}%`;
             })
             .catch(error => {
