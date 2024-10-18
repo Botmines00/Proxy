@@ -66,34 +66,6 @@ javascript:(function() {
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
     }
 
-    // Função para exibir mensagens no menu
-    function showMessage(message) {
-        const messageText = document.getElementById('messageText');
-        messageText.textContent = message;
-    }
-
-    // Define mensagens de hacking
-    const hackingMessages = [
-        "Buscando cor...",
-        "Obtendo dados...",
-        "Acessando DB...",
-        "Injetando código...",
-        "Desligando firewall...",
-        "Carregando arquivos...",
-        "Transmitindo dados..."
-    ];
-    let currentMessageIndex = 0;
-    const hackingMessageElement = document.getElementById('hackingMessage');
-    hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
-
-    // Função para alterar as mensagens de hacking
-    function changeHackingMessage() {
-        currentMessageIndex = (currentMessageIndex + 1) % hackingMessages.length;
-        hackingMessageElement.innerText = hackingMessages[currentMessageIndex];
-    }
-
-    setInterval(changeHackingMessage, 3000); // Altera a mensagem a cada 3 segundos
-
     // Fecha o menu quando o botão "X" for clicado
     function closeMenu() {
         menu.style.display = 'none';
@@ -103,36 +75,24 @@ javascript:(function() {
 
     // Função para processar o resultado da API
     function processResult(apiResult) {
-        if (apiResult.status === "rolling") {
-            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
-            document.getElementById('hackingMessage').style.display = "block";
-            document.getElementById("messageArea").style.display = "block";
-            document.querySelector(".colorIndicator").innerText = colorSymbol;
-        } else if (apiResult.status === "complete") {
-            document.getElementById("messageArea").style.display = "block";
-            document.getElementById('hackingMessage').style.display = 'block';
+        const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
+        document.getElementById('hackingMessage').style.display = "block";
+        document.getElementById("messageArea").style.display = "block";
+        document.querySelector(".colorIndicator").innerText = colorSymbol;
 
-            // Buscar histórico de análises (simulado)
-            fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
-                .then(response => response.json())
-                .then(data => {
-                    // Calcula a porcentagem com base no histórico
-                    const lastRolls = data.slice(0, 10); // Pegando os últimos 10 resultados
-                    const countColor = lastRolls.filter(roll => roll.color === apiResult.color).length;
-                    const chance = (countColor / 10) * 100; // Percentual baseado no histórico
-                    document.querySelector('.chance').innerText = `Chance: ${chance.toFixed(2)}%`;
-                });
-
-            const colorOptions = ['⚫', '🔴', '⚪️'];
-            let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-
-            if (selectedColor === '⚪️') {
-                selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
-            }
-
-            lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
-            document.querySelector(".colorIndicator").innerText = selectedColor;
-        }
+        // Buscar histórico de análises (simulado)
+        fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+            .then(response => response.json())
+            .then(data => {
+                // Calcula a porcentagem com base no histórico
+                const lastRolls = data.slice(0, 10); // Pegando os últimos 10 resultados
+                const countColor = lastRolls.filter(roll => roll.color === apiResult.color).length;
+                const chance = (countColor / 10) * 100; // Percentual baseado no histórico
+                document.querySelector('.chance').innerText = `Chance: ${chance.toFixed(0)}%`;
+            })
+            .catch(error => {
+                console.error("Erro ao buscar histórico:", error);
+            });
     }
 
     // Simulação de API
@@ -156,5 +116,5 @@ javascript:(function() {
     init();
 
     // Exemplo de como exibir uma mensagem ao abrir o menu
-    showMessage('Bem-vindo ao New System 00!');
+    document.getElementById('messageText').innerText = 'Bem-vindo ao New System 00!';
 })();
