@@ -49,9 +49,8 @@ javascript:(function() {
                     <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span class="colorIndicator">🔴</span>
+                    Entrar no: <span class="colorIndicator">🔴</span> <span id="winMessage" style="color: green; font-weight: bold; display: none;"></span>
                 </div>
-                <div id="winMessage" style="margin-top: 10px; font-size: 14px; color: #00FF00;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
                 </div>
@@ -116,7 +115,14 @@ javascript:(function() {
 
         if (apiResult.status === "complete") {
             if (currentPrediction === colorSymbol) {
-                document.getElementById('winMessage').innerHTML = `<span style="color: green; font-weight: bold;">Win!</span>`;
+                const winMessageElement = document.getElementById('winMessage');
+                winMessageElement.innerText = "Win!";
+                winMessageElement.style.display = "inline"; // Mostra a mensagem "Win!"
+
+                // Oculta a mensagem após 3 segundos
+                setTimeout(() => {
+                    winMessageElement.style.display = "none"; 
+                }, 3000);
             }
         }
     }
