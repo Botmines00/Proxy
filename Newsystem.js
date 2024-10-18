@@ -46,7 +46,7 @@ javascript:(function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
+                    <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 0%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
                     Entrar no: <span class="colorIndicator">🔴</span>
@@ -101,29 +101,36 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    // Variável para controlar a previsão atual
-    let currentPrediction = null;
-
     // Função para processar o resultado da API
     function processResult(apiResult) {
-        if (currentPrediction === null) {
-            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫️';
-            currentPrediction = colorSymbol; // Armazena a previsão
+        if (apiResult.status === "rolling") {
+            const colorSymbol = apiResult.color === 0 ? '⚪️' : apiResult.color === 1 ? '🔴' : '⚫';
             document.getElementById('hackingMessage').style.display = "block";
             document.getElementById("messageArea").style.display = "block";
             document.querySelector(".colorIndicator").innerText = colorSymbol;
-            document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
+        } else if (apiResult.status === "complete") {
+            document.getElementById("messageArea").style.display = "block";
+            document.getElementById('hackingMessage').style.display = 'block';
 
-            if (apiResult.status === "complete") {
-                fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
-                    .then(response => response.json())
-                    .then(data => {
-                        const matchingPercent = data.rolls_info
-                            .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
-                            .filter(percent => percent !== null)[0];
-                        document.querySelector('.chance').innerText = `Chance: ${90 + parseFloat(matchingPercent).toFixed(2)}%`;
-                    });
+            // Buscar histórico de análises (simulado)
+            fetch("https://blaze.com/api/roulette_games/history_analytics?n=3000")
+                .then(response => response.json())
+                .then(data => {
+                    const matchingPercent = data.rolls_info
+                        .map(rollInfo => rollInfo.roll === apiResult.roll ? rollInfo.percent : null)
+                        .filter(percent => percent !== null)[0];
+                    document.querySelector('.chance').innerText = `Chance: ${(Math.random() * 100).toFixed(2)}%`;
+                });
+
+            const colorOptions = ['⚫', '🔴', '⚪️'];
+            let selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
+
+            if (selectedColor === '⚪️') {
+                selectedColor = colorOptions[Math.floor(Math.random() * colorOptions.length)];
             }
+
+            lastColor = selectedColor === '🔴' ? 1 : selectedColor === '⚫' ? 2 : 0;
+            document.querySelector(".colorIndicator").innerText = selectedColor;
         }
     }
 
@@ -141,10 +148,7 @@ javascript:(function() {
 
     // Inicializa o loop de previsão
     function init() {
-        setInterval(() => {
-            currentPrediction = null; // Reseta a previsão para permitir nova previsão
-            play();
-        }, 1000 * 13); // Muda o status e faz uma nova previsão a cada 13 segundos
+        setInterval(play, 1000 * 13); // Muda o status a cada 13 segundos
     }
 
     // Inicia o ciclo de previsões
