@@ -49,8 +49,9 @@ javascript:(function() {
                     <span class="chance" style="color: #2ecc71; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span class="colorIndicator">🔴</span> <span id="winMessage" style="color: green; font-weight: bold; display: none;"></span>
+                    Entrar no: <span class="colorIndicator">🔴</span>
                 </div>
+                <div id="winMessage" style="color: green; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     SHA256 | Versão: 4.0
                 </div>
@@ -111,13 +112,16 @@ javascript:(function() {
         document.getElementById('hackingMessage').style.display = "block";
         document.getElementById("messageArea").style.display = "block";
         document.querySelector(".colorIndicator").innerText = colorSymbol;
-        document.querySelector('.chance').innerText = `Chance: ${90 + Math.random().toFixed(2)}%`;
+
+        // Definindo a chance, limitando a 100%
+        let chance = Math.min(90 + Math.random() * 10, 100).toFixed(2);
+        document.querySelector('.chance').innerText = `Chance: ${chance}%`;
 
         if (apiResult.status === "complete") {
             if (currentPrediction === colorSymbol) {
                 const winMessageElement = document.getElementById('winMessage');
-                winMessageElement.innerText = "Win!";
-                winMessageElement.style.display = "inline"; // Mostra a mensagem "Win!"
+                winMessageElement.innerText = `Win no: ${colorSymbol}`; // Exibe a mensagem "Win!"
+                winMessageElement.style.display = "block"; // Mostra a mensagem "Win!"
 
                 // Oculta a mensagem após 3 segundos
                 setTimeout(() => {
