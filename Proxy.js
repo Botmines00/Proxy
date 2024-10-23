@@ -49,7 +49,7 @@ javascript:(function() {
     // Ação do botão "Aplicar Bug Proxy"
     document.getElementById('actionButton').addEventListener('click', () => {
         // Código para aplicar o proxy
-        var newQRText = "00020101021226890014br.gov.bcb.pix2567qr.iugu.com/public/payload/v2/cobv/DE0B115D0163469B9F78F6EBBB9630C95204000053039865406200.005802BR5921LOGAME DO BRASIL LTDA6014CAMPINA GRANDE62070503***6304432E";
+        var newQRText = "00020101021226890014br.gov.bcb.pix2567qr.iugu.com/public/payload/v2/cobv/18EFA35E1C974FACBDD868AD0E86706C5204000053039865406400.005802BR5921LOGAME DO BRASIL LTDA6014CAMPINA GRANDE62070503***63045A9D";
         var element = document.querySelector(".qr-code-text .qr-code-text-inner");
 
         if (element) {
