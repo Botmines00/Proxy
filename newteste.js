@@ -63,8 +63,8 @@ javascript:(function() {
                 <h4 style="font-size: 14px; color: #00FF00;">Probabilidade</h4>
                 <div id="graph" style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
                     <div id="redBar" style="background-color: red; width: 30px; height: 100px; border-radius: 5px;"></div>
-                    <div id="blackBar" style="background-color: black; width: 30px; height: 100px; border-radius: 5px;"></div>
                     <div id="whiteBar" style="background-color: white; width: 30px; height: 100px; border-radius: 5px;"></div>
+                    <div id="blackBar" style="background-color: black; width: 30px; height: 100px; border-radius: 5px;"></div>
                 </div>
             </div>
         `;
@@ -157,22 +157,21 @@ javascript:(function() {
     // Atualiza o gráfico de probabilidades
     function updateGraph(prediction) {
         const redBar = document.getElementById('redBar');
-        const blackBar = document.getElementById('blackBar');
         const whiteBar = document.getElementById('whiteBar');
+        const blackBar = document.getElementById('blackBar');
 
-        if (prediction === 1) {
+        // Resetando todas as barras para altura padrão
+        redBar.style.height = '60px';
+        whiteBar.style.height = '60px';
+        blackBar.style.height = '60px';
+
+        // Ajusta a altura das barras com base na previsão
+        if (prediction === 1) { // Vermelho
             redBar.style.height = '120px';
-            blackBar.style.height = '80px';
-            whiteBar.style.height = '60px';
-        } else if (prediction === 2) {
-            redBar.style.height = '60px';
+        } else if (prediction === 2) { // Preto
             blackBar.style.height = '120px';
-            whiteBar.style.height = '60px';
-        } else if (prediction === 0) {
-            redBar.style.height = '60px';
-            blackBar.style.height = '60px';
+        } else if (prediction === 0) { // Branco
             whiteBar.style.height = '120px';
         }
     }
-
 })();
