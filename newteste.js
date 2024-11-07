@@ -126,12 +126,18 @@ javascript:(function() {
         // Atualiza o gráfico de probabilidades
         updateGraph(colorSymbol);
 
-        // Definindo a chance, limitando a 100%
-        let chance = Math.min(90 + Math.random() * 10, 100).toFixed(2);
-        document.querySelector('.chance').innerText = `Chance: ${chance}%`;
-
         // Verifica se o status da API é "complete"
         if (apiResult.status === "complete") {
+            // Atualiza a mensagem
+            const messageText = document.getElementById('messageText');
+            if (colorSymbol === 1) {
+                messageText.textContent = "Previsão: Vermelho";
+            } else if (colorSymbol === 2) {
+                messageText.textContent = "Previsão: Preto";
+            } else {
+                messageText.textContent = "Previsão: Branco";
+            }
+
             // Verifica se a previsão corresponde ao resultado da API
             if (currentPrediction === colorSymbol) {
                 const winMessageElement = document.getElementById('winMessage');
@@ -144,23 +150,17 @@ javascript:(function() {
                     winMessageElement.style.display = "none"; 
                     winDisplayed = false; // Reseta o estado de exibição da mensagem
                 }, 3000);
-            } else {
-                // Se a previsão não corresponder ao resultado, reseta winDisplayed
-                if (winDisplayed) {
-                    document.getElementById('winMessage').style.display = "none";
-                }
-                winDisplayed = false; // Reseta o estado de exibição da mensagem
             }
         }
     }
 
-    // Atualiza o gráfico de probabilidades
+    // Função para atualizar o gráfico de probabilidades
     function updateGraph(prediction) {
         const redBar = document.getElementById('redBar');
         const whiteBar = document.getElementById('whiteBar');
         const blackBar = document.getElementById('blackBar');
 
-        // Resetando todas as barras para altura padrão
+        // Reset das barras
         redBar.style.height = '60px';
         whiteBar.style.height = '60px';
         blackBar.style.height = '60px';
@@ -174,4 +174,13 @@ javascript:(function() {
             whiteBar.style.height = '120px';
         }
     }
+
+    // Simulação do processo de previsão
+    setTimeout(() => {
+        const mockApiResult = {
+            color: Math.floor(Math.random() * 3), // 0, 1 ou 2 aleatório
+            status: 'complete'
+        };
+        processResult(mockApiResult);
+    }, 2000); // Simula o resultado da API após 2 segundos
 })();
