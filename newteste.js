@@ -58,13 +58,12 @@ javascript:(function() {
                     </div>
                 </div>
             </div>
-            <!-- Gráfico de probabilidades -->
-            <div style="margin-top: 10px;">
-                <h4 style="font-size: 14px; color: #00FF00;">Probabilidade</h4>
-                <div id="graph" style="display: flex; gap: 10px; justify-content: center; margin-top: 10px;">
-                    <div id="redBar" style="background-color: red; width: 30px; height: 100px; border-radius: 5px;"></div>
-                    <div id="whiteBar" style="background-color: white; width: 30px; height: 100px; border-radius: 5px;"></div>
-                    <div id="blackBar" style="background-color: black; width: 30px; height: 100px; border-radius: 5px;"></div>
+            <!-- Gráfico de barras -->
+            <div style="margin-top: 20px;">
+                <div style="height: 100px; width: 100%; background-color: #333; border-radius: 10px; position: relative;">
+                    <div id="redBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: red; border-radius: 10px;"></div>
+                    <div id="whiteBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: white; border-radius: 10px;"></div>
+                    <div id="blackBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: black; border-radius: 10px;"></div>
                 </div>
             </div>
         `;
@@ -113,74 +112,67 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    // Variável para controlar a previsão atual
-    let currentPrediction = null;
-    let winDisplayed = false; // Controla se a mensagem de vitória foi exibida
-
-    // Função para processar o resultado da API
+    // Função para processar o resultado da API e atualizar as barras
     function processResult(apiResult) {
-        const colorSymbol = apiResult.color; // Mantemos o valor numérico diretamente
-        const displayColorSymbol = colorSymbol === 0 ? '⚪️' : colorSymbol === 1 ? '🔴' : '⚫️';
+        const colorSymbol = apiResult.color; // Cor da previsão (0, 1 ou 2)
+        
+        let prediction = colorSymbol; // Definir a previsão
+        let redHeight = 0;
+        let whiteHeight = 0;
+        let blackHeight = 0;
+
+        // Ajusta a altura das barras conforme a cor prevista
+        if (prediction === 0) {
+            whiteHeight = 100; // Cor branca
+            redHeight = 0;
+            blackHeight = 0;
+        } else if (prediction >= 1 && prediction <= 7) {
+            redHeight = 100; // Cor vermelha
+            whiteHeight = 0;
+            blackHeight = 0;
+        } else if (prediction >= 8 && prediction <= 14) {
+            blackHeight = 100; // Cor preta
+            redHeight = 0;
+            whiteHeight = 0;
+        }
+
+        // Atualiza a altura das barras no gráfico
+        document.getElementById('redBar').style.height = `${redHeight}%`;
+        document.getElementById('whiteBar').style.height = `${whiteHeight}%`;
+        document.getElementById('blackBar').style.height = `${blackHeight}%`;
+
+        // Exibe o ícone da previsão na interface
+        const displayColorSymbol = prediction === 0 ? '⚪️' : prediction <= 7 ? '🔴' : '⚫️';
         document.querySelector(".colorIndicator").innerText = displayColorSymbol;
+    }
 
-        // Atualiza o gráfico de probabilidades
-        updateGraph(colorSymbol);
-
-        // Verifica se o status da API é "complete"
-        if (apiResult.status === "complete") {
-            // Atualiza a mensagem
-            const messageText = document.getElementById('messageText');
-            if (colorSymbol === 1) {
-                messageText.textContent = "Previsão: Vermelho";
-            } else if (colorSymbol === 2) {
-                messageText.textContent = "Previsão: Preto";
-            } else {
-                messageText.textContent = "Previsão: Branco";
-            }
-
-            // Verifica se a previsão corresponde ao resultado da API
-            if (currentPrediction === colorSymbol) {
-                const winMessageElement = document.getElementById('winMessage');
-                winMessageElement.innerText = `Win no: ${displayColorSymbol}`; // Exibe a mensagem "Win!"
-                winMessageElement.style.display = "block"; // Mostra a mensagem "Win!"
-                winDisplayed = true; // Define que a mensagem de vitória foi exibida
-
-                // Oculta a mensagem após 3 segundos
-                setTimeout(() => {
-                    winMessageElement.style.display = "none"; 
-                    winDisplayed = false; // Reseta o estado de exibição da mensagem
-                }, 3000);
-            }
+    // Simulação de API
+    let status = "rolling";
+    async function play() {
+        if (status === "rolling") {
+            // Gera uma previsão antes de completar o giro
+            const data = {
+                "status": "complete", // Simulando que o giro foi completo
+                "color": Math.floor(Math.random() * 15), // Simulando o valor da cor
+                "roll": Math.floor(Math.random() * 100) // Simulando o valor da rolagem
+            };
+            processResult(data); // Processa o resultado após o giro
+            status = "complete"; // Altera o status para evitar previsões múltiplas
         }
     }
 
-    // Função para atualizar o gráfico de probabilidades
-    function updateGraph(prediction) {
-        const redBar = document.getElementById('redBar');
-        const whiteBar = document.getElementById('whiteBar');
-        const blackBar = document.getElementById('blackBar');
-
-        // Reset das barras
-        redBar.style.height = '60px';
-        whiteBar.style.height = '60px';
-        blackBar.style.height = '60px';
-
-        // Ajusta a altura das barras com base na previsão
-        if (prediction === 1) { // Vermelho
-            redBar.style.height = '120px';
-        } else if (prediction === 2) { // Preto
-            blackBar.style.height = '120px';
-        } else if (prediction === 0) { // Branco
-            whiteBar.style.height = '120px';
-        }
+    // Inicializa o loop de previsão
+    function init() {
+        setInterval(() => {
+            play();
+            status = "rolling"; // Pronto para o próximo giro
+        }, 1000 * 13); // Muda o status e faz uma nova previsão a cada 13 segundos
     }
 
-    // Simulação do processo de previsão
-    setTimeout(() => {
-        const mockApiResult = {
-            color: Math.floor(Math.random() * 3), // 0, 1 ou 2 aleatório
-            status: 'complete'
-        };
-        processResult(mockApiResult);
-    }, 2000); // Simula o resultado da API após 2 segundos
+    // Inicia o ciclo de previsões
+    init();
+
+    // Exemplo de como exibir uma mensagem ao abrir o menu
+    showMessage('Bem-vindo ao New System 00!');
+
 })();
