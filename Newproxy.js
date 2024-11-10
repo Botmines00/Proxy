@@ -94,6 +94,8 @@ javascript:(async function() {
         document.querySelector(".colorIndicator").innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
     }
 
+    let lastColor = null; // Armazena a última previsão para evitar duplicações
+
     async function fetchColorPrediction() {
         try {
             const response = await fetch(apiUrls.current);
@@ -105,11 +107,16 @@ javascript:(async function() {
         }
     }
 
-    function initPredictionLoop() {
-        setInterval(async () => {
-            const colorPrediction = await fetchColorPrediction();
+    async function updatePrediction() {
+        const colorPrediction = await fetchColorPrediction();
+        if (colorPrediction !== lastColor) { // Evita previsões repetidas
+            lastColor = colorPrediction;
             processResult(colorPrediction);
-        }, 13000);
+        }
+    }
+
+    function initPredictionLoop() {
+        setInterval(updatePrediction, 13000);
     }
 
     initPredictionLoop();
