@@ -61,8 +61,8 @@ javascript:(async function() {
             <div style="margin-top: 20px;">
                 <div style="height: 100px; width: 100%; background-color: #333; border-radius: 10px; position: relative;">
                     <div id="redBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: red; border-radius: 10px;"></div>
-                    <div id="whiteBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: white; border-radius: 10px;"></div>
-                    <div id="blackBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: black; border-radius: 10px;"></div>
+                    <div id="whiteBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: white; border-radius: 10px; left: 33%;"></div>
+                    <div id="blackBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: black; border-radius: 10px; left: 66%;"></div>
                 </div>
             </div>
         `;
@@ -91,6 +91,8 @@ javascript:(async function() {
         document.getElementById('redBar').style.height = `${redHeight}%`;
         document.getElementById('whiteBar').style.height = `${whiteHeight}%`;
         document.getElementById('blackBar').style.height = `${blackHeight}%`;
+        
+        // Atualiza o indicador de cor
         document.querySelector(".colorIndicator").innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
     }
 
