@@ -1,8 +1,6 @@
 javascript:(async function() {
     const apiUrls = {
-        current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1',
-        recent: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/recent/1',
-        history: 'https://blaze.com/api/roulette_games/history_analytics?n=3000'
+        current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1'
     };
 
     const menu = createMenu();
@@ -49,7 +47,7 @@ javascript:(async function() {
                     <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span class="colorIndicator">🔴</span>
+                    Entrar no: <span id="colorIndicator">🔴</span>
                 </div>
                 <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
@@ -82,7 +80,7 @@ javascript:(async function() {
         messageText.textContent = message;
     }
 
-    function processResult(colorSymbol) {
+    function updateGraph(colorSymbol) {
         let redHeight = 0, whiteHeight = 0, blackHeight = 0;
         if (colorSymbol === 0) whiteHeight = 100;
         else if (colorSymbol >= 1 && colorSymbol <= 7) redHeight = 100;
@@ -91,12 +89,12 @@ javascript:(async function() {
         document.getElementById('redBar').style.height = `${redHeight}%`;
         document.getElementById('whiteBar').style.height = `${whiteHeight}%`;
         document.getElementById('blackBar').style.height = `${blackHeight}%`;
-        
-        // Atualiza o indicador de cor
-        document.querySelector(".colorIndicator").innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
     }
 
-    let lastColor = null;
+    function updateColorIndicator(colorSymbol) {
+        const colorIndicator = document.getElementById("colorIndicator");
+        colorIndicator.innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
+    }
 
     async function fetchColorPrediction() {
         try {
@@ -111,10 +109,8 @@ javascript:(async function() {
 
     async function updatePrediction() {
         const colorPrediction = await fetchColorPrediction();
-        if (colorPrediction !== lastColor) {
-            lastColor = colorPrediction;
-            processResult(colorPrediction);
-        }
+        updateGraph(colorPrediction);
+        updateColorIndicator(colorPrediction);
     }
 
     function checkTimer() {
