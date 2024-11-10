@@ -38,6 +38,8 @@ javascript:(async function() {
                 <div style="font-size: 14px; margin-top: 5px;">Status:</div>
                 <div id="statusMessage" style="font-size: 14px; margin-top: 5px;"></div>
                 <div id="winMessage" style="font-size: 14px; color: green; font-weight: bold; display: none;"></div>
+                <div style="font-size: 12px; color: #00FF00;">SHA256</div>
+                <div style="font-size: 12px; color: #00FF00;">Versão: 1.0</div>
             </div>
         `;
         return m;
@@ -103,10 +105,10 @@ javascript:(async function() {
                 } else {
                     statusMessage.innerHTML = `Lose! > ${result.number}`;
                     winMessage.style.color = 'red';
-                    winMessage.style.display = 'none';
+                    winMessage.style.display = 'block';
                 }
             }
-        }, 13000);
+        }, 13000); // Atualiza a previsão e o resultado a cada 13 segundos
     }
 
     initPredictionLoop();
