@@ -81,14 +81,9 @@ javascript:(async function() {
     }
 
     function updateGraph(colorSymbol) {
-        let redHeight = 0, whiteHeight = 0, blackHeight = 0;
-        if (colorSymbol === 0) whiteHeight = 100;
-        else if (colorSymbol >= 1 && colorSymbol <= 7) redHeight = 100;
-        else if (colorSymbol >= 8 && colorSymbol <= 14) blackHeight = 100;
-
-        document.getElementById('redBar').style.height = `${redHeight}%`;
-        document.getElementById('whiteBar').style.height = `${whiteHeight}%`;
-        document.getElementById('blackBar').style.height = `${blackHeight}%`;
+        document.getElementById('redBar').style.height = colorSymbol >= 1 && colorSymbol <= 7 ? '100%' : '0%';
+        document.getElementById('whiteBar').style.height = colorSymbol === 0 ? '100%' : '0%';
+        document.getElementById('blackBar').style.height = colorSymbol >= 8 && colorSymbol <= 14 ? '100%' : '0%';
     }
 
     function updateColorIndicator(colorSymbol) {
