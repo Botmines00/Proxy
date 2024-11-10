@@ -94,29 +94,39 @@ javascript:(async function() {
         document.querySelector(".colorIndicator").innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
     }
 
-    let lastColor = null; // Armazena a última previsão para evitar duplicações
+    let lastColor = null;
 
     async function fetchColorPrediction() {
         try {
             const response = await fetch(apiUrls.current);
             const data = await response.json();
-            return data.color; // A API retorna um valor de cor (0, 1 ou 2) para processar
+            return data.color;
         } catch (error) {
             console.error("Erro ao buscar dados da API:", error);
-            return Math.floor(Math.random() * 15); // Gera cor aleatória caso API falhe
+            return Math.floor(Math.random() * 15);
         }
     }
 
     async function updatePrediction() {
         const colorPrediction = await fetchColorPrediction();
-        if (colorPrediction !== lastColor) { // Evita previsões repetidas
+        if (colorPrediction !== lastColor) {
             lastColor = colorPrediction;
             processResult(colorPrediction);
         }
     }
 
+    function checkTimer() {
+        const timerElement = document.querySelector('#roulette-timer .time-left');
+        if (timerElement) {
+            const timeRemaining = parseInt(timerElement.textContent.trim(), 10);
+            if (timeRemaining === 10) { // 10 segundos antes do giro iniciar
+                updatePrediction();
+            }
+        }
+    }
+
     function initPredictionLoop() {
-        setInterval(updatePrediction, 13000);
+        setInterval(checkTimer, 1000); // Checa o timer a cada segundo
     }
 
     initPredictionLoop();
