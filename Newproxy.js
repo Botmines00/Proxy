@@ -35,6 +35,7 @@ javascript:(async function() {
             <div style="margin-top: 10px; text-align: center;">
                 <div style="font-size: 14px;">Entrar no:</div>
                 <span id="colorIndicator"></span>
+                <div style="font-size: 14px; margin-top: 5px;">Status:</div>
                 <div id="statusMessage" style="font-size: 14px; margin-top: 5px;"></div>
                 <div id="winMessage" style="font-size: 14px; color: green; font-weight: bold; display: none;"></div>
             </div>
@@ -96,11 +97,11 @@ javascript:(async function() {
 
                 const winMessage = document.getElementById('winMessage');
                 if (predictedColor === resultColor) {
-                    statusMessage.innerHTML = `Status: Win! > ${result.number}`;
+                    statusMessage.innerHTML = `Win! > ${result.number}`;
                     winMessage.style.color = 'green';
                     winMessage.style.display = 'block';
                 } else {
-                    statusMessage.innerHTML = `Status: Lose! > ${result.number}`;
+                    statusMessage.innerHTML = `Lose! > ${result.number}`;
                     winMessage.style.color = 'red';
                     winMessage.style.display = 'none';
                 }
