@@ -45,10 +45,8 @@ javascript:(async function() {
             </div>
             <div style="margin-top: 10px; text-align: center;">
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span id="colorIndicator"></span>
+                    <div style="font-size: 14px;">Entrar no:</div>
+                    <span id="colorIndicator"></span>
                 </div>
                 <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
@@ -97,9 +95,15 @@ javascript:(async function() {
     }
 
     function initPredictionLoop() {
+        let lastPredictedColor = null;
+
         setInterval(async () => {
             const colorPrediction = await fetchColorPrediction();
-            updateColorIndicator(colorPrediction);
+            // Atualiza o indicador de cor apenas se a previsão mudar
+            if (colorPrediction !== lastPredictedColor) {
+                updateColorIndicator(colorPrediction);
+                lastPredictedColor = colorPrediction; // Atualiza a previsão anterior
+            }
         }, 13000); // Atualiza a previsão a cada 13 segundos
     }
 
