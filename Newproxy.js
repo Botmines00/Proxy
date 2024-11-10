@@ -1,6 +1,8 @@
 javascript:(async function() {
     const apiUrls = {
-        current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1'
+        current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1',
+        recent: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/recent/1',
+        history: 'https://blaze.com/api/roulette_games/history_analytics?n=3000'
     };
 
     const menu = createMenu();
@@ -35,7 +37,6 @@ javascript:(async function() {
                         <i class="fab fa-instagram" style="margin-right: 5px; color: #00FF00;"></i>
                         bot00blaze
                     </div>
-                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div>
                 </div>
                 <span id='closeMenu' style="cursor: pointer; font-size: 14px; color: white;">❌</span>
             </div>
@@ -47,20 +48,13 @@ javascript:(async function() {
                     <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 5px;">
-                    Entrar no: <span id="colorIndicator">🔴</span>
+                    Entrar no: <span id="colorIndicator"></span>
                 </div>
                 <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     <div style="background-color: rgba(255, 255, 255, 0.1); padding: 3px 5px; border-radius: 5px; display: inline-block;">
                         SHA256 | Versão: 4.0
                     </div>
-                </div>
-            </div>
-            <div style="margin-top: 20px;">
-                <div style="height: 100px; width: 100%; background-color: #333; border-radius: 10px; position: relative;">
-                    <div id="redBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: red; border-radius: 10px;"></div>
-                    <div id="whiteBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: white; border-radius: 10px; left: 33%;"></div>
-                    <div id="blackBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: black; border-radius: 10px; left: 66%;"></div>
                 </div>
             </div>
         `;
@@ -80,46 +74,33 @@ javascript:(async function() {
         messageText.textContent = message;
     }
 
-    function updateGraph(colorSymbol) {
-        document.getElementById('redBar').style.height = colorSymbol >= 1 && colorSymbol <= 7 ? '100%' : '0%';
-        document.getElementById('whiteBar').style.height = colorSymbol === 0 ? '100%' : '0%';
-        document.getElementById('blackBar').style.height = colorSymbol >= 8 && colorSymbol <= 14 ? '100%' : '0%';
-    }
-
     function updateColorIndicator(colorSymbol) {
         const colorIndicator = document.getElementById("colorIndicator");
-        colorIndicator.innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
+        if (colorSymbol === 0) {
+            colorIndicator.innerText = '⚪️'; // Cor branca
+        } else if (colorSymbol <= 7) {
+            colorIndicator.innerText = '🔴'; // Cor vermelha
+        } else {
+            colorIndicator.innerText = '⚫️'; // Cor preta
+        }
     }
 
     async function fetchColorPrediction() {
         try {
             const response = await fetch(apiUrls.current);
             const data = await response.json();
-            return data.color;
+            return data.color; // A API retorna um valor de cor (0, 1 ou 2) para processar
         } catch (error) {
             console.error("Erro ao buscar dados da API:", error);
-            return Math.floor(Math.random() * 15);
-        }
-    }
-
-    async function updatePrediction() {
-        const colorPrediction = await fetchColorPrediction();
-        updateGraph(colorPrediction);
-        updateColorIndicator(colorPrediction);
-    }
-
-    function checkTimer() {
-        const timerElement = document.querySelector('#roulette-timer .time-left');
-        if (timerElement) {
-            const timeRemaining = parseInt(timerElement.textContent.trim(), 10);
-            if (timeRemaining === 10) { // 10 segundos antes do giro iniciar
-                updatePrediction();
-            }
+            return Math.floor(Math.random() * 15); // Gera cor aleatória caso API falhe
         }
     }
 
     function initPredictionLoop() {
-        setInterval(checkTimer, 1000); // Checa o timer a cada segundo
+        setInterval(async () => {
+            const colorPrediction = await fetchColorPrediction();
+            updateColorIndicator(colorPrediction);
+        }, 13000); // Atualiza a previsão a cada 13 segundos
     }
 
     initPredictionLoop();
