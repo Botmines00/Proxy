@@ -2,7 +2,7 @@ javascript:(async function() {
     const apiUrls = {
         current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1',
         recent: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/recent/1',
-        history: 'https://blaze.com/api/roulette_games/history_analytics?n=3000'
+        history: 'https://blaze1.space/api/roulette_games/history_analytics?n=3000'
     };
 
     const menu = createMenu();
@@ -48,6 +48,7 @@ javascript:(async function() {
                     <div style="font-size: 14px;">Entrar no:</div>
                     <span id="colorIndicator"></span>
                 </div>
+                <div id="statusMessage" style="font-size: 14px; color: #00FF00;"></div>
                 <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
                 <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
                     <div style="background-color: rgba(255, 255, 255, 0.1); padding: 3px 5px; border-radius: 5px; display: inline-block;">
@@ -94,6 +95,17 @@ javascript:(async function() {
         }
     }
 
+    async function fetchLatestResult() {
+        try {
+            const response = await fetch(apiUrls.recent);
+            const data = await response.json();
+            return data.result; // Retorna o último resultado da roleta
+        } catch (error) {
+            console.error("Erro ao buscar resultado recente:", error);
+            return null;
+        }
+    }
+
     function initPredictionLoop() {
         let lastPredictedColor = null;
 
@@ -104,7 +116,31 @@ javascript:(async function() {
                 updateColorIndicator(colorPrediction);
                 lastPredictedColor = colorPrediction; // Atualiza a previsão anterior
             }
-        }, 13000); // Atualiza a previsão a cada 13 segundos
+
+            const result = await fetchLatestResult();
+            if (result !== null) {
+                const predictionStatus = document.getElementById('statusMessage');
+                const resultColor = result.color; // Pegando a cor do último resultado
+                const predictedColor = colorPrediction;
+
+                const statusMessage = document.getElementById('statusMessage');
+                const winMessage = document.getElementById('winMessage');
+
+                if (predictedColor === resultColor) {
+                    // Quando a previsão estiver correta, exibe "Win!" com cor verde
+                    statusMessage.innerHTML = `Status: Win! > ${result.number}`;
+                    statusMessage.style.color = 'green';
+                    winMessage.style.color = 'green';
+                    winMessage.style.display = 'block';
+                } else {
+                    // Quando a previsão estiver errada, exibe "Lose!" com cor vermelha
+                    statusMessage.innerHTML = `Status: Lose! > ${result.number}`;
+                    statusMessage.style.color = 'red';
+                    winMessage.style.color = 'red';
+                    winMessage.style.display = 'none';
+                }
+            }
+        }, 13000); // Atualiza a previsão e verifica o resultado a cada 13 segundos
     }
 
     initPredictionLoop();
