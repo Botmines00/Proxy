@@ -10,14 +10,13 @@ javascript:(function() {
     document.body.appendChild(menu);
     document.addEventListener('dblclick', (e) => showMenu(menu, e.clientY, e.clientX));
 
-    // Fetch results from API every 15 seconds
-    setInterval(() => fetchResults(), 15000);
+    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000); // Simulação de resultados aleatórios
 
     function createMenu() {
         const m = document.createElement('div');
         Object.assign(m.style, {
-            position: 'fixed', top: '30%', left: '30%', width: '200px', 
-            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            position: 'fixed', top: '30%', left: '30%', width: '200px',
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px',
             border: '2px solid #48ff4f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
@@ -36,8 +35,8 @@ javascript:(function() {
     }
 
     function showMenu(menu, y, x) {
-        menu.style.top = `${y}px`; 
-        menu.style.left = `${x}px`; 
+        menu.style.top = `${y}px`;
+        menu.style.left = `${x}px`;
         menu.style.display = 'block';
     }
 
@@ -47,33 +46,47 @@ javascript:(function() {
 
     document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-    async function fetchResults() {
-        try {
-            const response = await fetch('https://blaze1.space/api/roulette_games/history_analytics?n=3000');
-            const data = await response.json();
-            const latestResult = data.data[0].color; // Assuming 'color' is the key for the result (0=white, 1-7=red, 8-14=black)
-            captureResult(latestResult);
-        } catch (error) {
-            console.error('Erro ao buscar os resultados:', error);
-        }
-    }
-
     function captureResult(result) {
         results.push(result);
-        if (results.length > 2880) results.shift();
+        if (results.length > 2880) results.shift(); // Mantém os últimos 2880 resultados
         predictColor(result);
     }
 
     function predictColor(lastResult) {
         const freq = { vermelho: 0, preto: 0, branco: 0 };
-        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
-        
-        const predColor = freq.vermelho > freq.preto ? '🔴' : freq.preto > freq.vermelho ? '⚫' : '⚪';
-        const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
 
-        total++; correct += correctPrediction ? 1 : 0;
-        const accuracyPercent = (correct / total * 100).toFixed(2);
-        
+        // Mapeia os resultados para suas respectivas cores
+        results.forEach(r => {
+            if (r === 0) {
+                freq.branco++;
+            } else if (r >= 1 && r <= 7) {
+                freq.vermelho++;
+            } else if (r >= 8 && r <= 14) {
+                freq.preto++;
+            }
+        });
+
+        // Determina a cor mais frequente
+        let predColor;
+        if (freq.vermelho > freq.preto && freq.vermelho > freq.branco) {
+            predColor = '🔴';
+        } else if (freq.preto > freq.vermelho && freq.preto > freq.branco) {
+            predColor = '⚫';
+        } else {
+            predColor = '⚪'; // Branco se houver empate ou frequência maior
+        }
+
+        // Verifica se a previsão foi correta
+        const actualColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫');
+        const correctPrediction = predColor === actualColor;
+
+        // Atualiza as estatísticas de assertividade
+        total++;
+        correct += correctPrediction ? 1 : 0;
+
+        const accuracyPercent = ((correct / total) * 100).toFixed(2);
+
+        // Atualiza os textos no menu
         document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
         document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
         document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
