@@ -19,7 +19,7 @@ javascript:(function() {
             border: '2px solid #A020F0', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
-            <img src="https://i.ibb.co/PYyRkrS/IMG-20241117-WA0064.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #A020F0;"> <!-- Imagem alterada -->
+            <img src="https://i.ibb.co/jhd6Pcb/Bot-00-Blaze-20241117-131932-0000.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #A020F0;"> <!-- Imagem alterada -->
             <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #A020F0;"></i></h3>
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
             <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: #A020F0; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
