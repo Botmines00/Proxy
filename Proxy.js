@@ -24,7 +24,7 @@ javascript:(function() {
             <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #A020F0;"></i></h3>
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
             <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: #A020F0; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
-            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> Bug Blaze | <i class="fas fa-info-circle"></i> Limites: 10 ✔️</div> <!-- Alterado para Bug Blaze -->
+            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> Bug Blaze | <i class="fas fa-info-circle"></i> Limites:10 </div> <!-- Alterado para Bug Blaze -->
         `;
         return m;
     }
