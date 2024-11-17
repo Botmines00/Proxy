@@ -1,22 +1,76 @@
-javascript:(function() {
-    const results = [], menu = createMenu();
+javascript:(async function() {
+    const token = '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';
+    const owner = 'Botmines00';
+    const repo = 'Proxy';
+    const filePath = 'Resultados.js';
+    const apiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${filePath}`;
+    let fileSha = null;
+    const results = [];
     let correct = 0, total = 0;
 
+    // Link para Font Awesome
     const link = document.createElement('link');
     link.rel = 'stylesheet';
     link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
     document.head.appendChild(link);
 
+    const menu = createMenu();
     document.body.appendChild(menu);
     document.addEventListener('dblclick', (e) => showMenu(menu, e.clientY, e.clientX));
 
-    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000); // Simulação de resultados aleatórios
+    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
 
+    // Função para buscar o SHA do arquivo
+    async function fetchFileSha() {
+        const response = await fetch(apiUrl, {
+            headers: {
+                Authorization: `token ${token}`,
+                Accept: 'application/vnd.github.v3+json',
+            },
+        });
+        if (response.ok) {
+            const data = await response.json();
+            fileSha = data.sha;
+        } else {
+            console.error('Erro ao buscar SHA do arquivo:', await response.text());
+        }
+    }
+
+    // Função para atualizar ou criar o arquivo no GitHub
+    async function saveResultsToGitHub(content) {
+        const encodedContent = btoa(content);
+        const body = {
+            message: 'Atualizando resultados',
+            content: encodedContent,
+        };
+        if (fileSha) {
+            body.sha = fileSha;
+        }
+
+        const response = await fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+                Authorization: `token ${token}`,
+                Accept: 'application/vnd.github.v3+json',
+            },
+            body: JSON.stringify(body),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            console.log('Arquivo salvo com sucesso:', data);
+            fileSha = data.content.sha;
+        } else {
+            console.error('Erro ao salvar arquivo:', await response.text());
+        }
+    }
+
+    // Função para criar o menu
     function createMenu() {
         const m = document.createElement('div');
         Object.assign(m.style, {
-            position: 'fixed', top: '30%', left: '30%', width: '200px',
-            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px',
+            position: 'fixed', top: '30%', left: '30%', width: '200px', 
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
             border: '2px solid #48ff4f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
@@ -31,12 +85,13 @@ javascript:(function() {
                     <i class="fab fa-instagram" style="color: #48ff4f;"></i> bot00blaze
                 </a>
             </div>`;
+        document.getElementById('closeMenu').addEventListener('click', closeMenu);
         return m;
     }
 
     function showMenu(menu, y, x) {
-        menu.style.top = `${y}px`;
-        menu.style.left = `${x}px`;
+        menu.style.top = `${y}px`; 
+        menu.style.left = `${x}px`; 
         menu.style.display = 'block';
     }
 
@@ -44,51 +99,39 @@ javascript:(function() {
         menu.style.display = 'none';
     }
 
-    document.getElementById('closeMenu').addEventListener('click', closeMenu);
-
     function captureResult(result) {
         results.push(result);
-        if (results.length > 2880) results.shift(); // Mantém os últimos 2880 resultados
+        if (results.length > 2880) results.shift();
         predictColor(result);
     }
 
     function predictColor(lastResult) {
         const freq = { vermelho: 0, preto: 0, branco: 0 };
+        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
+        
+        const predColor = freq.vermelho > freq.preto ? '🔴' : freq.preto > freq.vermelho ? '⚫' : '⚪';
+        const correctPrediction = (lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫')) === predColor;
 
-        // Mapeia os resultados para suas respectivas cores
-        results.forEach(r => {
-            if (r === 0) {
-                freq.branco++;
-            } else if (r >= 1 && r <= 7) {
-                freq.vermelho++;
-            } else if (r >= 8 && r <= 14) {
-                freq.preto++;
-            }
-        });
-
-        // Determina a cor mais frequente
-        let predColor;
-        if (freq.vermelho > freq.preto && freq.vermelho > freq.branco) {
-            predColor = '🔴';
-        } else if (freq.preto > freq.vermelho && freq.preto > freq.branco) {
-            predColor = '⚫';
-        } else {
-            predColor = '⚪'; // Branco se houver empate ou frequência maior
-        }
-
-        // Verifica se a previsão foi correta
-        const actualColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🔴' : '⚫');
-        const correctPrediction = predColor === actualColor;
-
-        // Atualiza as estatísticas de assertividade
-        total++;
-        correct += correctPrediction ? 1 : 0;
-
-        const accuracyPercent = ((correct / total) * 100).toFixed(2);
-
-        // Atualiza os textos no menu
+        total++; correct += correctPrediction ? 1 : 0;
+        const accuracyPercent = (correct / total * 100).toFixed(2);
+        
         document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
         document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
         document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
+
+        // Salva os dados no GitHub
+        const resultados = {
+            data: new Date().toISOString(),
+            padroes: [
+                { cor: 'vermelho', ocorrencias: freq.vermelho },
+                { cor: 'preto', ocorrencias: freq.preto },
+                { cor: 'branco', ocorrencias: freq.branco }
+            ],
+            accuracy: accuracyPercent
+        };
+        saveResultsToGitHub(JSON.stringify(resultados, null, 2));
     }
+
+    await fetchFileSha(); // Busca o SHA do arquivo inicialmente
+
 })();
