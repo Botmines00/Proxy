@@ -15,7 +15,8 @@ javascript:(function() {
         const m = document.createElement('div');
         Object.assign(m.style, {
             position: 'fixed', top: '30%', left: '30%', width: '200px',  // Largura reduzida
-            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            background: 'url(https://i.ibb.co/qxHVbFj/8940cf41-1499-47fe-a789-57c376aba99d-20241117-133119-0000.jpg)', 
+            backgroundSize: 'cover', color: '#fff', padding: '10px', borderRadius: '8px', 
             border: '2px solid #A020F0', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
