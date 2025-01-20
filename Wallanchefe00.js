@@ -1,9 +1,16 @@
 javascript:(function() {
+    console.log("Script iniciado...");
+
     const results = [];
 
     function captureResult(result) {
+        console.log("Resultado capturado:", result);
+
         // Verificar se a roleta terminou
-        if (!verificarFimDoGiro()) return;
+        if (!verificarFimDoGiro()) {
+            console.log("A roleta ainda está girando...");
+            return;
+        }
 
         results.push(result);
 
@@ -13,11 +20,13 @@ javascript:(function() {
     }
 
     function verificarFimDoGiro() {
-        const roletaStatus = document.querySelector('.roleta-status'); // Ajuste o seletor conforme o HTML do site.
+        const roletaStatus = document.querySelector('.roleta-status'); // Ajuste o seletor conforme necessário.
+        console.log("Status da roleta:", roletaStatus ? roletaStatus.innerText : "não encontrado");
         return !roletaStatus || roletaStatus.innerText.trim() !== 'Girando...';
     }
 
     function predictColor(result) {
+        console.log("Analisando previsão...");
         const resultNumber = parseInt(result, 10);
         let color = '';
 
@@ -29,23 +38,31 @@ javascript:(function() {
             color = 'black'; // Preto
         }
 
-        const prediction = document.querySelector('#predictionColor'); // Ajuste o seletor para o local correto da previsão
-        if (!prediction) return;
+        const prediction = document.querySelector('#predictionColor'); // Ajuste o seletor.
+        if (!prediction) {
+            console.log("Nenhuma previsão encontrada.");
+            return;
+        }
 
         const predictedColor = prediction.innerText.trim().toLowerCase();
 
         // Comparar previsão com resultado
         if (predictedColor === color) {
+            console.log("Previsão correta:", color);
             exibirMensagem('Win!', 'win');
         } else {
+            console.log("Previsão incorreta:", predictedColor, "vs", color);
             exibirMensagem('Loss!', 'loss');
         }
     }
 
     function exibirMensagem(texto, classe) {
+        console.log("Exibindo mensagem:", texto);
+
         let mensagem = document.getElementById('resultMessage');
 
         if (!mensagem) {
+            console.log("Criando elemento de mensagem...");
             mensagem = document.createElement('div');
             mensagem.id = 'resultMessage';
             document.body.appendChild(mensagem);
@@ -89,11 +106,14 @@ javascript:(function() {
     `;
     document.head.appendChild(style);
 
+    console.log("Monitorando resultados...");
+
     // Monitorar resultados
     const observer = new MutationObserver(() => {
-        const result = document.querySelector('.roleta-resultado'); // Ajuste o seletor ao HTML do site.
+        const result = document.querySelector('.roleta-resultado'); // Ajuste o seletor conforme necessário.
         if (result) {
             const resultText = result.innerText.trim();
+            console.log("Resultado detectado:", resultText);
             if (!isNaN(resultText)) {
                 captureResult(resultText);
             }
