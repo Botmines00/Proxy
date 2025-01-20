@@ -1,124 +1,86 @@
 javascript:(function() {
-    console.log("Script iniciado...");
+    const results = [], menu = createMenu();
+    let correct = 0, total = 0;
 
-    const results = [];
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+
+    document.body.appendChild(menu);
+    document.addEventListener('dblclick', (e) => showMenu(menu, e.clientY, e.clientX));
+
+    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
+
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px', 
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid #48ff4f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/VMpNSWD/IMG-20250120-WA0129.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid #48ff4f;">
+            <h3 style='text-align:center;'>Hacker Chefe00 <i class="fas fa-check-circle" style="color: #48ff4f;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: </div>
+            <div id='accuracyText' style='text-align:center;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
+            <div id='resultMessage' style='text-align:center; margin-top: 5px;'></div>
+            <div style='text-align:center;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>
+            <div style="text-align:center; margin-top: 10px;">
+                <a href="https://www.instagram.com/wallanchefe00?igsh=MWplZHNkcDZkeDg0cg%3D%3D&utm_source=qr" target="_blank" style="color: #48ff4f; text-decoration: none;">
+                    <i class="fab fa-instagram" style="color: #48ff4f;"></i> wallanchefe00
+                </a>
+            </div>`;
+        return m;
+    }
+
+    function showMenu(menu, y, x) {
+        menu.style.top = `${y}px`; 
+        menu.style.left = `${x}px`; 
+        menu.style.display = 'block';
+    }
+
+    function closeMenu() {
+        menu.style.display = 'none';
+    }
+
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
     function captureResult(result) {
-        console.log("Resultado capturado:", result);
-
-        // Verificar se a roleta terminou
-        if (!verificarFimDoGiro()) {
-            console.log("A roleta ainda está girando...");
-            return;
-        }
-
         results.push(result);
-
         if (results.length > 2880) results.shift();
-
         predictColor(result);
     }
 
-    function verificarFimDoGiro() {
-        const roletaStatus = document.querySelector('.roleta-status'); // Ajuste o seletor conforme necessário.
-        console.log("Status da roleta:", roletaStatus ? roletaStatus.innerText : "não encontrado");
-        return !roletaStatus || roletaStatus.innerText.trim() !== 'Girando...';
-    }
+    function predictColor(lastResult) {
+        const freq = { verde: 0, preto: 0, branco: 0 };
+        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'verde' : 'preto']++);
+        
+        const predColor = freq.verde > freq.preto ? '🟢' : freq.preto > freq.verde ? '⚫' : '⚪';
+        const lastColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🟢' : '⚫');
+        const correctPrediction = lastColor === predColor;
 
-    function predictColor(result) {
-        console.log("Analisando previsão...");
-        const resultNumber = parseInt(result, 10);
-        let color = '';
+        total++; 
+        correct += correctPrediction ? 1 : 0;
+        const accuracyPercent = (correct / total * 100).toFixed(2);
+        
+        document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
+        document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
+        document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
 
-        if (resultNumber === 0) {
-            color = 'white'; // Branco
-        } else if (resultNumber >= 1 && resultNumber <= 7) {
-            color = 'green'; // Verde
-        } else if (resultNumber >= 8 && resultNumber <= 14) {
-            color = 'black'; // Preto
-        }
-
-        const prediction = document.querySelector('#predictionColor'); // Ajuste o seletor.
-        if (!prediction) {
-            console.log("Nenhuma previsão encontrada.");
-            return;
-        }
-
-        const predictedColor = prediction.innerText.trim().toLowerCase();
-
-        // Comparar previsão com resultado
-        if (predictedColor === color) {
-            console.log("Previsão correta:", color);
-            exibirMensagem('Win!', 'win');
+        const resultMessage = document.getElementById('resultMessage');
+        if (correctPrediction) {
+            resultMessage.innerText = `Win!`;
+            resultMessage.style.color = 'green';
         } else {
-            console.log("Previsão incorreta:", predictedColor, "vs", color);
-            exibirMensagem('Loss!', 'loss');
-        }
-    }
-
-    function exibirMensagem(texto, classe) {
-        console.log("Exibindo mensagem:", texto);
-
-        let mensagem = document.getElementById('resultMessage');
-
-        if (!mensagem) {
-            console.log("Criando elemento de mensagem...");
-            mensagem = document.createElement('div');
-            mensagem.id = 'resultMessage';
-            document.body.appendChild(mensagem);
+            resultMessage.innerText = `Loss!`;
+            resultMessage.style.color = 'red';
         }
 
-        mensagem.innerText = texto;
-        mensagem.className = classe;
-
-        // Remover mensagem após 6 segundos
+        // Ocultar mensagem após 6 segundos
         setTimeout(() => {
-            mensagem.innerText = '';
-            mensagem.className = '';
+            resultMessage.innerText = '';
         }, 6000);
     }
-
-    // Estilos para a mensagem
-    const style = document.createElement('style');
-    style.innerText = `
-        #resultMessage {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            text-align: center;
-            z-index: 9999;
-            transition: all 0.5s ease;
-        }
-        #resultMessage.win {
-            background-color: rgba(72, 255, 79, 0.8);
-            color: white;
-            border: 2px solid green;
-        }
-        #resultMessage.loss {
-            background-color: rgba(255, 72, 72, 0.8);
-            color: white;
-            border: 2px solid red;
-        }
-    `;
-    document.head.appendChild(style);
-
-    console.log("Monitorando resultados...");
-
-    // Monitorar resultados
-    const observer = new MutationObserver(() => {
-        const result = document.querySelector('.roleta-resultado'); // Ajuste o seletor conforme necessário.
-        if (result) {
-            const resultText = result.innerText.trim();
-            console.log("Resultado detectado:", resultText);
-            if (!isNaN(resultText)) {
-                captureResult(resultText);
-            }
-        }
-    });
-
-    observer.observe(document.body, { childList: true, subtree: true });
 })();
