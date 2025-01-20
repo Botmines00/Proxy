@@ -20,7 +20,7 @@
             border: '2px solid #48ff4f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
         });
         m.innerHTML = `
-            <img src="https://i.ibb.co/VMpNSWD/IMG-20250120-WA0129.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid #48ff4f;">
+            <img src="https://i.ibb.co/DrTBHKm/IMG-20250120-WA0130.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid #48ff4f;">
             <h3 style='text-align:center;'>Hacker Chefe00 <i class="fas fa-check-circle" style="color: #48ff4f;"></i></h3>
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
             <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: </div>
