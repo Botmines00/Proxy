@@ -71,16 +71,16 @@ javascript:(function() {
 
         const resultMessage = document.getElementById('resultMessage');
         if (correctPrediction) {
-            resultMessage.innerText = `Win! > ${lastResult}`;
+            resultMessage.innerText = `Win!`;
             resultMessage.style.color = 'green';
         } else {
             resultMessage.innerText = `Loss!`;
             resultMessage.style.color = 'red';
         }
 
-        // Ocultar mensagem após 2 segundos
+        // Ocultar mensagem após 6 segundos
         setTimeout(() => {
             resultMessage.innerText = '';
-        }, 2000);
+        }, 6000);
     }
 })();
