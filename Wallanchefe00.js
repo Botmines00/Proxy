@@ -1,4 +1,4 @@
-javascript:(function() {
+(function() {
     const results = [], menu = createMenu();
     let correct = 0, total = 0;
 
@@ -25,7 +25,6 @@ javascript:(function() {
             <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
             <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: </div>
             <div id='accuracyText' style='text-align:center;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
-            <div id='resultMessage' style='text-align:center; margin-top: 5px;'></div>
             <div style='text-align:center;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>
             <div style="text-align:center; margin-top: 10px;">
                 <a href="https://www.instagram.com/wallanchefe00?igsh=MWplZHNkcDZkeDg0cg%3D%3D&utm_source=qr" target="_blank" style="color: #48ff4f; text-decoration: none;">
@@ -54,33 +53,21 @@ javascript:(function() {
     }
 
     function predictColor(lastResult) {
-        const freq = { verde: 0, preto: 0, branco: 0 };
-        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'verde' : 'preto']++);
-        
-        const predColor = freq.verde > freq.preto ? '🟢' : freq.preto > freq.verde ? '⚫' : '⚪';
-        const lastColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🟢' : '⚫');
+        const freq = { vermelho: 0, preto: 0, branco: 0 };
+        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'vermelho' : 'preto']++);
+
+        const predColor = freq.vermelho > freq.preto ? '⚫️' : freq.preto > freq.vermelho ? '🔴' : '⚪';
+        const lastColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '⚫️' : '🔴');
         const correctPrediction = lastColor === predColor;
 
         total++; 
         correct += correctPrediction ? 1 : 0;
         const accuracyPercent = (correct / total * 100).toFixed(2);
-        
+
+        console.log(`Último resultado: ${lastResult}, Cor prevista: ${predColor}, Assertividade: ${accuracyPercent}%`);
+
         document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
         document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
         document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
-
-        const resultMessage = document.getElementById('resultMessage');
-        if (correctPrediction) {
-            resultMessage.innerText = `Win!`;
-            resultMessage.style.color = 'green';
-        } else {
-            resultMessage.innerText = `Loss!`;
-            resultMessage.style.color = 'red';
-        }
-
-        // Ocultar mensagem após 6 segundos
-        setTimeout(() => {
-            resultMessage.innerText = '';
-        }, 6000);
     }
 })();
