@@ -1,165 +1,86 @@
 javascript:(function() {
-  const script = document.createElement('script');
-  confirm("Inicializando System Bot00 2k25... 💻");
+    const results = [], menu = createMenu();
+    let correct = 0, total = 0;
 
-  script.innerText = `
-    function closeMenu() {
-      let contextOptions = document.getElementsByClassName('custom-menu')[0];
-      contextOptions.style.display = 'none';
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css';
+    document.head.appendChild(link);
+
+    document.body.appendChild(menu);
+    document.addEventListener('dblclick', (e) => showMenu(menu, e.clientY, e.clientX));
+
+    setInterval(() => captureResult(Math.floor(Math.random() * 15)), 15000);
+
+    function createMenu() {
+        const m = document.createElement('div');
+        Object.assign(m.style, {
+            position: 'fixed', top: '30%', left: '30%', width: '200px', 
+            background: '#1e1e1e', color: '#fff', padding: '10px', borderRadius: '8px', 
+            border: '2px solid #48ff4f', boxShadow: '0 0 10px rgba(0,0,0,0.5)', display: 'none', zIndex: '9999'
+        });
+        m.innerHTML = `
+            <img src="https://i.ibb.co/VMpNSWD/IMG-20250120-WA0129.jpg" style="display: block; margin: 0 auto; width: 80px; height: 80px; border-radius: 50%; border: 2px solid #48ff4f;">
+            <h3 style='text-align:center;'>Hacker Chefe00 <i class="fas fa-check-circle" style="color: #48ff4f;"></i></h3>
+            <span id='closeMenu' style="float:right; cursor:pointer; font-size: 24px; color: white;">X</span>
+            <div id='predictionText' style='text-align:center;'><i class="fas fa-circle"></i> Entrar na Cor: </div>
+            <div id='accuracyText' style='text-align:center;'><i class="fas fa-check-circle"></i> Assertividade: 0%</div>
+            <div id='resultMessage' style='text-align:center; margin-top: 5px;'></div>
+            <div style='text-align:center;'><i class="fas fa-cogs"></i> SHA256 | <i class="fas fa-info-circle"></i> Versão: 1.0</div>
+            <div style="text-align:center; margin-top: 10px;">
+                <a href="https://www.instagram.com/wallanchefe00?igsh=MWplZHNkcDZkeDg0cg%3D%3D&utm_source=qr" target="_blank" style="color: #48ff4f; text-decoration: none;">
+                    <i class="fab fa-instagram" style="color: #48ff4f;"></i> wallanchefe00
+                </a>
+            </div>`;
+        return m;
     }
 
-    const menuHTML = \`
-      <div class="custom-menu">
-        <div class="menu-header">Entrada Confirmada</div>
-        <div class="instagram-overlay">
-          <i class="fab fa-instagram instagram-icon"></i>
-          <span class="instagram-text">@bot00blaze</span>
-        </div>
-        <div class="menu-content">
-          <img src="https://i.ibb.co/qxHVbFj/8940cf41-1499-47fe-a789-57c376aba99d-20241117-133119-0000.jpg" alt="Fundo" class="background-image">
-          <div class="menu-overlay">
-            <div class="status">
-              <span>Status:</span>
-              <i class="fas fa-clock status-icon"></i>
-            </div>
-            <div class="entry">
-              <span>Entrada:</span>
-              <div class="icon entry-icon"></div>
-            </div>
-          </div>
-        </div>
-        <span class="context-option closeMenu" onclick="closeMenu();">Fechar Menu</span>
-      </div>
-    \`;
+    function showMenu(menu, y, x) {
+        menu.style.top = `${y}px`; 
+        menu.style.left = `${x}px`; 
+        menu.style.display = 'block';
+    }
 
-    const styleTag = document.createElement('style');
-    styleTag.innerHTML = \`
-      .custom-menu {
-        position: fixed;
-        top: 50px;
-        left: 50px;
-        width: 300px;
-        border: 2px solid #a020f0; /* Borda roxa aumentada para 2px */
-        border-radius: 8px;
-        background-color: #1b1b1b;
-        color: #fff;
-        font-family: Arial, sans-serif;
-        z-index: 9999;
-        display: block;
-      }
+    function closeMenu() {
+        menu.style.display = 'none';
+    }
 
-      .menu-header {
-        background-color: #282828;
-        text-align: center;
-        font-weight: bold;
-        padding: 10px;
-        font-size: 18px;
-        border-bottom: 2px solid #a020f0;
-      }
+    document.getElementById('closeMenu').addEventListener('click', closeMenu);
 
-      .instagram-overlay {
-        position: absolute;
-        top: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        align-items: center;
-        gap: 5px;
-        z-index: 2;
-      }
+    function captureResult(result) {
+        results.push(result);
+        if (results.length > 2880) results.shift();
+        predictColor(result);
+    }
 
-      .instagram-icon {
-        font-size: 20px;
-        color: #E1306C; /* Cor do ícone do Instagram */
-      }
+    function predictColor(lastResult) {
+        const freq = { verde: 0, preto: 0, branco: 0 };
+        results.forEach(r => freq[r === 0 ? 'branco' : r <= 7 ? 'verde' : 'preto']++);
+        
+        const predColor = freq.verde > freq.preto ? '🟢' : freq.preto > freq.verde ? '⚫' : '⚪';
+        const lastColor = lastResult === 0 ? '⚪' : (lastResult <= 7 ? '🟢' : '⚫');
+        const correctPrediction = lastColor === predColor;
 
-      .instagram-text {
-        color: #fff;
-        font-size: 14px;
-        font-weight: bold;
-      }
+        total++; 
+        correct += correctPrediction ? 1 : 0;
+        const accuracyPercent = (correct / total * 100).toFixed(2);
+        
+        document.getElementById('accuracyText').innerText = `Assertividade: ${accuracyPercent}%`;
+        document.getElementById('accuracyText').style.color = accuracyPercent < 60 ? 'red' : 'green';
+        document.getElementById('predictionText').innerText = `Entrar na Cor: ${predColor}`;
 
-      .menu-content {
-        position: relative;
-        height: 200px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
+        const resultMessage = document.getElementById('resultMessage');
+        if (correctPrediction) {
+            resultMessage.innerText = `Win! > ${lastResult}`;
+            resultMessage.style.color = 'green';
+        } else {
+            resultMessage.innerText = `Loss!`;
+            resultMessage.style.color = 'red';
+        }
 
-      .background-image {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 1;
-      }
-
-      .menu-overlay {
-        position: relative;
-        z-index: 2;
-        display: flex;
-        justify-content: space-between;
-        width: 90%;
-      }
-
-      .status, .entry {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        color: #fff;
-      }
-
-      .status-icon {
-        font-size: 40px;
-        color: #ffffff;
-        margin-top: 5px;
-      }
-
-      .icon {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: 5px;
-      }
-
-      .entry-icon {
-        background-color: #ff0000;
-        border: 2px solid #fff;
-      }
-
-      .context-option {
-        display: block;
-        text-align: center;
-        padding: 5px;
-        background-color: #282828;
-        color: #fff;
-        font-size: 14px;
-        cursor: pointer;
-        border-top: 2px solid #a020f0;
-      }
-
-      .context-option:hover {
-        background-color: #444;
-      }
-    \`;
-
-    const menuDiv = document.createElement('div');
-    menuDiv.innerHTML = menuHTML;
-
-    const fontAwesome = document.createElement('script');
-    fontAwesome.src = 'https://kit.fontawesome.com/a076d05399.js';
-    fontAwesome.crossorigin = 'anonymous';
-
-    document.body.appendChild(styleTag);
-    document.body.appendChild(menuDiv);
-    document.body.appendChild(fontAwesome);
-  `;
-
-  document.body.appendChild(script);
+        // Ocultar mensagem após 2 segundos
+        setTimeout(() => {
+            resultMessage.innerText = '';
+        }, 2000);
+    }
 })();
