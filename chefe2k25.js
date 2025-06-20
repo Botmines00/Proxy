@@ -1,51 +1,12 @@
-javascript:(() => {
-  const seeResult = () => {
-    document.getElementById('corResultado').textContent = 'Buscando resultado...';
-    document.getElementById('sugestaoEntrada').textContent = '...';
-    
-    fetch('https://blaze.bet.br/api/singleplayer-originals/originals/roulette_games/recent/1')
-      .then(res => res.json())
-      .then(data => {
-        console.log("🔎 Dados recebidos da API:", data); // <-- VERIFICAR NO CONSOLE
-
-        if (!data || !data[0] || data[0].color === undefined) {
-          document.getElementById('corResultado').textContent = '⚠️ Resultado inválido!';
-          document.getElementById('sugestaoEntrada').textContent = '-';
-          return;
-        }
-
-        const corId = Number(data[0].color);
-        let corTexto = 'Desconhecida';
-        let sugestao = '-';
-
-        if (corId === 1) {
-          corTexto = '🟥 Vermelho';
-          sugestao = '⬛ Apostar Preto';
-        } else if (corId === 2) {
-          corTexto = '⬛ Preto';
-          sugestao = '🟥 Apostar Vermelho';
-        } else if (corId === 0) {
-          corTexto = '⬜ Branco';
-          sugestao = '🟥 Ou ⬛ Apostar Vermelho ou Preto';
-        }
-
-        document.getElementById('corResultado').textContent = `Resultado: ${corTexto}`;
-        document.getElementById('sugestaoEntrada').textContent = `Sugestão: ${sugestao}`;
-      })
-      .catch((err) => {
-        console.error('❌ Erro ao buscar resultado:', err);
-        document.getElementById('corResultado').textContent = 'Erro ao buscar resultado!';
-        document.getElementById('sugestaoEntrada').textContent = '';
-      });
+(() => {
+  // Cores
+  const coresMap = {
+    0: { nome: '⬜ Branco', sugestao: '🟥 Ou ⬛ Apostar Vermelho ou Preto' },
+    1: { nome: '🟥 Vermelho', sugestao: '⬛ Apostar Preto' },
+    2: { nome: '⬛ Preto', sugestao: '🟥 Apostar Vermelho' },
   };
 
-  const closeMenu = () => {
-    document.getElementById('blazeMenu')?.remove();
-    clearInterval(timerCheck);
-  };
-
-  if (document.getElementById('blazeMenu')) document.getElementById('blazeMenu').remove();
-
+  // Criar estilo
   const style = document.createElement('style');
   style.textContent = `
     #blazeMenu {
@@ -55,59 +16,31 @@ javascript:(() => {
       font-family: 'Segoe UI', sans-serif; color: #fff;
     }
     #blazeMenu h3 {
-      margin: 0 0 5px; position: relative;
-      text-align: center; color: #54eb00;
-      font-size: 14px;
-      user-select: none;
-    }
-    #blazeMenu h3 .closeBtn {
-      position: absolute;
-      right: 5px;
-      top: 50%;
-      transform: translateY(-50%);
-      cursor: pointer;
-      color: #ff4444;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 0 6px;
-      border-radius: 50%;
-      line-height: 1;
-      user-select: none;
-      transition: background-color 0.2s;
-    }
-    #blazeMenu h3 .closeBtn:hover {
-      background-color: #ff0000;
-      color: #fff;
+      margin: 0 0 5px; text-align: center; color: #54eb00; font-size: 14px;
     }
     #blazeMenu button {
-      display: block; width: 100%; margin: 5px 0; padding: 8px;
+      width: 100%; margin: 5px 0; padding: 8px;
       background: #54eb00; border: none; border-radius: 5px;
-      font-weight: bold; font-size: 12px; cursor: pointer;
-      color: #000; transition: 0.2s;
-    }
-    #blazeMenu button:hover {
-      background: #76ff33;
+      font-weight: bold; font-size: 12px; cursor: pointer; color: #000;
     }
     #corResultado, #sugestaoEntrada {
       background: #111; color: #fff;
       padding: 6px; margin-top: 5px;
-      text-align: center; border-radius: 5px;
-      font-size: 12px;
+      text-align: center; border-radius: 5px; font-size: 12px;
     }
-    #blazeMenu .dev {
-      text-align: center; margin-top: 5px; font-size: 11px;
-      color: #aaa;
-    }
+    #blazeMenu .dev { text-align: center; margin-top: 5px; font-size: 11px; color: #aaa; }
+    .closeBtn { position: absolute; top: 5px; right: 10px; cursor: pointer; font-weight: bold; color: #f00; }
   `;
   document.head.appendChild(style);
 
+  // Remover anterior
+  document.getElementById('blazeMenu')?.remove();
+
+  // Criar menu
   const menu = document.createElement('div');
   menu.id = 'blazeMenu';
   menu.innerHTML = `
-    <h3>
-      🤖 Chefe - 2k25
-      <span class="closeBtn" title="Fechar menu">×</span>
-    </h3>
+    <h3>🤖 Chefe - 2k25 <span class="closeBtn">×</span></h3>
     <button id="btnIdentificarCor">🎯 Identificar Cor</button>
     <div id="corResultado">Resultado: ?</div>
     <div id="sugestaoEntrada">Sugestão: -</div>
@@ -115,15 +48,34 @@ javascript:(() => {
   `;
   document.body.appendChild(menu);
 
-  document.querySelector('#blazeMenu .closeBtn').addEventListener('click', closeMenu);
-  document.getElementById('btnIdentificarCor').addEventListener('click', seeResult);
+  // Fechar menu
+  document.querySelector('.closeBtn').onclick = () => menu.remove();
 
-  const timerCheck = setInterval(() => {
-    const timeSpan = document.querySelector('#roulette-timer .time-left span');
-    if (!timeSpan) return;
-    const timeText = timeSpan.textContent.trim();
-    if (timeText === '00:00' || timeText === '' || timeText === '0:00') {
-      seeResult();
-    }
-  }, 1000);
+  // Buscar resultado
+  const buscarResultado = () => {
+    fetch('https://blaze.bet.br/api/singleplayer-originals/originals/roulette_games/recent/1')
+      .then(res => res.json())
+      .then(data => {
+        const corId = Number(data[0]?.color);
+        const cor = coresMap[corId] || { nome: '❓ Desconhecida', sugestao: '-' };
+        document.getElementById('corResultado').textContent = `Resultado: ${cor.nome}`;
+        document.getElementById('sugestaoEntrada').textContent = `Sugestão: ${cor.sugestao}`;
+      })
+      .catch(() => {
+        document.getElementById('corResultado').textContent = 'Erro ao buscar resultado!';
+        document.getElementById('sugestaoEntrada').textContent = '-';
+      });
+  };
+
+  // Clique manual
+  document.getElementById('btnIdentificarCor').onclick = buscarResultado;
+
+  // Detectar giro novo com MutationObserver
+  const alvo = document.querySelector('#roulette-slider-entries');
+  if (alvo) {
+    const observer = new MutationObserver(() => {
+      setTimeout(buscarResultado, 500); // tempo pra garantir que já saiu
+    });
+    observer.observe(alvo, { childList: true });
+  }
 })();
