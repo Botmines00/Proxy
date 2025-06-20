@@ -1,68 +1,46 @@
-
 (() => {
   const coresMap = {
-    0: { nome: 'â¬œ Branco', sugestao: 'ðŸŸ¥ ou â¬› Apostar Vermelho ou Preto' },
-    1: { nome: 'ðŸŸ¥ Vermelho', sugestao: 'â¬› Apostar Preto' },
-    2: { nome: 'â¬› Preto', sugestao: 'ðŸŸ¥ Apostar Vermelho' },
+    0: '⬜ Branco',
+    1: '🟥 Vermelho',
+    2: '⬛ Preto'
+  };
+
+  const getSugestao = (ultimos) => {
+    const contagem = { 0: 0, 1: 0, 2: 0 };
+    ultimos.forEach(c => contagem[c]++);
+    
+    if (contagem[0] > 0) return '🟥 ou ⬛ Apostar Vermelho ou Preto';
+
+    const maisProvavel = contagem[1] >= contagem[2] ? 1 : 2;
+    return maisProvavel === 1 ? '🟥 Repetição Provável' : '⬛ Repetição Provável';
   };
 
   const style = document.createElement('style');
   style.textContent = `
     #blazeMenu {
-      position: fixed;
-      top: 100px;
-      left: 20px;
-      width: 240px;
-      background: #111;
-      padding: 12px;
-      z-index: 99999;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #54eb00;
-      font-family: 'Segoe UI', sans-serif;
-      color: #fff;
+      position: fixed; top: 100px; left: 20px; width: 240px;
+      background: #1e1e1e; padding: 10px; z-index: 99999;
+      border-radius: 10px; box-shadow: 0 0 10px #00ff00;
+      font-family: 'Segoe UI', sans-serif; color: #fff;
     }
     #blazeMenu h3 {
-      margin: 0 0 10px;
-      text-align: center;
-      color: #54eb00;
-      font-size: 14px;
+      margin: 0 0 5px; text-align: center; color: #54eb00; font-size: 14px;
+      position: relative;
     }
     #blazeMenu button {
-      width: 100%;
-      margin: 6px 0;
-      padding: 8px;
-      background: #54eb00;
-      border: none;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 13px;
-      cursor: pointer;
-      color: #000;
-    }
-    #corResultado, #sugestaoEntrada {
-      background: #222;
-      color: #fff;
-      padding: 8px;
-      margin-top: 6px;
-      text-align: center;
-      border-radius: 5px;
-      font-size: 13px;
-    }
-    #blazeMenu .dev {
-      text-align: center;
-      margin-top: 8px;
-      font-size: 11px;
-      color: #aaa;
+      width: 100%; margin: 5px 0; padding: 8px;
+      background: #54eb00; border: none; border-radius: 5px;
+      font-weight: bold; font-size: 12px; cursor: pointer; color: #000;
     }
     .closeBtn {
-      position: absolute;
-      top: 6px;
-      right: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      color: #f00;
-      font-size: 16px;
+      position: absolute; right: 10px; top: 0;
+      font-weight: bold; color: #f00; cursor: pointer;
     }
+    #corResultado, #sugestaoEntrada {
+      background: #111; color: #fff; padding: 6px; margin-top: 5px;
+      text-align: center; border-radius: 5px; font-size: 12px;
+    }
+    .dev { text-align: center; margin-top: 5px; font-size: 11px; color: #aaa; }
   `;
   document.head.appendChild(style);
 
@@ -71,10 +49,10 @@
   const menu = document.createElement('div');
   menu.id = 'blazeMenu';
   menu.innerHTML = `
-    <h3>ðŸ¤– Chefe - 2k25 Pro <span class="closeBtn">Ã—</span></h3>
-    <button id="btnIdentificarCor">ðŸŽ¯ Identificar Cor</button>
+    <h3>🤖 Chefe - 2k25 Pro <span class="closeBtn">×</span></h3>
+    <button id="btnIdentificarCor">🎯 Identificar Cor</button>
     <div id="corResultado">Resultado: ?</div>
-    <div id="sugestaoEntrada">SugestÃ£o: -</div>
+    <div id="sugestaoEntrada">Sugestão: -</div>
     <div class="dev">By: Allan Santos</div>
   `;
   document.body.appendChild(menu);
@@ -82,16 +60,18 @@
   document.querySelector('.closeBtn').onclick = () => menu.remove();
 
   const buscarResultado = () => {
-    fetch('https://blaze.bet.br/api/singleplayer-originals/originals/roulette_games/recent/1')
+    fetch('https://blaze.bet.br/api/singleplayer-originals/originals/roulette_games/recent/3')
       .then(res => res.json())
       .then(data => {
-        const corId = Number(data[0]?.color);
-        const cor = coresMap[corId] || { nome: 'â“ Desconhecida', sugestao: '-' };
-        document.getElementById('corResultado').textContent = `Resultado: ${cor.nome}`;
-        document.getElementById('sugestaoEntrada').textContent = `SugestÃ£o: ${cor.sugestao}`;
+        const cores = data.map(g => Number(g.color));
+        const ultima = cores[0];
+        const corNome = coresMap[ultima] || '❓ Desconhecida';
+        const sugestao = getSugestao(cores);
+        document.getElementById('corResultado').textContent = `Resultado: ${corNome}`;
+        document.getElementById('sugestaoEntrada').textContent = `Sugestão: ${sugestao}`;
       })
       .catch(() => {
-        document.getElementById('corResultado').textContent = 'Erro ao buscar resultado!';
+        document.getElementById('corResultado').textContent = 'Erro ao buscar!';
         document.getElementById('sugestaoEntrada').textContent = '-';
       });
   };
